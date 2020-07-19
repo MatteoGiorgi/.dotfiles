@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/rtbm/bin'
+let g:netrw_dirhist_5='/home/rtbm/.dotfiles/vim'
+let g:netrw_dirhist_4='/home/rtbm/dwn'
+let g:netrw_dirhist_3='/usr/share/fzf'
+let g:netrw_dirhist_2='/home/rtbm/.dotfiles/qtile/.config/qtile'
+let g:netrw_dirhist_1='/home/rtbm/.dotfiles/qtile/.config'
+let g:netrw_dirhist_0='/home/rtbm/.dotfiles/qtile'
+let g:netrw_dirhist_9='/home/rtbm/.dotfiles'
+let g:netrw_dirhist_8='/home/rtbm/.dotfiles/qtile/.config/qtile'
+let g:netrw_dirhist_7='/home/rtbm'

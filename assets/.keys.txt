@@ -1,0 +1,29 @@
++------------------------+-------------------------------------------------+
+|  Qtile keybinding      |  Triggered action                               |
++------------------------+-------------------------------------------------+
+|  Super + Space         |  switch window focus in current stack           |
+|  Super + j             |  move window up in current stack                |
+|  Super + k             |  move window down in current stack              |
+|  Super + h             |  increase window size                           |
+|  Super + l             |  decrease window size                           |
+|  Super + n             |  restore default ratio between windows          |
+|  Super + m             |  maximize window                                |
+|  Super + 1...8         |  move focus to 1...8 group                      |
+|  Super + Ctrl + j      |  move focus to previous group                   |
+|  Super + Ctrl + k      |  move focus to next group                       |
+|  Super + Ctrl + 1...8  |  move selected window and focus to 1...8 group  |
+|  Super + Ctrl + Space  |  flip master and stack                          |
+|  Super + Ctrl + Enter  |  toggle floating mode                           |
+|  Super + d             |  open rofi-menu                                 |
+|  Super + a             |  open rofi-window                               |
+|  Super + Esc           |  open command line inside status bar            |
+|  Super + Enter         |  open xterm in a new window                     |
+|  Super + s             |  open system settings in a floating window      |
+|  Super + v             |  open vim in a new window                       |
+|  Super + r             |  open ranger in a new window                    |
+|  Super + Tab           |  toggle between layouts                         |
+|  Super + z             |  kill selected window                           |
+|  Super + Ctrl + r      |  restart Qtile                                  |
+|  Super + Ctrl + q      |  shutdown Qtile                                 |
++------------------------+-------------------------------------------------+
+
