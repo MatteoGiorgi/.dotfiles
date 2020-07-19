@@ -32,7 +32,7 @@ set incsearch=true
 set default-font=Ubuntu
 
 # The font family used as the default for content using monospace font.
-set monospace-font=mononoki
+set monospace-font=mononoki\ Nerd\ Font
 
 # The font family used as the default for content using sans-serif font.
 set sans-serif-font=Ubuntu

@@ -122,7 +122,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='mononoki',
+    font='mononoki Nerd Font',
     fontsize=14,
     padding=4,
     background=color_black,
