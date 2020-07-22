@@ -68,6 +68,7 @@ set linebreak
 set wildmode=list:longest,list:full
 set nobackup
 set laststatus=2
+set encoding=UTF-8
 
 "set noshowmode
 "set noswapfile
@@ -81,12 +82,14 @@ set laststatus=2
 
 let mapleader = "\<space>"
 let g:SuperTabDefaultCompletionType = 'context'
+let g:split = get(g:, 'split', '30vnew')
+let g:split_direction = get(g:, 'split_direction', 'nosplitbelow nosplitright')
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-command Python execute "!python < %"
+command! -nargs=* -complete=dir F call Run(<q-args>)
 command! -bar RangerChooser call RangeChooser()
 
 
@@ -103,6 +106,7 @@ noremap <S-j> <C-W><C-J>
 noremap <S-l> <C-W><C-L>
 noremap <C-h> :bprev<CR>
 noremap <C-l> :bnext<CR>
+noremap <leader><space> :F<CR>
 noremap <leader>h :RangerChooser<CR>
 noremap <leader>j :Files!<CR>
 noremap <leader>k :BLines!<CR>
@@ -110,18 +114,65 @@ noremap <leader>l :BCommits!<CR>
 noremap <F2> :set hlsearch! hlsearch?<CR>
 noremap <F3> :setlocal spell! spelllang=en_us<CR>
 noremap <F4> <esc>ggVGgq<CR>
+"noremap <Tab> :buffers<CR>:buffer<Space>
 
 vmap <C-y> :!xclip -f -sel clip<CR>
 nmap <C-p> :-r!xclip -o -sel clip<CR>
 
-"noremap <Tab> :buffers<CR>:buffer<Space>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+function! OpenFile(...)
+    let tmp_file = $XDG_CACHE_HOME
+
+    if !isdirectory(tmp_file)
+        let tmp_file = $HOME . "/.cache"
+    endif
+
+    let tmp_file .= "/fff/opened_file"
+    let tmp_file = fnameescape(tmp_file)
+    bd!
+
+    if filereadable(tmp_file)
+        let file_data = readfile(tmp_file)
+        execute delete(tmp_file)
+    else
+        return
+    endif
+
+    if filereadable(file_data[0])
+        execute "e " . file_data[0]
+    endif
+endfunction
+
+function! Run(command)
+    execute 'setlocal' . ' ' . g:split_direction
+    execute g:split
+    execute 'setlocal nonumber'
+    execute 'setlocal norelativenumber'
+
+    if has('nvim')
+        call termopen('fff -p ' . a:command,
+                    \ {'on_exit': function('open_file') })
+        startinsert
+    else
+        let buffer = term_start([&shell, &shellcmdflag, 'fff -p ' . a:command],
+                    \ {'curwin': 1, 'exit_cb': function('OpenFile')})
+
+        if !has('patch-8.0.1261')
+            call term_wait(buffer, 20)
+        endif
+    endif
+endfunction
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 " The following function uses ranger file manager as file selector
-" I previusly used the fff plugin
+" I ditch it in favour his countrepart for fff
 function! RangeChooser()
     let temp = tempname()
     " The option "--choosefiles" was added in ranger 1.5.1. Use the next line

@@ -53,15 +53,14 @@ keys = [
     Key([mod], "l", lazy.screen.next_group()),
 
 
-    # Shortcuts for cmd, xterm, urxvt, rofi-menu, settings, vim, ranger, ...
+    # Shortcuts for Qtile-cmd, Alacritty, Rofi-menu, Settings, ...
     Key(["control"], "Escape", lazy.spawn("rofi-run -l")),
     Key(["control"], "Return", lazy.spawn("rofi-run -r")),
     Key([mod], "Escape", lazy.spawn("xkill")),
-    Key([mod], "Return", lazy.spawn("xterm")),
-    Key([mod], "r", lazy.spawn("xterm -e ranger")),
-    Key([mod], "c", lazy.spawn("xterm -e mocp")),
+    Key([mod], "Return", lazy.spawn("alacritty")),
+    Key([mod], "c", lazy.spawn("alacritty -e mocp")),
     Key([mod], "a", lazy.spawn("acme -f /mnt/font/mononoki-Regular/9a/font")),
-    Key([mod], "q", lazy.spawn("qutebrowser")),
+    Key([mod], "b", lazy.spawn("/opt/Vieb/vieb")),
     Key([mod], "s", lazy.spawn("xfce4-settings-manager")),
     Key([mod], "p", lazy.spawncmd(prompt='%')),
 
@@ -103,9 +102,9 @@ layout_theme = dict(
 )
 
 layouts = [
-    layout.MonadTall(name='🗗₁', **layout_theme),
-    layout.MonadWide(name='🗗₂', **layout_theme),
-    layout.Max(name='🗖'),
+    layout.MonadTall(name='者', **layout_theme),
+    layout.MonadWide(name='署', **layout_theme),
+    layout.Max(name='謹'),
 
     # Try more layouts by unleashing below layouts.
     # layout.Floating(),
@@ -146,7 +145,7 @@ screens = [
         top=bar.Bar(
             [
                 widget.TextBox(
-                    text='☰',
+                    text='',
                     mouse_callbacks={
                         'Button1':
                         lambda qtile: qtile.cmd_spawn('rofi-run -r'),
@@ -154,6 +153,7 @@ screens = [
                         lambda qtile: qtile.cmd_spawn('rofi-run -l'),
                     }
                 ),
+                widget.Spacer(length=4),
                 widget.Prompt(
                     cursor=True,
                     prompt='{prompt} ',
@@ -179,6 +179,7 @@ screens = [
                     background=color_white,
                     foreground=color_black
                 ),
+                widget.Spacer(length=4, background=color_white),
                 widget.WindowName(
                     background=color_white,
                     foreground=color_black,
@@ -194,15 +195,10 @@ screens = [
                     background=color_white,
                     foreground=color_black,
                     configured_keyboards=['it', 'us'],
-                    fmt='🖮{}'
+                    fmt=' {}'
                 ),
                 widget.Spacer(length=4, background=color_white),
                 widget.Spacer(length=4),
-                # widget.Moc(
-                #     play_color=color_white,
-                #     noplay_color=color_gray,
-                #     max_chars=30
-                # ),
                 widget.Systray(icon_size=14),
                 widget.Spacer(length=4),
                 widget.Clock(
