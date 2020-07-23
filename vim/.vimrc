@@ -103,25 +103,30 @@ command! -bar RangerChooser call RangeChooser()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-noremap <C-S-h> <C-W><C-<>
-noremap <C-S-j> <C-W><C-->
-noremap <C-S-k> <C-W><C-+>
-noremap <C-S-l> <C-W><C->>
+noremap <C-h> <C-W><C-<>
+noremap <C-j> <C-W><C-->
+noremap <C-k> <C-W><C-+>
+noremap <C-l> <C-W><C->>
 noremap <S-h> <C-W><C-H>
 noremap <S-k> <C-W><C-K>
 noremap <S-j> <C-W><C-J>
 noremap <S-l> <C-W><C-L>
-noremap <C-h> :bprev<CR>
-noremap <C-l> :bnext<CR>
-noremap <leader>q :F<CR>
-noremap <leader>f :Files!<CR>
+noremap <Tab> :bnext<CR>
+noremap <S-Tab> :bprev<CR>
+noremap <leader>d :bdelete<CR>
+noremap <leader>s :split<CR>
+noremap <leader>v :vsplit<CR>
+noremap <leader>q :quit<CR>
+noremap <leader>w :write<CR>
+noremap <leader>f :F<CR>
+noremap <leader>r :RangerChooser<CR>
+noremap <leader>h :Files!<CR>
 noremap <leader>l :BLines!<CR>
-noremap <leader>c :BCommits!<CR>
+noremap <leader>g :BCommits!<CR>
 noremap <F2> :set hlsearch! hlsearch?<CR>
 noremap <F3> :setlocal spell! spelllang=en_us<CR>
 noremap <F4> <esc>ggVGgq<CR>
 "noremap <Tab> :buffers<CR>:buffer<Space>
-"noremap <leader>r :RangerChooser<CR>
 
 vmap <C-y> :!xclip -f -sel clip<CR>
 nmap <C-p> :-r!xclip -o -sel clip<CR>
