@@ -40,6 +40,7 @@ alias _="swallow"
 alias z="fzf"
 alias jj="lsd -lrt"
 alias j="lsd -lrta"
+alias v="vim"
 
 # Creates an archive (*.tar.gz) from given directory.
 function maketar()

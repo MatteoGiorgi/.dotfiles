@@ -7,10 +7,11 @@
 "    04 auto-pairs              https://github.com/jiangmiao/auto-pairs
 "    05 vim-surround            https://github.com/tpope/vim-surround
 "    06 vim-multiple-cursors    https://github.com/terryma/vim-multiple-cursors
-"    07 vim-wintabs             https://github.com/zefei/vim-wintabs
-"    08 vimwiki                 https://github.com/vimwiki/vimwiki
-"    09 landscape               https://github.com/itchyny/landscape.vim
-"    10 vim-startify            https://github.com/mhinz/vim-startify
+"    07 vim-easymotion          https://github.com/easymotion/vim-easymotion
+"    08 vim-wintabs             https://github.com/zefei/vim-wintabs
+"    09 vimwiki                 https://github.com/vimwiki/vimwiki
+"    10 landscape               https://github.com/itchyny/landscape.vim
+"    11 vim-startify            https://github.com/mhinz/vim-startify
 
 " Since Vim-8 is out, no package manager is needed: just clone the plugins repo
 " inside ~/.vim/pack/plugins/start/ and all fold into place.
@@ -68,13 +69,14 @@ set linebreak
 set wildmode=list:longest,list:full
 set nobackup
 set laststatus=2
-set encoding=UTF-8
 
 "set noshowmode
 "set noswapfile
 "set cursorline
 "set scl=no
 "set nolist
+"set encoding=UTF-8
+"set omnifunc=ale#completion#OmniFunc
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -84,6 +86,11 @@ let mapleader = "\<space>"
 let g:SuperTabDefaultCompletionType = 'context'
 let g:split = get(g:, 'split', '30vnew')
 let g:split_direction = get(g:, 'split_direction', 'nosplitbelow nosplitright')
+let g:ale_completion_enabled = 1
+let b:ale_fixers = ['prettier', 'eslint']
+let g:ale_fix_on_save = 1
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -106,19 +113,23 @@ noremap <S-j> <C-W><C-J>
 noremap <S-l> <C-W><C-L>
 noremap <C-h> :bprev<CR>
 noremap <C-l> :bnext<CR>
-noremap <leader><space> :F<CR>
-noremap <leader>h :RangerChooser<CR>
-noremap <leader>j :Files!<CR>
-noremap <leader>k :BLines!<CR>
-noremap <leader>l :BCommits!<CR>
+noremap <leader>q :F<CR>
+noremap <leader>f :Files!<CR>
+noremap <leader>l :BLines!<CR>
+noremap <leader>c :BCommits!<CR>
 noremap <F2> :set hlsearch! hlsearch?<CR>
 noremap <F3> :setlocal spell! spelllang=en_us<CR>
 noremap <F4> <esc>ggVGgq<CR>
 "noremap <Tab> :buffers<CR>:buffer<Space>
+"noremap <leader>r :RangerChooser<CR>
 
 vmap <C-y> :!xclip -f -sel clip<CR>
 nmap <C-p> :-r!xclip -o -sel clip<CR>
 
+nmap <Leader><Leader> <Plug>(easymotion-overwin-f)
+nmap <Leader><Leader> <Plug>(easymotion-overwin-f2)
+nmap <Leader>j <Plug>(easymotion-j)
+nmap <Leader>k <Plug>(easymotion-k)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -172,7 +183,7 @@ endfunction
 
 
 " The following function uses ranger file manager as file selector
-" I ditch it in favour his countrepart for fff
+" I ditch it in favour of his countrepart for fff written above
 function! RangeChooser()
     let temp = tempname()
     " The option "--choosefiles" was added in ranger 1.5.1. Use the next line

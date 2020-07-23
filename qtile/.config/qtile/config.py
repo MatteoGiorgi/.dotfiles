@@ -58,7 +58,7 @@ keys = [
     Key(["control"], "Return", lazy.spawn("rofi-run -r")),
     Key([mod], "Escape", lazy.spawn("xkill")),
     Key([mod], "Return", lazy.spawn("alacritty")),
-    Key([mod], "c", lazy.spawn("alacritty -e mocp")),
+    Key([mod], "q", lazy.spawn("xterm -e mocp")),
     Key([mod], "a", lazy.spawn("acme -f /mnt/font/mononoki-Regular/9a/font")),
     Key([mod], "b", lazy.spawn("/opt/Vieb/vieb")),
     Key([mod], "s", lazy.spawn("xfce4-settings-manager")),
