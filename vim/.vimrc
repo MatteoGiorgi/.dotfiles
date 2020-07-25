@@ -1,17 +1,17 @@
 " Vim config file, let's try to use it as vanilla as possible!
 " In the spirit of keeping things minimal, I usually have few plugins, they
 " should be more than enough for everything:
-"    01 fzf                     https://github.com/junegunn/fzf.vim
-"    02 ale                     https://github.com/dense-analysis/ale
-"    03 supertab                https://github.com/ervandew/supertab
-"    04 auto-pairs              https://github.com/jiangmiao/auto-pairs
-"    05 vim-surround            https://github.com/tpope/vim-surround
-"    06 vim-multiple-cursors    https://github.com/terryma/vim-multiple-cursors
-"    07 vim-easymotion          https://github.com/easymotion/vim-easymotion
-"    08 vim-wintabs             https://github.com/zefei/vim-wintabs
-"    09 vimwiki                 https://github.com/vimwiki/vimwiki
-"    10 landscape               https://github.com/itchyny/landscape.vim
-"    11 vim-startify            https://github.com/mhinz/vim-startify
+"    fzf                     https://github.com/junegunn/fzf.vim
+"    ale                     https://github.com/dense-analysis/ale
+"    supertab                https://github.com/ervandew/supertab
+"    auto-pairs              https://github.com/jiangmiao/auto-pairs
+"    vim-surround            https://github.com/tpope/vim-surround
+"    vim-multiple-cursors    https://github.com/terryma/vim-multiple-cursors
+"    vim-easymotion          https://github.com/easymotion/vim-easymotion
+"    vim-wintabs             https://github.com/zefei/vim-wintabs
+"    vimwiki                 https://github.com/vimwiki/vimwiki
+"    landscape               https://github.com/itchyny/landscape.vim
+"    vim-startify            https://github.com/mhinz/vim-startify
 
 " Since Vim-8 is out, no package manager is needed: just clone the plugins repo
 " inside ~/.vim/pack/plugins/start/ and all fold into place.
@@ -20,6 +20,7 @@
 "    fff                     https://github.com/dylanaraps/fff.vim
 "    buftabs                 https://github.com/vim-scripts/buftabs
 "    buftabs                 https://github.com/zefei/buftabs
+"    vim-buftabline          https://github.com/ap/vim-buftabline
 "    vim-bufferline          https://github.com/bling/vim-bufferline
 "    vimtex                  https://github.com/lervag/vimtex
 "    python-mode             https://github.com/python-mode/python-mode
@@ -67,16 +68,36 @@ set wrap
 set textwidth=80
 set linebreak
 set wildmode=list:longest,list:full
+set encoding=UTF-8
 set nobackup
-set laststatus=2
+set noshowmode
 
-"set noshowmode
+set laststatus=2
+set statusline=
+set statusline+=\ %{toupper(g:currentmode[mode()])}
+set statusline+=%<
+set statusline+=\ \|\ %F
+set statusline+=\ %{&modified?'+\ ':''}
+set statusline+=%{&readonly?'\ ':''}
+set statusline+=\ %=
+set statusline+=\ %{&filetype!=#''?&filetype:'none'}
+set statusline+=%(\ \|%{(&bomb\|\|&fileencoding!~#'^$\\\|utf-8'?'\ '.&fileencoding.(&bomb?'-bom':''):'')
+  \.(&fileformat!=#(has('win32')?'dos':'unix')?'\ '.&fileformat:'')}%)
+set statusline+=%(\ \|\ %{&modifiable?(&expandtab?'et\ ':'noet\ ').&shiftwidth:''}%)
+set statusline+=\ \|
+set statusline+=\ %{&number?'':printf('%2d,',line('.'))}
+set statusline+=%-2v
+set statusline+=\ %2p%%
+set statusline+=\ 
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 "set noswapfile
 "set cursorline
 "set scl=no
 "set nolist
-"set encoding=UTF-8
-"set omnifunc=ale#completion#OmniFunc
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -91,6 +112,27 @@ let b:ale_fixers = ['prettier', 'eslint']
 let g:ale_fix_on_save = 1
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
+let g:currentmode={
+	\ 'n'  : 'Normal',
+	\ 'no' : 'N·Operator Pending',
+	\ 'v'  : 'Visual',
+	\ 'V'  : 'V·Line',
+	\ '' : 'V·Block',
+	\ 's'  : 'Select',
+	\ 'S'  : 'S·Line',
+	\ '' : 'S·Block',
+	\ 'i'  : 'Insert',
+	\ 'R'  : 'Replace',
+	\ 'Rv' : 'V·Replace',
+	\ 'c'  : 'Command',
+	\ 'cv' : 'Vim Ex',
+	\ 'ce' : 'Ex',
+	\ 'r'  : 'Prompt',
+	\ 'rm' : 'More',
+	\ 'r?' : 'Confirm',
+	\ '!'  : 'Shell',
+	\ 't'  : 'Terminal',
+	\}
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -113,11 +155,16 @@ noremap <S-j> <C-W><C-J>
 noremap <S-l> <C-W><C-L>
 noremap <Tab> :bnext<CR>
 noremap <S-Tab> :bprev<CR>
+noremap <leader><Tab> :buffers<CR>:buffer<Space>
 noremap <leader>d :bdelete<CR>
 noremap <leader>s :split<CR>
 noremap <leader>v :vsplit<CR>
+noremap <leader>e :edit<space>
+noremap <leader>n :new<CR>
+noremap <leader>m :vnew<CR>
 noremap <leader>q :quit<CR>
 noremap <leader>w :write<CR>
+noremap <leader>t :!<space>
 noremap <leader>f :F<CR>
 noremap <leader>r :RangerChooser<CR>
 noremap <leader>h :Files!<CR>
@@ -126,15 +173,14 @@ noremap <leader>g :BCommits!<CR>
 noremap <F2> :set hlsearch! hlsearch?<CR>
 noremap <F3> :setlocal spell! spelllang=en_us<CR>
 noremap <F4> <esc>ggVGgq<CR>
-"noremap <Tab> :buffers<CR>:buffer<Space>
 
 vmap <C-y> :!xclip -f -sel clip<CR>
 nmap <C-p> :-r!xclip -o -sel clip<CR>
 
-nmap <Leader><Leader> <Plug>(easymotion-overwin-f)
-nmap <Leader><Leader> <Plug>(easymotion-overwin-f2)
-nmap <Leader>j <Plug>(easymotion-j)
-nmap <Leader>k <Plug>(easymotion-k)
+nmap <leader><leader> <Plug>(easymotion-overwin-f)
+nmap <leader><leader> <Plug>(easymotion-overwin-f2)
+nmap <leader>j <Plug>(easymotion-j)
+nmap <leader>k <Plug>(easymotion-k)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -184,9 +230,6 @@ function! Run(command)
 endfunction
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 " The following function uses ranger file manager as file selector
 " I ditch it in favour of his countrepart for fff written above
 function! RangeChooser()
@@ -219,8 +262,12 @@ function! RangeChooser()
     redraw!
 endfunction
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 " The following two functions were thought to be used inside the statusline to
-" show the git-status of the direcory.
+" show the git-status of the direcory, plus file size and permissions.
 function! GitBranch()
   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
@@ -228,6 +275,34 @@ endfunction
 function! StatuslineGit()
   let l:branchname = GitBranch()
   return strlen(l:branchname) > 0?' ['.l:branchname.']':''
+endfunction
+
+function! FileSize()
+    let bytes = getfsize(expand('%:p'))
+    if (bytes >= 1024)
+        let kbytes = bytes / 1024
+    endif
+    if (exists('kbytes') && kbytes >= 1000)
+        let mbytes = kbytes / 1000
+    endif
+    if bytes <= 0
+        return '0'
+    endif
+    if (exists('mbytes'))
+        return mbytes . 'MB '
+    elseif (exists('kbytes'))
+        return kbytes . 'KB '
+    else
+        return bytes . 'B '
+    endif
+endfunction
+
+function! ReadOnly()
+    if &readonly || !&modifiable
+        return ''
+    else
+        return ''
+    endif
 endfunction
 
 

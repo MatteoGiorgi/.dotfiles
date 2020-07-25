@@ -176,7 +176,6 @@ export FFF_COL2=7
 export FFF_COL3=6
 export FFF_COL4=1
 export FFF_COL5=0
-export EDITOR="vim"
 export FFF_OPENER="xdg-open"
 export FFF_STAT_CMD="stat"
 export FFF_CD_ON_EXIT=1
@@ -208,3 +207,5 @@ eval "`dircolors -b $DIR_COLORS`"
 pfetch
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
+
+source /home/rtbm/.config/broot/launcher/bash/br

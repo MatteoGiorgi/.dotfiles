@@ -12,7 +12,7 @@ set mintabwidth=250
 set windowtitle=title
 set fontsize=12
 set darkreader=false
-set favoritepages="matteogiorgi.github.io"
+set favoritepages="https://matteogiorgi.github.io,https://github.com/MatteoGiorgi,https://catonmat.net/vim-plugins"
 
 " Mappings
 map <Up> <action.scrollUp>

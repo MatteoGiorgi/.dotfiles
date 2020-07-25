@@ -20,7 +20,7 @@ convert "$pape" -write-mask "temp_logo.png" -gravity center \
 	-blur 0x30 \
 	-attenuate 0.3 +noise Laplacian\
 	-evaluate Multiply 1.3 \
-	"arch_$outfile_name"
+	"logo_$outfile_name"
 
 # Delete temporary file
 rm "temp_logo.png"

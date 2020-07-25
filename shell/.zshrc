@@ -147,7 +147,6 @@ export FFF_COL2=7
 export FFF_COL3=6
 export FFF_COL4=1
 export FFF_COL5=0
-export EDITOR="vim"
 export FFF_OPENER="xdg-open"
 export FFF_STAT_CMD="stat"
 export FFF_CD_ON_EXIT=1
@@ -174,3 +173,5 @@ export PROMPT="%B[%F{cyan}%n%f@%F{magenta}%m%f] [%F{blue}%9~%f] %(?.%F{green}√
 pfetch
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+
+source /home/rtbm/.config/broot/launcher/bash/br
