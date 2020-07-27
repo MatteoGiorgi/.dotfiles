@@ -54,15 +54,15 @@ keys = [
 
 
     # Shortcuts for Qtile-cmd, Alacritty, Rofi-menu, Settings, ...
-    Key(["control"], "Escape", lazy.spawn("rofi-run -l")),
-    Key(["control"], "Return", lazy.spawn("rofi-run -r")),
-    Key([mod], "Escape", lazy.spawn("xkill")),
-    Key([mod], "Return", lazy.spawn("alacritty")),
-    Key([mod], "q", lazy.spawn("xterm -e mocp")),
+    Key([mod], "Escape", lazy.spawn("rofi-run -l")),
+    Key([mod], "Return", lazy.spawn("rofi-run -r")),
+    Key([mod], "q", lazy.spawn("xkill")),
+    Key([mod], "t", lazy.spawn("alacritty")),
+    Key([mod], "p", lazy.spawn("xterm -e mocp")),
     Key([mod], "a", lazy.spawn("acme -f /mnt/font/mononoki-Regular/9a/font")),
-    Key([mod], "b", lazy.spawn("/opt/Vieb/vieb")),
+    Key([mod], "b", lazy.spawn("qutebrowser")),
     Key([mod], "s", lazy.spawn("xfce4-settings-manager")),
-    Key([mod], "p", lazy.spawncmd(prompt='%')),
+    Key([mod], "c", lazy.spawncmd(prompt='%')),
 
 
     # Chanage the bloody volume

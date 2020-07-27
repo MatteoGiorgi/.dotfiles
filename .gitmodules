@@ -34,3 +34,6 @@
 [submodule "vim/.vim/pack/plugins/start/vim-easymotion"]
 	path = vim/.vim/pack/plugins/start/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion
+[submodule "vim/.vim/pack/plugins/start/vim-man"]
+	path = vim/.vim/pack/plugins/start/vim-man
+	url = https://github.com/vim-utils/vim-man

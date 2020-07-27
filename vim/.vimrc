@@ -10,6 +10,7 @@
 "    vim-easymotion          https://github.com/easymotion/vim-easymotion
 "    vim-wintabs             https://github.com/zefei/vim-wintabs
 "    vimwiki                 https://github.com/vimwiki/vimwiki
+"    vim-man                 https://github.com/vim-utils/vim-man
 "    landscape               https://github.com/itchyny/landscape.vim
 "    vim-startify            https://github.com/mhinz/vim-startify
 
@@ -140,36 +141,41 @@ let g:currentmode={
 
 command! -nargs=* -complete=dir F call Run(<q-args>)
 command! -bar RangerChooser call RangeChooser()
+command! HandleURL call HandleURL()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 noremap <C-h> <C-W><C-<>
+noremap <C-l> <C-W><C->>
 noremap <C-j> <C-W><C-->
 noremap <C-k> <C-W><C-+>
-noremap <C-l> <C-W><C->>
 noremap <S-h> <C-W><C-H>
 noremap <S-k> <C-W><C-K>
 noremap <S-j> <C-W><C-J>
 noremap <S-l> <C-W><C-L>
-noremap <Tab> :bnext<CR>
-noremap <S-Tab> :bprev<CR>
-noremap <leader><Tab> :buffers<CR>:buffer<Space>
+noremap m :bnext<CR>
+noremap , :bprev<CR>
+noremap <leader>b :buffers<CR>:buffer<Space>
 noremap <leader>d :bdelete<CR>
+noremap <leader>e :edit<space>
 noremap <leader>s :split<CR>
 noremap <leader>v :vsplit<CR>
-noremap <leader>e :edit<space>
-noremap <leader>n :new<CR>
-noremap <leader>m :vnew<CR>
+noremap <leader>nn :enew<CR>
+noremap <leader>ns :new<CR>
+noremap <leader>nv :vnew<CR>
+noremap <leader>ms :Man<space>
+noremap <leader>mv :Vman<space>
 noremap <leader>q :quit<CR>
 noremap <leader>w :write<CR>
-noremap <leader>t :!<space>
+noremap <leader>c :!<space>
 noremap <leader>f :F<CR>
 noremap <leader>r :RangerChooser<CR>
 noremap <leader>h :Files!<CR>
 noremap <leader>l :BLines!<CR>
 noremap <leader>g :BCommits!<CR>
+noremap <leader>u :HandleURL<CR>
 noremap <F2> :set hlsearch! hlsearch?<CR>
 noremap <F3> :setlocal spell! spelllang=en_us<CR>
 noremap <F4> <esc>ggVGgq<CR>
@@ -177,13 +183,23 @@ noremap <F4> <esc>ggVGgq<CR>
 vmap <C-y> :!xclip -f -sel clip<CR>
 nmap <C-p> :-r!xclip -o -sel clip<CR>
 
-nmap <leader><leader> <Plug>(easymotion-overwin-f)
-nmap <leader><leader> <Plug>(easymotion-overwin-f2)
+nmap <leader><leader> <Plug>(easymotion-bd-w)
 nmap <leader>j <Plug>(easymotion-j)
 nmap <leader>k <Plug>(easymotion-k)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+function! HandleURL()
+    let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+    echo s:uri
+    if s:uri != ""
+        silent exec "!nohup xdg-open '".s:uri."' &"
+    else
+        echo "No URI found in line."
+    endif
+endfunction
 
 
 function! OpenFile(...)
