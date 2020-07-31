@@ -56,13 +56,18 @@ keys = [
     # Shortcuts for Qtile-cmd, Alacritty, Rofi-menu, Settings, ...
     Key([mod], "Escape", lazy.spawn("rofi-run -l")),
     Key([mod], "Return", lazy.spawn("rofi-run -r")),
+    Key([mod, "control"], "Escape", lazy.spawn("betterlockscreen -l dim")),
     Key([mod], "q", lazy.spawn("xkill")),
-    Key([mod], "t", lazy.spawn("alacritty")),
-    Key([mod], "p", lazy.spawn("xterm -e mocp")),
-    Key([mod], "a", lazy.spawn("acme -f /mnt/font/mononoki-Regular/9a/font")),
-    Key([mod], "b", lazy.spawn("qutebrowser")),
+    Key([mod], "a", lazy.spawn("alacritty")),
+    Key([mod], "t", lazy.spawn("termite")),
+    Key([mod], "x", lazy.spawn("xterm")),
+    Key([mod], "o", lazy.spawn("xterm -e mocp")),
+    Key([mod], "f", lazy.spawn("spacefm")),
+    Key([mod], "b", lazy.spawn("brave")),
+    Key([mod], "c", lazy.spawn("vscodium")),
     Key([mod], "s", lazy.spawn("xfce4-settings-manager")),
-    Key([mod], "c", lazy.spawncmd(prompt='%')),
+    Key([mod], "d", lazy.spawn("deadd-toggle")),
+    Key([mod], "p", lazy.spawncmd(prompt='%')),
 
 
     # Chanage the bloody volume
@@ -145,7 +150,8 @@ screens = [
         top=bar.Bar(
             [
                 widget.TextBox(
-                    text='',
+                    text='',
+                    fontsize=17,
                     mouse_callbacks={
                         'Button1':
                         lambda qtile: qtile.cmd_spawn('rofi-run -r'),

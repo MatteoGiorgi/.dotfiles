@@ -41,8 +41,9 @@ alias z="fzf"
 alias jj="lsd -lrt"
 alias j="lsd -lrta"
 alias v="vim"
+alias a="amp"
 alias vc="vimcat"
-alias vb="tabbed -c vimb -e"
+alias vp="vimpager -u ~/.vimpagerrc"
 
 # Creates an archive (*.tar.gz) from given directory.
 function maketar()
@@ -135,7 +136,7 @@ mcd ()
 # set PATH so it includes user's private bin directories
 # (do I have to "export" PATH and PROMPT?)
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-export PAGER="most"
+export PAGER="vimpager"
 export VISUAL="vim"
 export EDITOR="vim"
 export TERM="xterm-256color"

@@ -14,4 +14,5 @@ volumeicon &
 mocicon &
 nm-applet &
 blueman-applet &
-xfce4-power-manager
+xfce4-power-manager &
+deadd-notification-center

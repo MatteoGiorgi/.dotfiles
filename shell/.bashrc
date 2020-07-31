@@ -70,8 +70,9 @@ alias z="fzf"
 alias jj="lsd -lrt"
 alias j="lsd -lrta"
 alias v="vim"
+alias a="amp"
 alias vc="vimcat"
-alias vb="tabbed -c vimb -e"
+alias vp="vimpager -u ~/.vimpagerrc"
 
 # Creates an archive (*.tar.gz) from given directory.
 function maketar()

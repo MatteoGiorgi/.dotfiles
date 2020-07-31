@@ -1,21 +1,27 @@
 " Vim config file, let's try to use it as vanilla as possible!
 " In the spirit of keeping things minimal, I usually have few plugins, they
 " should be more than enough for everything:
+"    vim-plug                https://github.com/junegunn/vim-plug
 "    fzf                     https://github.com/junegunn/fzf.vim
 "    ale                     https://github.com/dense-analysis/ale
+"    vim-fugitive            https://github.com/tpope/vim-fugitive
+"    goyo.vim                https://github.com/junegunn/goyo.vim
+"    limelight.vim           https://github.com/junegunn/limelight.vim
 "    supertab                https://github.com/ervandew/supertab
 "    auto-pairs              https://github.com/jiangmiao/auto-pairs
 "    vim-surround            https://github.com/tpope/vim-surround
 "    vim-multiple-cursors    https://github.com/terryma/vim-multiple-cursors
 "    vim-easymotion          https://github.com/easymotion/vim-easymotion
-"    vim-wintabs             https://github.com/zefei/vim-wintabs
+"    vim-airline             https://github.com/vim-airline/vim-airline
+"    vim-airline-themes      https://github.com/vim-airline/vim-airline-themes
 "    vimwiki                 https://github.com/vimwiki/vimwiki
 "    vim-man                 https://github.com/vim-utils/vim-man
 "    landscape               https://github.com/itchyny/landscape.vim
 "    vim-startify            https://github.com/mhinz/vim-startify
+"    vim-devicons            https://github.com/ryanoasis/vim-devicons
 
-" Since Vim-8 is out, no package manager is needed: just clone the plugins repo
-" inside ~/.vim/pack/plugins/start/ and all fold into place.
+" Since Vim-8 is out, no package manager is needed: you could just clone the
+" plugins repo inside ~/.vim/pack/plugins/start/ and all fold into place.
 
 " Other cute plugins that I do not use anymore:
 "    fff                     https://github.com/dylanaraps/fff.vim
@@ -23,6 +29,7 @@
 "    buftabs                 https://github.com/zefei/buftabs
 "    vim-buftabline          https://github.com/ap/vim-buftabline
 "    vim-bufferline          https://github.com/bling/vim-bufferline
+"    vim-wintabs             https://github.com/zefei/vim-wintabs
 "    vimtex                  https://github.com/lervag/vimtex
 "    python-mode             https://github.com/python-mode/python-mode
 "    syntastic               https://github.com/vim-syntastic/syntastic
@@ -31,6 +38,30 @@
 "    bash-support            https://github.com/WolfgangMehner/bash-support
 "    c-support               https://github.com/WolfgangMehner/c-support
 "    git-support             https://github.com/WolfgangMehner/git-support
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+call plug#begin('~/.vim/plugged')
+    Plug 'junegunn/fzf.vim'
+    Plug 'dense-analysis/ale'
+    Plug 'tpope/vim-fugitive'
+    Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/limelight.vim'
+    Plug 'ervandew/supertab'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'tpope/vim-surround'
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'vimwiki/vimwiki'
+    Plug 'vim-utils/vim-man'
+    Plug 'itchyny/landscape.vim'
+    Plug 'mhinz/vim-startify'
+    Plug 'ryanoasis/vim-devicons'
+call plug#end()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -53,6 +84,9 @@ augroup vimrc
     autocmd InsertLeave * set nocul
 augroup END
 
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -72,24 +106,29 @@ set wildmode=list:longest,list:full
 set encoding=UTF-8
 set nobackup
 set noshowmode
+set noerrorbells
 
-set laststatus=2
-set statusline=
-set statusline+=\ %{toupper(g:currentmode[mode()])}
-set statusline+=%<
-set statusline+=\ \|\ %F
-set statusline+=\ %{&modified?'+\ ':''}
-set statusline+=%{&readonly?'\ ':''}
-set statusline+=\ %=
-set statusline+=\ %{&filetype!=#''?&filetype:'none'}
-set statusline+=%(\ \|%{(&bomb\|\|&fileencoding!~#'^$\\\|utf-8'?'\ '.&fileencoding.(&bomb?'-bom':''):'')
-  \.(&fileformat!=#(has('win32')?'dos':'unix')?'\ '.&fileformat:'')}%)
-set statusline+=%(\ \|\ %{&modifiable?(&expandtab?'et\ ':'noet\ ').&shiftwidth:''}%)
-set statusline+=\ \|
-set statusline+=\ %{&number?'':printf('%2d,',line('.'))}
-set statusline+=%-2v
-set statusline+=\ %2p%%
-set statusline+=\ 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"set laststatus=2
+"set statusline=
+"set statusline+=\ %{toupper(g:currentmode[mode()])}
+"set statusline+=%<
+"set statusline+=\ \|\ %F
+"set statusline+=\ %{&modified?'+\ ':''}
+"set statusline+=%{&readonly?'\ ':''}
+"set statusline+=\ %=
+"set statusline+=\ %{&filetype!=#''?&filetype:'none'}
+"set statusline+=%(\ \|%{(&bomb\|\|&fileencoding!~#'^$\\\|utf-8'?'\ '.&fileencoding.(&bomb?'-bom':''):'')
+"  \.(&fileformat!=#(has('win32')?'dos':'unix')?'\ '.&fileformat:'')}%)
+"set statusline+=%(\ \|\ %{&modifiable?(&expandtab?'et\ ':'noet\ ').&shiftwidth:''}%)
+"set statusline+=\ \|
+"set statusline+=\ %{&number?'':printf('%2d,',line('.'))}
+"set statusline+=%-2v
+"set statusline+=\ %2p%%
+"set statusline+=\ 
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -113,6 +152,12 @@ let b:ale_fixers = ['prettier', 'eslint']
 let g:ale_fix_on_save = 1
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
+let g:goyo_width=100
+let g:goyo_height='80%'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='minimalist'
+let g:limelight_conceal_ctermfg = 240
 let g:currentmode={
 	\ 'n'  : 'Normal',
 	\ 'no' : 'N·Operator Pending',
@@ -134,6 +179,23 @@ let g:currentmode={
 	\ '!'  : 'Shell',
 	\ 't'  : 'Terminal',
 	\}
+let g:startify_custom_header = [
+            \ '         ________ ++     ________     ',
+            \ '        /VVVVVVVV\++++  /VVVVVVVV\     ',
+            \ '        \VVVVVVVV/++++++\VVVVVVVV/     ',
+            \ '         |VVVVVV|++++++++/VVVVVV/     ',
+            \ '         |VVVVVV|++++++/VVVVVV/     ',
+            \ '        +|VVVVVV|++++/VVVVVV/+     ',
+            \ '      +++|VVVVVV|++/VVVVVV/+++++     ',
+            \ '    +++++|VVVVVV|/VVV___++++++++++     ',
+            \ '      +++|VVVVVVVVVV/##/ +_+_+_+_     ',
+            \ '        +|VVVVVVVVV___ +/#_#,#_#,\     ',
+            \ '         |VVVVVVVV/##/+/#/+/#/+/#/     ',
+            \ '         |VVVVVV/+/#/+/#/+/#/ /#/     ',
+            \ '         |VVVV/++/#/+/#/ /#/ /#/     ',
+            \ '         |VV/  /##//##//##//###/     ',
+            \ '                  ++     ',
+            \ ]
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -155,27 +217,33 @@ noremap <S-h> <C-W><C-H>
 noremap <S-k> <C-W><C-K>
 noremap <S-j> <C-W><C-J>
 noremap <S-l> <C-W><C-L>
-noremap m :bnext<CR>
-noremap , :bprev<CR>
+noremap <leader>= :wincmd =<CR>
+noremap <leader>oo :wincmd r<CR>
+noremap <leader>os :wincmd K<CR>
+noremap <leader>ov :wincmd H<CR>
+noremap <leader><esc> :bnext<CR>
+noremap <leader><backspace> :bprev<CR>
 noremap <leader>b :buffers<CR>:buffer<Space>
 noremap <leader>d :bdelete<CR>
-noremap <leader>e :edit<space>
-noremap <leader>s :split<CR>
-noremap <leader>v :vsplit<CR>
+noremap <leader>c :wincmd o<CR>
+noremap <leader>ee :Ex<CR>
+noremap <leader>es :wincmd s<bar> :Ex<CR>
+noremap <leader>ev :wincmd v<bar> :Ex<CR>
 noremap <leader>nn :enew<CR>
 noremap <leader>ns :new<CR>
 noremap <leader>nv :vnew<CR>
 noremap <leader>ms :Man<space>
 noremap <leader>mv :Vman<space>
 noremap <leader>q :quit<CR>
-noremap <leader>w :write<CR>
-noremap <leader>c :!<space>
+noremap <leader>z :write<CR>
+noremap <leader>t :shell<CR>
 noremap <leader>f :F<CR>
 noremap <leader>r :RangerChooser<CR>
-noremap <leader>h :Files!<CR>
-noremap <leader>l :BLines!<CR>
-noremap <leader>g :BCommits!<CR>
+noremap <leader>h :Files<CR>
+noremap <leader>l :BLines<CR>
+noremap <leader>g :Commits<CR>
 noremap <leader>u :HandleURL<CR>
+noremap <leader>y :Goyo<CR>
 noremap <F2> :set hlsearch! hlsearch?<CR>
 noremap <F3> :setlocal spell! spelllang=en_us<CR>
 noremap <F4> <esc>ggVGgq<CR>
