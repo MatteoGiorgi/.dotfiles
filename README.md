@@ -1,4 +1,4 @@
-# dotfiles
+# Dotfiles
 
 These repo contains my major dotfiles. I keep them organized using [GNU
 Stow](https://www.gnu.org/software/stow/) and it's sweet!. Below there are some
