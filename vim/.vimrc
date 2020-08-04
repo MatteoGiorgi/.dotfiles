@@ -30,6 +30,7 @@
 "    vim-buftabline          https://github.com/ap/vim-buftabline
 "    vim-bufferline          https://github.com/bling/vim-bufferline
 "    vim-wintabs             https://github.com/zefei/vim-wintabs
+"    ranger.vim              https://github.com/rafaqz/ranger.vim
 "    vimtex                  https://github.com/lervag/vimtex
 "    python-mode             https://github.com/python-mode/python-mode
 "    syntastic               https://github.com/vim-syntastic/syntastic
@@ -144,6 +145,7 @@ set noerrorbells
 
 
 let mapleader = "\<space>"
+let g:switchcat = 'horizontal'
 let g:SuperTabDefaultCompletionType = 'context'
 let g:split = get(g:, 'split', '30vnew')
 let g:split_direction = get(g:, 'split_direction', 'nosplitbelow nosplitright')
@@ -156,29 +158,22 @@ let g:goyo_width=100
 let g:goyo_height='80%'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='minimalist'
+let g:airline_theme='landscape'
 let g:limelight_conceal_ctermfg = 240
-let g:currentmode={
-	\ 'n'  : 'Normal',
-	\ 'no' : 'N·Operator Pending',
-	\ 'v'  : 'Visual',
-	\ 'V'  : 'V·Line',
-	\ '' : 'V·Block',
-	\ 's'  : 'Select',
-	\ 'S'  : 'S·Line',
-	\ '' : 'S·Block',
-	\ 'i'  : 'Insert',
-	\ 'R'  : 'Replace',
-	\ 'Rv' : 'V·Replace',
-	\ 'c'  : 'Command',
-	\ 'cv' : 'Vim Ex',
-	\ 'ce' : 'Ex',
-	\ 'r'  : 'Prompt',
-	\ 'rm' : 'More',
-	\ 'r?' : 'Confirm',
-	\ '!'  : 'Shell',
-	\ 't'  : 'Terminal',
-	\}
+let g:startify_files_number = 5
+let g:startify_list_order = [
+            \ ['   Files:'], 'files',
+            \ [' פּ  Dir:'], 'dir',
+            \ ['   Sessions:'], 'sessions',
+            \ ['   Bookmarks:'], 'bookmarks',
+            \ ]
+let g:startify_bookmarks = [
+            \ '~/.vimrc',
+            \ '~/.zshrc',
+            \ '~/.bashrc',
+            \ '~/.config/qtile/config.py',
+            \ '~/.keys.txt'
+            \ ]
 let g:startify_custom_header = [
             \ '         ________ ++     ________     ',
             \ '        /VVVVVVVV\++++  /VVVVVVVV\     ',
@@ -201,9 +196,36 @@ let g:startify_custom_header = [
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+"let g:currentmode={
+"	\ 'n'  : 'Normal',
+"	\ 'no' : 'N·Operator Pending',
+"	\ 'v'  : 'Visual',
+"	\ 'V'  : 'V·Line',
+"	\ '' : 'V·Block',
+"	\ 's'  : 'Select',
+"	\ 'S'  : 'S·Line',
+"	\ '' : 'S·Block',
+"	\ 'i'  : 'Insert',
+"	\ 'R'  : 'Replace',
+"	\ 'Rv' : 'V·Replace',
+"	\ 'c'  : 'Command',
+"	\ 'cv' : 'Vim Ex',
+"	\ 'ce' : 'Ex',
+"	\ 'r'  : 'Prompt',
+"	\ 'rm' : 'More',
+"	\ 'r?' : 'Confirm',
+"	\ '!'  : 'Shell',
+"	\ 't'  : 'Terminal',
+"	\}
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 command! -nargs=* -complete=dir F call Run(<q-args>)
 command! -bar RangerChooser call RangeChooser()
 command! HandleURL call HandleURL()
+command! SwitchCat call SwitchCat()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -217,36 +239,32 @@ noremap <S-h> <C-W><C-H>
 noremap <S-k> <C-W><C-K>
 noremap <S-j> <C-W><C-J>
 noremap <S-l> <C-W><C-L>
-noremap <leader>= :wincmd =<CR>
-noremap <leader>oo :wincmd r<CR>
-noremap <leader>os :wincmd K<CR>
-noremap <leader>ov :wincmd H<CR>
+noremap <leader>0 :wincmd =<CR>
+noremap <leader>r :wincmd r<CR>
+noremap <leader>i :SwitchCat<CR>
 noremap <leader><esc> :bnext<CR>
 noremap <leader><backspace> :bprev<CR>
 noremap <leader>b :buffers<CR>:buffer<Space>
 noremap <leader>d :bdelete<CR>
-noremap <leader>c :wincmd o<CR>
-noremap <leader>ee :Ex<CR>
-noremap <leader>es :wincmd s<bar> :Ex<CR>
-noremap <leader>ev :wincmd v<bar> :Ex<CR>
-noremap <leader>nn :enew<CR>
-noremap <leader>ns :new<CR>
-noremap <leader>nv :vnew<CR>
-noremap <leader>ms :Man<space>
-noremap <leader>mv :Vman<space>
+noremap <leader>o :wincmd o<CR>
+noremap <leader>n :enew<bar> :Startify<CR>
+noremap <leader>s :new<bar> :Startify<CR>
+noremap <leader>v :vnew<bar> :Startify<CR>
+noremap <leader>m :Man<space>
 noremap <leader>q :quit<CR>
 noremap <leader>z :write<CR>
 noremap <leader>t :shell<CR>
 noremap <leader>f :F<CR>
-noremap <leader>r :RangerChooser<CR>
+noremap <leader>g :RangerChooser<CR>
 noremap <leader>h :Files<CR>
 noremap <leader>l :BLines<CR>
-noremap <leader>g :Commits<CR>
+noremap <leader>c :Commits<CR>
 noremap <leader>u :HandleURL<CR>
 noremap <leader>y :Goyo<CR>
 noremap <F2> :set hlsearch! hlsearch?<CR>
 noremap <F3> :setlocal spell! spelllang=en_us<CR>
-noremap <F4> <esc>ggVGgq<CR>
+noremap <F4> :setlocal nowrap!<CR>
+noremap <F5> <esc>ggVGgq<CR>
 
 vmap <C-y> :!xclip -f -sel clip<CR>
 nmap <C-p> :-r!xclip -o -sel clip<CR>
@@ -259,10 +277,22 @@ nmap <leader>k <Plug>(easymotion-k)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+function! SwitchCat()
+    if (g:switchcat ==? 'horizontal')
+    let g:switchcat = 'vertical'
+        :wincmd H
+    else
+    let g:switchcat = 'horizontal'
+        :wincmd K
+    endif
+endfunction
+
+
 function! HandleURL()
     let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
     echo s:uri
     if s:uri != ""
+        " look at xdg-settings
         silent exec "!nohup xdg-open '".s:uri."' &"
     else
         echo "No URI found in line."

@@ -120,7 +120,7 @@ function extract
 }
 
 # Change directory exiting from ranger
-r ()
+g ()
 {
     tempfile="$(mktemp -t tmp.XXXXXX)"
     /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
