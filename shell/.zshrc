@@ -36,12 +36,13 @@ alias myip="curl http://ipecho.net/plain; echo"
 alias logs="find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
 alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 alias grep='grep --color=auto'
-alias _="swallow"
-alias z="fzf"
+alias sw="swallow"
+alias zz="fzf"
 alias jj="lsd -lrt"
 alias j="lsd -lrta"
 alias v="vim"
 alias a="amp"
+alias z="zathura"
 alias vc="vimcat"
 alias vp="vimpager -u ~/.vimpagerrc"
 
@@ -141,6 +142,10 @@ export VISUAL="vim"
 export EDITOR="vim"
 export TERM="xterm-256color"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
+export BROWSER="brave"
+export READER="zathura"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # fff configs
 export FFF_LS_COLORS=1
@@ -174,7 +179,9 @@ export PROMPT="%B[%F{cyan}%n%f@%F{magenta}%m%f] [%F{blue}%9~%f] %(?.%F{green}√
 ### End config ###
 
 pfetch
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+source $HOME/.config/fzf/key-bindings.zsh
+source $HOME/.config/fzf/completion.zsh
 
-source /home/rtbm/.config/broot/launcher/bash/br
+# source /usr/share/fzf/key-bindings.zsh
+# source /usr/share/fzf/completion.zsh
+# source /home/rtbm/.config/broot/launcher/bash/br

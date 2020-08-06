@@ -15,9 +15,14 @@ from libqtile import layout, bar, widget, hook
 from typing import List  # noqa: F401
 
 mod = "mod4"
-color_black = '2e3436'     # black    (color0)
-color_white = 'd3d7cf'     # white    (color7)
-color_gray = '555753'      # black    (color8)
+color_black = '111314'     # black    (color0)
+color_white = 'B7BBB7'     # white    (color7)
+color_gray = '4B5056'      # black    (color8)
+
+# Tango palette
+# color_black = '2e3436'     # black    (color0)
+# color_white = 'd3d7cf'     # white    (color7)
+# color_gray = '555753'      # black    (color8)
 # color_yellow = 'c4a000'    # yellow   (color3)
 # color_blue = '3465a4'      # blue     (color12)
 # color_green = '4e9a06'     # green    (color10)
@@ -43,8 +48,8 @@ keys = [
     Key([mod, "control"], "k", lazy.layout.grow()),
 
     # Reset windows ratios
-    Key([mod], "n", lazy.layout.normalize()),
-    Key([mod], "m", lazy.layout.maximize()),
+    Key([mod, "control"], "n", lazy.layout.normalize()),
+    Key([mod, "control"], "m", lazy.layout.maximize()),
 
     # Flip master/stack, toggle floating and move between groups
     Key([mod, "control"], "space", lazy.layout.flip()),
@@ -61,12 +66,10 @@ keys = [
     Key([mod], "a", lazy.spawn("alacritty")),
     Key([mod], "t", lazy.spawn("termite")),
     Key([mod], "x", lazy.spawn("xterm")),
-    Key([mod], "o", lazy.spawn("xterm -e mocp")),
-    Key([mod], "f", lazy.spawn("spacefm")),
-    Key([mod], "b", lazy.spawn("brave")),
-    Key([mod], "c", lazy.spawn("vscodium")),
+    Key([mod], "m", lazy.spawn("xterm -e mocp")),
+    Key([mod], "b", lazy.spawn("qutebrowser")),
     Key([mod], "s", lazy.spawn("xfce4-settings-manager")),
-    Key([mod], "d", lazy.spawn("deadd-toggle")),
+    Key([mod], "n", lazy.spawn("deadd-toggle")),
     Key([mod], "p", lazy.spawncmd(prompt='%')),
 
 

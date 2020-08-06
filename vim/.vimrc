@@ -7,18 +7,22 @@
 "    vim-fugitive            https://github.com/tpope/vim-fugitive
 "    goyo.vim                https://github.com/junegunn/goyo.vim
 "    limelight.vim           https://github.com/junegunn/limelight.vim
+"    vimwiki                 https://github.com/vimwiki/vimwiki
 "    supertab                https://github.com/ervandew/supertab
+"    nerdcommenter           https://github.com/preservim/nerdcommenter
+"    nerdtree                https://github.com/preservim/nerdtree
 "    auto-pairs              https://github.com/jiangmiao/auto-pairs
 "    vim-surround            https://github.com/tpope/vim-surround
 "    vim-multiple-cursors    https://github.com/terryma/vim-multiple-cursors
 "    vim-easymotion          https://github.com/easymotion/vim-easymotion
 "    vim-airline             https://github.com/vim-airline/vim-airline
 "    vim-airline-themes      https://github.com/vim-airline/vim-airline-themes
-"    vimwiki                 https://github.com/vimwiki/vimwiki
 "    vim-man                 https://github.com/vim-utils/vim-man
-"    landscape               https://github.com/itchyny/landscape.vim
 "    vim-startify            https://github.com/mhinz/vim-startify
 "    vim-devicons            https://github.com/ryanoasis/vim-devicons
+"    vim-whitch-key          https://github.com/liuchengxu/vim-which-key
+"    vim-fixkey              https://github.com/drmikehenry/vim-fixkey
+"    spacegray.vim           https://github.com/ajh17/spacegray.vim
 
 " Since Vim-8 is out, no package manager is needed: you could just clone the
 " plugins repo inside ~/.vim/pack/plugins/start/ and all fold into place.
@@ -39,6 +43,13 @@
 "    bash-support            https://github.com/WolfgangMehner/bash-support
 "    c-support               https://github.com/WolfgangMehner/c-support
 "    git-support             https://github.com/WolfgangMehner/git-support
+"    vim-pandoc              https://github.com/vim-pandoc/vim-pandoc
+"    vim-pandoc-syntax       https://github.com/vim-pandoc/vim-pandoc-syntax
+"    vim-pandoc-after        https://github.com/vim-pandoc/vim-pandoc-after
+"    vim-wtf                 https://github.com/sstallion/vim-wtf
+"    disco.vim               https://github.com/jsit/disco.vim
+"    gruvbox                 https://github.com/gruvbox-community/gruvbox
+"    landscape               https://github.com/itchyny/landscape.vim
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -50,18 +61,22 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/limelight.vim'
+    Plug 'vimwiki/vimwiki'
     Plug 'ervandew/supertab'
+    Plug 'preservim/nerdcommenter'
+    Plug 'preservim/nerdtree'
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-surround'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'easymotion/vim-easymotion'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'vimwiki/vimwiki'
     Plug 'vim-utils/vim-man'
-    Plug 'itchyny/landscape.vim'
     Plug 'mhinz/vim-startify'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'liuchengxu/vim-which-key'
+    Plug 'drmikehenry/vim-fixkey'
+    Plug 'ajh17/spacegray.vim'
 call plug#end()
 
 
@@ -71,7 +86,8 @@ call plug#end()
 packloadall
 
 syntax on
-color landscape
+color spacegray
+hi Normal guibg=NONE ctermbg=NONE
 filetype plugin indent on
 
 augroup numbertoggle
@@ -92,11 +108,13 @@ autocmd! User GoyoLeave Limelight!
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+set nocompatible
 set runtimepath+=~/.vim_runtime
 set clipboard=unnamedplus
 set number relativenumber
 set mouse=a
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+set omnifunc=syntaxcomplete#Complete
 set t_Co=256
 set hlsearch
 set colorcolumn=81
@@ -108,6 +126,7 @@ set encoding=UTF-8
 set nobackup
 set noshowmode
 set noerrorbells
+set timeoutlen=500
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -144,11 +163,15 @@ set noerrorbells
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-let mapleader = "\<space>"
-let g:switchcat = 'horizontal'
+let g:mapleader = "\<space>"
+let g:maplocalleader = ','
+let g:switchedit = 'horizontal'
+let g:switchdir = 'home'
+let g:longline = 'none'
 let g:SuperTabDefaultCompletionType = 'context'
 let g:split = get(g:, 'split', '30vnew')
 let g:split_direction = get(g:, 'split_direction', 'nosplitbelow nosplitright')
+let NERDTreeShowHidden = 1
 let g:ale_completion_enabled = 1
 let b:ale_fixers = ['prettier', 'eslint']
 let g:ale_fix_on_save = 1
@@ -158,14 +181,14 @@ let g:goyo_width=100
 let g:goyo_height='80%'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='landscape'
+let g:airline_theme='distinguished'
 let g:limelight_conceal_ctermfg = 240
 let g:startify_files_number = 5
 let g:startify_list_order = [
-            \ ['   Files:'], 'files',
-            \ [' פּ  Dir:'], 'dir',
-            \ ['   Sessions:'], 'sessions',
-            \ ['   Bookmarks:'], 'bookmarks',
+            \ ['   Files:'], 'files',
+            \ ['   Dir:'], 'dir',
+            \ ['   Sessions:'], 'sessions',
+            \ ['   Bookmarks:'], 'bookmarks',
             \ ]
 let g:startify_bookmarks = [
             \ '~/.vimrc',
@@ -175,22 +198,58 @@ let g:startify_bookmarks = [
             \ '~/.keys.txt'
             \ ]
 let g:startify_custom_header = [
-            \ '         ________ ++     ________     ',
-            \ '        /VVVVVVVV\++++  /VVVVVVVV\     ',
-            \ '        \VVVVVVVV/++++++\VVVVVVVV/     ',
-            \ '         |VVVVVV|++++++++/VVVVVV/     ',
-            \ '         |VVVVVV|++++++/VVVVVV/     ',
-            \ '        +|VVVVVV|++++/VVVVVV/+     ',
-            \ '      +++|VVVVVV|++/VVVVVV/+++++     ',
-            \ '    +++++|VVVVVV|/VVV___++++++++++     ',
-            \ '      +++|VVVVVVVVVV/##/ +_+_+_+_     ',
-            \ '        +|VVVVVVVVV___ +/#_#,#_#,\     ',
-            \ '         |VVVVVVVV/##/+/#/+/#/+/#/     ',
-            \ '         |VVVVVV/+/#/+/#/+/#/ /#/     ',
-            \ '         |VVVV/++/#/+/#/ /#/ /#/     ',
-            \ '         |VV/  /##//##//##//###/     ',
-            \ '                  ++     ',
+            \ '        ________  ..    ________ ',
+            \ '       /VVVVVVVV\++++  /VVVVVVVV\ ',
+            \ '       \VVVVVVVV/++++++\VVVVVVVV/ ',
+            \ '        |VVVVVV|++++++++/VVVVV/` ',
+            \ '        |VVVVVV|++++++/VVVVV/` ',
+            \ '       +|VVVVVV|++++/VVVVV/`+ ',
+            \ '     +++|VVVVVV|++/VVVVV/`+++++ ',
+            \ '   +++++|VVVVVV|/VVVVV/`+++++++++ ',
+            \ '     +++|VVVVVVVVVVV/`+++++++++ ',
+            \ '       +|VVVVVVVVV/`+++++++++ ',
+            \ '        |VVVVVVV/`+++++++++ ',
+            \ '        |VVVVV/`+++++++++ ',
+            \ '        |VVV/`+++++++++ ',
+            \ '        `V/`   ++++++ ',
+            \ '                 ++ ',
             \ ]
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'default', 'ext': '.wiki'}]
+let g:which_key_map =  {}
+let g:which_key_map['w'] = {
+            \ 'name' : '+windows' ,
+            \ 'b' : [':buffers<CR>:buffer<Space>' , ''],
+            \ 'd' : [':bdelete<CR>' , ''],
+            \ 'o' : [':wincmd o<CR>' , ''],
+            \ 'n' : [':enew<bar> :Startify<CR>' , ''],
+            \ 's' : [':new<bar> :Startify<CR>' , ''],
+            \ 'v' : [':vnew<bar> :Startify<CR>' , ''],
+            \ 'm' : [':Man<space>' , ''],
+            \ 'q' : [':quit<CR>' , ''],
+            \ 'z' : [':write<CR>' , ''],
+            \ 'x' : [':shell<CR>' , ''],
+            \ 'f' : [':F<CR>' , ''],
+            \ 'g' : [':RangerChooser<CR>' , ''],
+            \ 't' : [':NERDTree<CR>' , ''],
+            \ 'c' : ['<Plug>NERDCommenterToggle<CR>' , ''],
+            \ 'h' : [':Files<CR>' , ''],
+            \ 'l' : [':BLines<CR>' , ''],
+            \ 'a' : [':Commits<CR>' , ''],
+            \ 'u' : [':HandleURL<CR>' , ''],
+            \ 'y' : [':Goyo<CR>' , ''],
+            \ 'p' : [':setlocal nowrap!<CR>' , ''],
+            \ 'r' : [':wincmd r<CR>' , ''],
+            \ 'e' : [':SwitchEdit<CR>' , ''],
+            \ 'i' : [':SwitchDir<CR>' , ''],
+            \ '0' : [':wincmd =<CR>' , ''],
+            \ '1' : [':w! \| !comp <c-r>%<CR><CR>' , ''],
+            \ '2' : [':!opout <c-r>%<CR><CR>' , ''],
+            \ '3' : [':set hlsearch! hlsearch?<CR>' , ''],
+            \ '4' : [':setlocal spell! spelllang=en_us<CR>' , ''],
+            \ '5' : [':LongLine<CR>' , ''],
+            \ '6' : ['<esc>ggVGgq<CR>' , ''],
+            \ }
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -225,7 +284,9 @@ let g:startify_custom_header = [
 command! -nargs=* -complete=dir F call Run(<q-args>)
 command! -bar RangerChooser call RangeChooser()
 command! HandleURL call HandleURL()
-command! SwitchCat call SwitchCat()
+command! SwitchEdit call SwitchEdit()
+command! SwitchDir call SwitchDir()
+command! LongLine call LongLine()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -239,11 +300,12 @@ noremap <S-h> <C-W><C-H>
 noremap <S-k> <C-W><C-K>
 noremap <S-j> <C-W><C-J>
 noremap <S-l> <C-W><C-L>
-noremap <leader>0 :wincmd =<CR>
-noremap <leader>r :wincmd r<CR>
-noremap <leader>i :SwitchCat<CR>
-noremap <leader><esc> :bnext<CR>
-noremap <leader><backspace> :bprev<CR>
+noremap <M-h> :bfirst<CR>
+noremap <M-l> :blast<CR>
+noremap <M-j> :bnext<CR>
+noremap <M-k> :bprev<CR>
+noremap <silent><leader> :<c-u>WhichKey '<Space>'<CR>
+noremap <silent><localleader> :<c-u>WhichKey ','<CR>
 noremap <leader>b :buffers<CR>:buffer<Space>
 noremap <leader>d :bdelete<CR>
 noremap <leader>o :wincmd o<CR>
@@ -253,36 +315,69 @@ noremap <leader>v :vnew<bar> :Startify<CR>
 noremap <leader>m :Man<space>
 noremap <leader>q :quit<CR>
 noremap <leader>z :write<CR>
-noremap <leader>t :shell<CR>
+noremap <leader>x :shell<CR>
 noremap <leader>f :F<CR>
 noremap <leader>g :RangerChooser<CR>
+noremap <leader>t :NERDTree<CR>
 noremap <leader>h :Files<CR>
 noremap <leader>l :BLines<CR>
-noremap <leader>c :Commits<CR>
+noremap <leader>a :Commits<CR>
 noremap <leader>u :HandleURL<CR>
 noremap <leader>y :Goyo<CR>
-noremap <F2> :set hlsearch! hlsearch?<CR>
-noremap <F3> :setlocal spell! spelllang=en_us<CR>
-noremap <F4> :setlocal nowrap!<CR>
-noremap <F5> <esc>ggVGgq<CR>
+noremap <leader>p :setlocal nowrap!<CR>
+noremap <leader>r :wincmd r<CR>
+noremap <leader>e :SwitchEdit<CR>
+noremap <leader>i :SwitchDir<CR>
+noremap <leader>0 :wincmd =<CR>
+noremap <leader>1 :w! \| !comp <c-r>%<CR><CR>
+noremap <leader>2 :!opout <c-r>%<CR><CR>
+noremap <leader>3 :set hlsearch! hlsearch?<CR>
+noremap <leader>4 :setlocal spell! spelllang=en_us<CR>
+noremap <leader>5 :LongLine<CR>
+noremap <leader>6 <esc>ggVGgq<CR>
 
-vmap <C-y> :!xclip -f -sel clip<CR>
-nmap <C-p> :-r!xclip -o -sel clip<CR>
-
+map <leader>c <Plug>NERDCommenterToggle<CR>
 nmap <leader><leader> <Plug>(easymotion-bd-w)
 nmap <leader>j <Plug>(easymotion-j)
 nmap <leader>k <Plug>(easymotion-k)
+
+nmap <C-p> :-r!xclip -o -sel clip<CR>
+vmap <C-y> :!xclip -f -sel clip<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-function! SwitchCat()
-    if (g:switchcat ==? 'horizontal')
-    let g:switchcat = 'vertical'
+function! LongLine()
+    if (g:longline ==? 'none')
+        let g:longline = 'all'
+        :setlocal virtualedit=all
+    else
+        let g:longline = 'none'
+        :setlocal virtualedit=
+    endif
+endfunction
+
+
+function! SwitchDir()
+    if (g:switchdir ==? 'home')
+        let g:switchdir = 'local'
+        :lcd %:p:h
+        :pwd
+    else
+        let g:switchdir = 'home'
+        :lcd ~
+        :pwd
+    endif
+endfunction
+
+
+function! SwitchEdit()
+    if (g:switchedit ==? 'horizontal')
+        let g:switchedit = 'vertical'
         :wincmd H
     else
-    let g:switchcat = 'horizontal'
+        let g:switchedit = 'horizontal'
         :wincmd K
     endif
 endfunction
@@ -322,6 +417,7 @@ function! OpenFile(...)
         execute "e " . file_data[0]
     endif
 endfunction
+
 
 function! Run(command)
     execute 'setlocal' . ' ' . g:split_direction

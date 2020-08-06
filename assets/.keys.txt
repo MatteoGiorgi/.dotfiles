@@ -19,12 +19,14 @@
 |  Super + Tab           |  toggle between layouts                         |
 |  Super + Esc           |  open Rofi (system)                             |
 |  Super + Return        |  open Rofi (drun)                               |
-|  Super + x             |  activate xkill command                         |
+|  Super + q             |  activate xkill command                         |
 |  Super + a             |  open Alacritty in a new window                 |
-|  Super + q             |  open MOC in new window                         |
+|  Super + t             |  open Termite in a new window                   |
+|  Super + x             |  open Xterm in a new window                     |
+|  Super + o             |  open MOC in new window                         |
 |  Super + f             |  open SpaceFM file manager                      |
 |  Super + b             |  open Brave browser                             |
-|  Super + e             |  open VSCodium editor                           |
+|  Super + c             |  open VSCodium editor                           |
 |  Super + s             |  open system settings in a floating window      |
 |  Super + z             |  toggle deadd notification center               |
 |  Super + p             |  open command line inside status bar            |
