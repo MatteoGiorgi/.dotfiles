@@ -1,3 +1,20 @@
+"
+"                        ________  ..    ________
+"                       /VVVVVVVV\++++  /VVVVVVVV\
+"                       \VVVVVVVV/++++++\VVVVVVVV/
+"                        |VVVVVV|++++++++/VVVVV/`
+"                        |VVVVVV|++++++/VVVVV/`
+"                       +|VVVVVV|++++/VVVVV/`+
+"                     +++|VVVVVV|++/VVVVV/`+++++
+"                   +++++|VVVVVV|/VVVVV/`+++++++++
+"                     +++|VVVVVVVVVVV/`+++++++++
+"                       +|VVVVVVVVV/`+++++++++
+"                        |VVVVVVV/`+++++++++
+"                        |VVVVV/`+++++++++
+"                        |VVV/`+++++++++
+"                        `V/`   ++++++
+"                                 ++
+"
 " Vim config file, let's try to use it as vanilla as possible!
 " In the spirit of keeping things minimal, I usually have few plugins, they
 " should be more than enough for everything:
@@ -11,6 +28,7 @@
 "    supertab                https://github.com/ervandew/supertab
 "    nerdcommenter           https://github.com/preservim/nerdcommenter
 "    nerdtree                https://github.com/preservim/nerdtree
+"    vim-gitgutter           https://github.com/airblade/vim-gitgutter
 "    auto-pairs              https://github.com/jiangmiao/auto-pairs
 "    vim-surround            https://github.com/tpope/vim-surround
 "    vim-multiple-cursors    https://github.com/terryma/vim-multiple-cursors
@@ -50,33 +68,44 @@
 "    disco.vim               https://github.com/jsit/disco.vim
 "    gruvbox                 https://github.com/gruvbox-community/gruvbox
 "    landscape               https://github.com/itchyny/landscape.vim
+"    nerdtree-git-plugin     https://github.com/Xuyuanp/nerdtree-git-plugin
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 call plug#begin('~/.vim/plugged')
+
+    " ui
+    Plug 'ajh17/spacegray.vim'
+    Plug 'preservim/nerdtree'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'vim-airline/vim-airline' |
+                \ Plug 'vim-airline/vim-airline-themes'
+
+    "editor
+    Plug 'mhinz/vim-startify'
+    Plug 'tpope/vim-fugitive'
     Plug 'junegunn/fzf.vim'
     Plug 'dense-analysis/ale'
-    Plug 'tpope/vim-fugitive'
-    Plug 'junegunn/goyo.vim'
-    Plug 'junegunn/limelight.vim'
-    Plug 'vimwiki/vimwiki'
     Plug 'ervandew/supertab'
-    Plug 'preservim/nerdcommenter'
-    Plug 'preservim/nerdtree'
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-surround'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'easymotion/vim-easymotion'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    Plug 'preservim/nerdcommenter'
     Plug 'vim-utils/vim-man'
-    Plug 'mhinz/vim-startify'
-    Plug 'ryanoasis/vim-devicons'
     Plug 'liuchengxu/vim-which-key'
     Plug 'drmikehenry/vim-fixkey'
-    Plug 'ajh17/spacegray.vim'
+
+    " writer
+    Plug 'vimwiki/vimwiki'
+    Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/limelight.vim'
+
+    " last
+    Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
 
 
@@ -87,7 +116,7 @@ packloadall
 
 syntax on
 color spacegray
-hi Normal guibg=NONE ctermbg=NONE
+hi Normal ctermbg=NONE
 filetype plugin indent on
 
 augroup numbertoggle
@@ -108,7 +137,6 @@ autocmd! User GoyoLeave Limelight!
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-set nocompatible
 set runtimepath+=~/.vim_runtime
 set clipboard=unnamedplus
 set number relativenumber
@@ -154,6 +182,7 @@ set timeoutlen=500
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+"set nocompatible
 "set noswapfile
 "set cursorline
 "set scl=no
@@ -169,9 +198,10 @@ let g:switchedit = 'horizontal'
 let g:switchdir = 'home'
 let g:longline = 'none'
 let g:SuperTabDefaultCompletionType = 'context'
-let g:split = get(g:, 'split', '30vnew')
-let g:split_direction = get(g:, 'split_direction', 'nosplitbelow nosplitright')
-let NERDTreeShowHidden = 1
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 let g:ale_completion_enabled = 1
 let b:ale_fixers = ['prettier', 'eslint']
 let g:ale_fix_on_save = 1
@@ -198,21 +228,16 @@ let g:startify_bookmarks = [
             \ '~/.keys.txt'
             \ ]
 let g:startify_custom_header = [
-            \ '        ________  ..    ________ ',
-            \ '       /VVVVVVVV\++++  /VVVVVVVV\ ',
-            \ '       \VVVVVVVV/++++++\VVVVVVVV/ ',
-            \ '        |VVVVVV|++++++++/VVVVV/` ',
-            \ '        |VVVVVV|++++++/VVVVV/` ',
-            \ '       +|VVVVVV|++++/VVVVV/`+ ',
-            \ '     +++|VVVVVV|++/VVVVV/`+++++ ',
-            \ '   +++++|VVVVVV|/VVVVV/`+++++++++ ',
-            \ '     +++|VVVVVVVVVVV/`+++++++++ ',
-            \ '       +|VVVVVVVVV/`+++++++++ ',
-            \ '        |VVVVVVV/`+++++++++ ',
-            \ '        |VVVVV/`+++++++++ ',
-            \ '        |VVV/`+++++++++ ',
-            \ '        `V/`   ++++++ ',
-            \ '                 ++ ',
+            \ '         ██▒   █▓ ██▓ ███▄ ▄███▓ ',
+            \ '        ▓██░   █▒▓██▒▓██▒▀█▀ ██▒ ',
+            \ '         ▓██  █▒░▒██▒▓██    ▓██░ ',
+            \ '          ▒██ █░░░██░▒██    ▒██ ',
+            \ '           ▒▀█░  ░██░▒██▒   ░██▒ ',
+            \ '           ░ ▐░  ░▓  ░ ▒░   ░  ░ ',
+            \ '           ░ ░░   ▒ ░░  ░      ░ ',
+            \ '             ░░   ▒ ░░      ░ ',
+            \ '              ░   ░         ░ ',
+            \ '             ░ ',
             \ ]
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'default', 'ext': '.wiki'}]
@@ -229,13 +254,12 @@ let g:which_key_map['w'] = {
             \ 'q' : [':quit<CR>' , ''],
             \ 'z' : [':write<CR>' , ''],
             \ 'x' : [':shell<CR>' , ''],
-            \ 'f' : [':F<CR>' , ''],
-            \ 'g' : [':RangerChooser<CR>' , ''],
+            \ 'f' : [':RangerChooser<CR>' , ''],
             \ 't' : [':NERDTree<CR>' , ''],
             \ 'c' : ['<Plug>NERDCommenterToggle<CR>' , ''],
             \ 'h' : [':Files<CR>' , ''],
             \ 'l' : [':BLines<CR>' , ''],
-            \ 'a' : [':Commits<CR>' , ''],
+            \ 'g' : [':Commits<CR>' , ''],
             \ 'u' : [':HandleURL<CR>' , ''],
             \ 'y' : [':Goyo<CR>' , ''],
             \ 'p' : [':setlocal nowrap!<CR>' , ''],
@@ -276,17 +300,19 @@ let g:which_key_map['w'] = {
 "	\ '!'  : 'Shell',
 "	\ 't'  : 'Terminal',
 "	\}
+"let g:split = get(g:, 'split', '30vnew')
+"let g:split_direction = get(g:, 'split_direction', 'nosplitbelow nosplitright')
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-command! -nargs=* -complete=dir F call Run(<q-args>)
-command! -bar RangerChooser call RangeChooser()
 command! HandleURL call HandleURL()
 command! SwitchEdit call SwitchEdit()
 command! SwitchDir call SwitchDir()
 command! LongLine call LongLine()
+command! -bar RangerChooser call RangeChooser()
+"command! -nargs=* -complete=dir F call Run(<q-args>)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -300,10 +326,8 @@ noremap <S-h> <C-W><C-H>
 noremap <S-k> <C-W><C-K>
 noremap <S-j> <C-W><C-J>
 noremap <S-l> <C-W><C-L>
-noremap <M-h> :bfirst<CR>
-noremap <M-l> :blast<CR>
-noremap <M-j> :bnext<CR>
-noremap <M-k> :bprev<CR>
+noremap <M-h> :bprev<CR>
+noremap <M-l> :bnext<CR>
 noremap <silent><leader> :<c-u>WhichKey '<Space>'<CR>
 noremap <silent><localleader> :<c-u>WhichKey ','<CR>
 noremap <leader>b :buffers<CR>:buffer<Space>
@@ -316,14 +340,13 @@ noremap <leader>m :Man<space>
 noremap <leader>q :quit<CR>
 noremap <leader>z :write<CR>
 noremap <leader>x :shell<CR>
-noremap <leader>f :F<CR>
-noremap <leader>g :RangerChooser<CR>
+noremap <leader>f :RangerChooser<CR>
 noremap <leader>t :NERDTree<CR>
 noremap <leader>h :Files<CR>
 noremap <leader>l :BLines<CR>
-noremap <leader>a :Commits<CR>
+noremap <leader>g :Commits<CR>
 noremap <leader>u :HandleURL<CR>
-noremap <leader>y :Goyo<CR>
+noremap <leader>y :Goyo<CR>:hi Normal ctermbg=NONE<CR>
 noremap <leader>p :setlocal nowrap!<CR>
 noremap <leader>r :wincmd r<CR>
 noremap <leader>e :SwitchEdit<CR>
@@ -333,13 +356,16 @@ noremap <leader>1 :w! \| !comp <c-r>%<CR><CR>
 noremap <leader>2 :!opout <c-r>%<CR><CR>
 noremap <leader>3 :set hlsearch! hlsearch?<CR>
 noremap <leader>4 :setlocal spell! spelllang=en_us<CR>
-noremap <leader>5 :LongLine<CR>
-noremap <leader>6 <esc>ggVGgq<CR>
+noremap <leader>5 :GitGutterToggle<CR>
+noremap <leader>6 :LongLine<CR>
+noremap <leader>7 <esc>ggVGgq<CR>
 
 map <leader>c <Plug>NERDCommenterToggle<CR>
 nmap <leader><leader> <Plug>(easymotion-bd-w)
 nmap <leader>j <Plug>(easymotion-j)
 nmap <leader>k <Plug>(easymotion-k)
+nmap <M-j> <Plug>(GitGutterNextHunk)
+nmap <M-k> <Plug>(GitGutterPrevHunk)
 
 nmap <C-p> :-r!xclip -o -sel clip<CR>
 vmap <C-y> :!xclip -f -sel clip<CR>
@@ -384,70 +410,23 @@ endfunction
 
 
 function! HandleURL()
-    let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+    let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;]*')
     echo s:uri
-    if s:uri != ""
+    if s:uri !=? ''
         " look at xdg-settings
         silent exec "!nohup xdg-open '".s:uri."' &"
     else
-        echo "No URI found in line."
+        echo 'No URI found in line.'
     endif
 endfunction
 
 
-function! OpenFile(...)
-    let tmp_file = $XDG_CACHE_HOME
-
-    if !isdirectory(tmp_file)
-        let tmp_file = $HOME . "/.cache"
-    endif
-
-    let tmp_file .= "/fff/opened_file"
-    let tmp_file = fnameescape(tmp_file)
-    bd!
-
-    if filereadable(tmp_file)
-        let file_data = readfile(tmp_file)
-        execute delete(tmp_file)
-    else
-        return
-    endif
-
-    if filereadable(file_data[0])
-        execute "e " . file_data[0]
-    endif
-endfunction
-
-
-function! Run(command)
-    execute 'setlocal' . ' ' . g:split_direction
-    execute g:split
-    execute 'setlocal nonumber'
-    execute 'setlocal norelativenumber'
-
-    if has('nvim')
-        call termopen('fff -p ' . a:command,
-                    \ {'on_exit': function('open_file') })
-        startinsert
-    else
-        let buffer = term_start([&shell, &shellcmdflag, 'fff -p ' . a:command],
-                    \ {'curwin': 1, 'exit_cb': function('OpenFile')})
-
-        if !has('patch-8.0.1261')
-            call term_wait(buffer, 20)
-        endif
-    endif
-endfunction
-
-
-" The following function uses ranger file manager as file selector
-" I ditch it in favour of his countrepart for fff written above
 function! RangeChooser()
     let temp = tempname()
     " The option "--choosefiles" was added in ranger 1.5.1. Use the next line
     " with ranger 1.4.2 through 1.5.0 instead.
     "exec 'silent !ranger --choosefile=' . shellescape(temp)
-    if has("gui_running")
+    if has('gui_running')
         exec 'silent !xterm -e ranger --choosefiles=' . shellescape(temp)
     else
         exec 'silent !ranger --choosefiles=' . shellescape(temp)
@@ -470,6 +449,58 @@ function! RangeChooser()
         exec 'argadd ' . fnameescape(name)
     endfor
     redraw!
+endfunction
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              NOT USED ANYMORE                                "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" The following two functions use fff file manager (located in ~/bin)
+" as a file selector, but I ditch it in favour of RangerChooser + NERDTree
+function! OpenFile(...)
+    let tmp_file = $XDG_CACHE_HOME
+
+    if !isdirectory(tmp_file)
+        let tmp_file = $HOME . '/.cache'
+    endif
+
+    let tmp_file .= '/fff/opened_file'
+    let tmp_file = fnameescape(tmp_file)
+    bd!
+
+    if filereadable(tmp_file)
+        let file_data = readfile(tmp_file)
+        execute delete(tmp_file)
+    else
+        return
+    endif
+
+    if filereadable(file_data[0])
+        execute 'e ' . file_data[0]
+    endif
+endfunction
+
+
+function! Run(command)
+    execute 'setlocal' . ' ' . g:split_direction
+    execute g:split
+    execute 'setlocal nonumber'
+    execute 'setlocal norelativenumber'
+
+    if has('nvim')
+        call termopen('fff -p ' . a:command,
+                    \ {'on_exit': function('open_file') })
+        startinsert
+    else
+        let buffer = term_start([&shell, &shellcmdflag, 'fff -p ' . a:command],
+                    \ {'curwin': 1, 'exit_cb': function('OpenFile')})
+
+        if !has('patch-8.0.1261')
+            call term_wait(buffer, 20)
+        endif
+    endif
 endfunction
 
 

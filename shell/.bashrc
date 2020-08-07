@@ -65,14 +65,10 @@ alias myip="curl http://ipecho.net/plain; echo"
 alias logs="find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
 alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 alias grep='grep --color=auto'
+alias vv="vimpager -u ~/.vimpagerrc"
 alias sw="swallow"
-alias zz="fzf"
 alias jj="lsd -lrt"
 alias j="lsd -lrta"
-alias v="vim"
-alias a="amp"
-alias vc="vimcat"
-alias vp="vimpager -u ~/.vimpagerrc"
 
 # Creates an archive (*.tar.gz) from given directory.
 function maketar()
@@ -120,7 +116,7 @@ function extract
 }
 
 # Change directory exiting from ranger
-g ()
+f ()
 {
     tempfile="$(mktemp -t tmp.XXXXXX)"
     /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
@@ -133,7 +129,7 @@ g ()
 }
 
 # Change directory exiting from fff
-f ()
+ff ()
 {
     fff "$@"
     cd "$(cat "${XDG_CACHE_HOME:=${HOME}}/.fff_d")"
