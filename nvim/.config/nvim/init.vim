@@ -17,7 +17,6 @@
 "
 "
 "    vim-plug                https://github.com/junegunn/vim-plug
-"    spacegray               https://github.com/ajh17/spacegray.vim
 "    rnvimr                  https://github.com/kevinhwang91/rnvimr
 "    vim-airline             https://github.com/vim-airline/vim-airline
 "    vim-airline-themes      https://github.com/vim-airline/vim-airline-themes
@@ -51,7 +50,6 @@ if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autolo
 endif
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
-    Plug 'flazz/vim-colorschemes'
     Plug 'kevinhwang91/rnvimr'
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
     Plug 'mhinz/vim-startify'
