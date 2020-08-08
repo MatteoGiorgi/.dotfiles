@@ -65,10 +65,10 @@ alias myip="curl http://ipecho.net/plain; echo"
 alias logs="find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
 alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 alias grep='grep --color=auto'
-alias vv="vimpager -u ~/.vimpagerrc"
-alias sw="swallow"
-alias jj="lsd -lrt"
-alias j="lsd -lrta"
+alias vimpager="vimpager -u ~/.vimpagerrc"
+alias ranger='ranger_jump'
+alias fff='fff_jump'
+alias lsd='lsd -F'
 
 # Creates an archive (*.tar.gz) from given directory.
 function maketar()
@@ -162,8 +162,8 @@ mcd ()
 # (do I have to "export" PATH and PROMPT?)
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export PAGER="most"
-export VISUAL="vim"
-export EDITOR="vim"
+export VISUAL="nvim"
+export EDITOR="nvim"
 export TERM="xterm-256color"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 export BROWSER="brave"
