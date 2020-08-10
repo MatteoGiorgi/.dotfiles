@@ -18,7 +18,7 @@
 
 
 syntax on
-color spacegray
+color dracula
 hi Normal ctermbg=NONE
 filetype plugin indent on
 
@@ -51,12 +51,16 @@ set textwidth=80
 set linebreak
 set wildmenu
 set wildmode=list:longest,list:full
+set foldmethod=manual
+set smartcase
 set encoding=UTF-8
 set nobackup
 set noshowmode
 set showcmd
 set nocursorline
 set noerrorbells
+set nofoldenable
+set nospell
 
 set laststatus=2
 set statusline=
@@ -113,7 +117,7 @@ let g:split_direction = get(g:, 'split_direction', 'nosplitbelow nosplitright')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-command! -bar RangerChooser call RangeChooser()
+command! -bar RangerChooser call RangerChooser()
 command! -nargs=* -complete=dir F call Run(<q-args>)
 
 
@@ -134,8 +138,9 @@ noremap <leader>b :enew<CR>
 noremap <leader>s :new<CR>
 noremap <leader>v :vnew<CR>
 noremap <leader>q :quit<CR>
-noremap <leader>a :write<CR>
+noremap <leader>w :write<CR>
 noremap <leader>f :F<CR>
+noremap <leader>h :RangerChooser<CR>
 noremap <leader>p :setlocal nowrap!<CR>
 noremap <leader>r :wincmd r<CR>
 noremap <leader>e :call SwitchEdit()<CR>
@@ -150,9 +155,9 @@ noremap <leader>6 <esc>ggVGgq<CR>
 
 nmap <leader>u <esc>gx<CR>
 nmap <silent><Tab> :buffers<CR>:buffer<Space>
+
 nmap <C-p> :-r!xclip -o -sel clip<CR>
 vmap <C-y> :!xclip -f -sel clip<CR>
-imap <Tab> <C-n>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -238,13 +243,7 @@ function! Run(command)
 endfunction
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                              NOT USED ANYMORE                                "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" The following function use ranger file manager as a file selector but I ditch 
-" it in favour of fff (you can still call it with the RangerChooser command)
-function! RangeChooser()
+function! RangerChooser()
     let temp = tempname()
     " The option "--choosefiles" was added in ranger 1.5.1. Use the next line
     " with ranger 1.4.2 through 1.5.0 instead.

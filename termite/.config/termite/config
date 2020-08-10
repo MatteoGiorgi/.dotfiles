@@ -39,47 +39,50 @@ scrollbar = off
 
 
 [colors]
-foreground = #B7BBB7
-foreground_bold = #B7BBB7
-background = rgba(17, 19, 20, 0.90)
+
+# special
+foreground        = #f8f8f2
+foreground_bold   = #f8f8f2
+cursor            = #f8f8f2
+cursor_foreground = #4d4d4d
+background        = rgba(40, 42, 54, 0.90)
 
 # background = #111314
 # highlight = #839496
 # cursor = #dcdccc
 # cursor_foreground = #dcdccc
 
+# black
+color0  = #000000
+color8  = #4d4d4d
 
-## black
-color0  = #2C2F33
-color8  = #4B5056
+# red
+color1  = #ff5555
+color9  = #ff6e67
 
-## red
-color1  = #B04C50
-color9  = #B04C50
+# green
+color2  = #50fa7b
+color10 = #5af78e
 
-## green
-color2  = #919652
-color10 = #94985B
+# yellow
+color3  = #f1fa8c
+color11 = #f4f99d
 
-## yellow
-color3  = #E2995C
-color11 = #E2995C
+# blue
+color4  = #bd93f9
+color12 = #caa9fa
 
-## blue
-color4  = #66899D
-color12 = #66899D
+# magenta
+color5  = #ff79c6
+color13 = #ff92d0
 
-## magenta
-color5  = #8D6494
-color13 = #8D6494
+# cyan
+color6  = #8be9fd
+color14 = #9aedfe
 
-## cyan
-color6  = #527C77
-color14 = #527C77
-
-## white
-color7  = #606360
-color15 = #DDE3DC
+# white
+color7  = #bfbfbf
+color15 = #e6e6e6
 
 
 [hints]
@@ -89,7 +92,7 @@ color15 = #DDE3DC
 # active_foreground = #e68080
 # active_background = #3f3f3f
 # padding = 2
-# border = #3f3f3f
+# border = #bfbfbf
 # border_width = 0.5
 # roundness = 2.0
 # vim: ft=dosini cms=#%s

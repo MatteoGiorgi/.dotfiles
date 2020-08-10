@@ -21,12 +21,50 @@ XTerm*locale: true
 XTerm*loginshell: true
 XTerm*savelines: 16384
 XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
-XTerm*background: #111314
-XTerm*foreground: #B7BBB7
+XTerm*background: #282A36
+XTerm*foreground: #F8F8F2
 
 XTerm.vt100.translations: #override \n\
   Ctrl Alt <Key> j: smaller-vt-font() \n\
   Ctrl Alt <Key> k: larger-vt-font()
+
+
+! Dracula palette
+
+*.background: #282A36
+*.foreground: #F8F8F2
+
+! black
+*.color0:     #000000
+*.color8:     #4D4D4D
+
+! red
+*.color1:     #FF5555
+*.color9:     #FF6E67
+
+! green
+*.color2:     #50FA7B
+*.color10:    #5AF78E
+
+! yellow
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
+
+! blue
+*.color4:     #BD93F9
+*.color12:    #CAA9FA
+
+! magenta
+*.color5:     #FF79C6
+*.color13:    #FF92D0
+
+! cyan
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
+
+! white
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -34,40 +72,40 @@ XTerm.vt100.translations: #override \n\
 
 !! Spacegray palette
 
-*background: #111314
-*foreground: #B7BBB7
-
-! black
-*color0:  #2C2F33
-*color8:  #4B5056
-
-! red
-*color1:  #B04C50
-*color9:  #B04C50
-
-! green
-*color2:  #919652
-*color10: #94985B
-
-! yellow
-*color3:  #E2995C
-*color11: #E2995C
-
-! blue
-*color4:  #66899D
-*color12: #66899D
-
-! magenta
-*color5:  #8D6494
-*color13: #8D6494
-
-! cyan
-*color6:  #527C77
-*color14: #527C77
-
-! white
-*color7:  #606360
-*color15: #DDE3DC
+!*background: #111314
+!*foreground: #B7BBB7
+!
+!! black
+!*color0:  #2C2F33
+!*color8:  #4B5056
+!
+!! red
+!*color1:  #B04C50
+!*color9:  #B04C50
+!
+!! green
+!*color2:  #919652
+!*color10: #94985B
+!
+!! yellow
+!*color3:  #E2995C
+!*color11: #E2995C
+!
+!! blue
+!*color4:  #66899D
+!*color12: #66899D
+!
+!! magenta
+!*color5:  #8D6494
+!*color13: #8D6494
+!
+!! cyan
+!*color6:  #527C77
+!*color14: #527C77
+!
+!! white
+!*color7:  #606360
+!*color15: #DDE3DC
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

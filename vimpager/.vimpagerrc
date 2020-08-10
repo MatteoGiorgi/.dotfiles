@@ -1,18 +1,17 @@
 syntax on
-color default
+color dracula
+hi Normal ctermbg=NONE
 
 set runtimepath+=~/.vim_runtime
 set clipboard=unnamedplus
 set mouse=a
-set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set t_Co=256
 set hlsearch
-set wrap
-set textwidth=80
-set linebreak
-set wildmode=list:longest,list:full
 set encoding=UTF-8
 set nobackup
-set noshowmode
+set showmode
+set showcmd
+set nocursorline
+set noerrorbells
 
 let mapleader = "\<space>"
