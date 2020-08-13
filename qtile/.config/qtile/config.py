@@ -14,9 +14,18 @@ from libqtile.lazy import lazy
 from libqtile import layout, bar, widget, hook
 
 mod = "mod4"
-color_black = '282A36'     # black    (color0)
-color_white = 'BFBFBF'     # white    (color7)
-color_gray = '4B5056'      # black    (color8)
+color_black = '282A36'         # #282A36
+color_white = 'BFBFBF'         # #BFBFBF
+color_superwhite = 'F8F8F8'    # #F8F8F8
+color_gray = '4B5056'          # #4B5056
+color_blue = '6272A4'          # #6272A4
+color_cyan = '8be9fd'          # #8be9fd
+color_green = '50fa7b'         # #50fa7b
+color_orange = 'ffb86c'        # #ffb86c
+color_pink = 'ff79c6'          # #ff79c6
+color_purple = 'bd93f9'        # #bd93f9
+color_red = 'ff5555'           # #ff5555
+color_yellow = 'f1fa8c'        # #f1fa8c
 
 # Spacegray palette
 # color_black = '111314'     # black    (color0)
@@ -83,32 +92,47 @@ keys = [
     Key([], "XF86AudioMute", lazy.spawn("pamixer -t")),
 ]
 
-groups = [Group(i, position=int(i)) for i in "123456789"]
+group_names = [
+        ("", 1),
+        ("", 2),
+        ("", 3),
+        ("", 4),
+        ("", 5),
+        ("", 6),
+        ("", 7),
+        ("", 8),
+        ("", 9)
+]
+groups = [Group(name, position=pos) for name, pos in group_names]
+for i, (name, pos) in enumerate(group_names, 1):
+    keys.append(Key([mod], str(i), lazy.group[name].toscreen()))
+    keys.append(Key([mod, "control"], str(i), lazy.window.togroup(name)))
 
-for i in groups:
-    # prev_position = 9 if i.position == 1 else i.position-1
-    # next_position = 1 if i.position == 9 else i.position+1
-    keys.extend([
-        # mod1 + letter of group = switch to group
-        Key([mod], i.name, lazy.group[i.name].toscreen()),
+# groups = [Group(i, position=int(i)) for i in "123456789"]
+# for i in groups:
+#     # prev_position = 9 if i.position == 1 else i.position-1
+#     # next_position = 1 if i.position == 9 else i.position+1
+#     keys.extend([
+#         # mod1 + letter of group = switch to group
+#         Key([mod], i.name, lazy.group[i.name].toscreen()),
 
-        # switch & move focused window to prev/next group (doesn't work)
-        # Key([mod, "control"], "h",
-        #     lazy.window.togroup(str(prev_position), switch_group=True)),
-        # Key([mod, "control"], "l",
-        #     lazy.window.togroup(str(next_position), switch_group=True)),
+#         # switch & move focused window to prev/next group (doesn't work)
+#         # Key([mod, "control"], "h",
+#         #     lazy.window.togroup(str(prev_position), switch_group=True)),
+#         # Key([mod, "control"], "l",
+#         #     lazy.window.togroup(str(next_position), switch_group=True)),
 
-        # mod1 + shift + letter of group = switch & move focused window
-        Key([mod, "control"], i.name,
-            lazy.window.togroup(i.name, switch_group=True)),
-        # Or, use below if you prefer not to switch to that group.
-        # # mod1 + shift + letter of group = move focused window to group
-        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
-    ])
+#         # mod1 + shift + letter of group = switch & move focused window
+#         Key([mod, "control"], i.name,
+#             lazy.window.togroup(i.name, switch_group=True)),
+#         # Or, use below if you prefer not to switch to that group.
+#         # # mod1 + shift + letter of group = move focused window to group
+#         # Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
+#     ])
 
 layout_theme = dict(
     border_width=4,
-    margin=8,
+    margin=16,
     border_focus=color_white,
     border_normal=color_gray
 )
@@ -119,7 +143,6 @@ layouts = [
     layout.Max(name='謹'),
 
     # Try more layouts by unleashing below layouts.
-    # layout.Floating(),
     # layout.Bsp(),
     # layout.Columns(),
     # layout.Floating(),
@@ -156,63 +179,45 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+                widget.GroupBox(
+                    highlight_method='text',
+                    borderwidth=0,
+                    active=color_white,
+                    inactive=color_gray,
+                    hide_unused=False,
+                    this_current_screen_border=color_red,
+                    this_screen_border=color_blue,
+                    other_current_screen_border=color_red,
+                    other_screen_border=color_blue,
+                    disable_drag=True
+                ),
+                widget.Spacer(
+                    background=color_black,
+                    length=6
+                ),
                 widget.TextBox(
-                    text='',
                     background=color_white,
                     foreground=color_black,
                     fontsize=17,
-                    mouse_callbacks={
-                        'Button1':
-                        lambda qtile: qtile.cmd_spawn('rofi-run -r'),
-                        'Button3':
-                        lambda qtile: qtile.cmd_spawn('rofi-run -l'),
-                    }
-                ),
-                widget.TextBox(
                     text='',
-                    fontsize=17,
                     padding=0
                 ),
                 widget.Prompt(
+                    background=color_white,
+                    foreground=color_black,
                     cursor=True,
                     prompt='{prompt} ',
                     cursor_color=color_white,
                     cursorblink=0.5
                 ),
-                widget.GroupBox(
-                    padding=4,
-                    highlight_method='text',
-                    borderwidth=0,
-                    active=color_gray,
-                    hide_unused=True,
-                    this_current_screen_border=color_white,
-                    this_screen_border=color_gray,
-                    other_current_screen_border=color_white,
-                    other_screen_border=color_gray,
-                    disable_drag=True
-                ),
                 widget.TextBox(
-                    background=color_white,
-                    foreground=color_black,
+                    background=color_black,
+                    foreground=color_white,
+                    fontsize=17,
                     text='',
-                    fontsize=17,
-                    padding=0
-                ),
-                widget.CurrentLayout(
-                    background=color_white,
-                    foreground=color_black
-                ),
-                widget.Spacer(length=4, background=color_white),
-                widget.TextBox(
-                    background=color_white,
-                    foreground=color_black,
-                    text='',
-                    fontsize=17,
                     padding=0
                 ),
                 widget.WindowName(
-                    background=color_white,
-                    foreground=color_black,
                     fmt='{:.60}',
                     for_current_screen=True,
                     show_state=False,
@@ -222,36 +227,90 @@ screens = [
                     }
                 ),
                 widget.TextBox(
-                    background=color_white,
-                    foreground=color_black,
-                    text='',
+                    background=color_black,
+                    foreground=color_blue,
                     fontsize=17,
+                    text='',
                     padding=0
                 ),
-                widget.KeyboardLayout(
-                    background=color_white,
+                widget.TextBox(
+                    text='',
+                    background=color_blue,
                     foreground=color_black,
-                    configured_keyboards=['it', 'us'],
-                    fmt=' {}'
+                    mouse_callbacks={
+                        'Button1':
+                        lambda qtile: qtile.cmd_spawn('rofi-run -r'),
+                        'Button3':
+                        lambda qtile: qtile.cmd_spawn('rofi-run -l')
+                    }
                 ),
                 widget.TextBox(
-                    background=color_white,
+                    background=color_blue,
                     foreground=color_black,
-                    text='',
                     fontsize=17,
+                    text='',
+                    padding=4
+                ),
+                widget.CurrentLayout(
+                    background=color_blue,
+                    foreground=color_black
+                ),
+                widget.Spacer(
+                    background=color_blue,
+                    length=6
+                ),
+                widget.TextBox(
+                    background=color_blue,
+                    foreground=color_white,
+                    fontsize=17,
+                    text='',
                     padding=0
                 ),
                 widget.Systray(
+                    background=color_white,
+                    foreground=color_black,
                     icon_size=14
                 ),
-                widget.Spacer(length=6),
+                widget.Spacer(
+                    background=color_white,
+                    length=6
+                ),
                 widget.TextBox(
-                    text='',
+                    background=color_white,
+                    foreground=color_red,
                     fontsize=17,
+                    text='',
                     padding=0
                 ),
+                widget.Spacer(
+                    background=color_red,
+                    length=6
+                ),
+                widget.TextBox(
+                    background=color_red,
+                    foreground=color_black,
+                    text=' ',
+                    padding=0
+                ),
+                widget.KeyboardLayout(
+                    background=color_red,
+                    foreground=color_black,
+                    configured_keyboards=['it', 'us']
+                ),
+                widget.TextBox(
+                    background=color_red,
+                    foreground=color_black,
+                    fontsize=17,
+                    text='',
+                    padding=0
+                ),
+                widget.TextBox(
+                    background=color_red,
+                    foreground=color_black,
+                    text=''
+                ),
                 widget.Clock(
-                    background=color_white,
+                    background=color_red,
                     foreground=color_black,
                     format='%H:%M',
                     mouse_callbacks={'Button1': toggle_calcurse}

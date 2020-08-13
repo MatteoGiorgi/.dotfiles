@@ -19,42 +19,45 @@
 "                           VIM EXTENSIONS
 "                   [ Plug 'repo-name/plugin-name' ]
 "
-"    vim-plug                https://github.com/junegunn/vim-plug
-"    ale                     https://github.com/dense-analysis/ale
-"    coc                     https://github.com/neoclide/coc.nvim
-"    supertab                https://github.com/ervandew/supertab
-"    rnvimr                  https://github.com/kevinhwang91/rnvimr
-"    vim-airline             https://github.com/vim-airline/vim-airline
-"    vim-airline-themes      https://github.com/vim-airline/vim-airline-themes
-"    vim-startify            https://github.com/mhinz/vim-startify
-"    vim-fugitive            https://github.com/tpope/vim-fugitive
-"    fzf                     https://github.com/junegunn/fzf.vim
-"    auto-pairs              https://github.com/jiangmiao/auto-pairs
-"    vim-surround            https://github.com/tpope/vim-surround
-"    vim-multiple-cursors    https://github.com/terryma/vim-multiple-cursors
-"    vim-easymotion          https://github.com/easymotion/vim-easymotion
-"    vim-commentary          https://github.com/tpope/vim-commentary
-"    vim-gitgutter           https://github.com/airblade/vim-gitgutter
-"    vim-which-key           https://github.com/liuchengxu/vim-which-key
-"    goyo.vim                https://github.com/junegunn/goyo.vim
-"    limelight               https://github.com/junegunn/limelight.vim
-"    vim-pandoc              https://github.com/vim-pandoc/vim-pandoc
-"    vim-pandoc-syntax       https://github.com/vim-pandoc/vim-pandoc-syntax
-"    vimtex                  https://github.com/lervag/vimtex
-"    dracula                 https://github.com/dracula/vim/
-"    vim-devicons            https://github.com/ryanoasis/vim-devicons
+"    vim-plug                  https://github.com/junegunn/vim-plug
+"    ale                       https://github.com/dense-analysis/ale
+"    coc                       https://github.com/neoclide/coc.nvim
+"    supertab                  https://github.com/ervandew/supertab
+"    rnvimr                    https://github.com/kevinhwang91/rnvimr
+"    vim-airline               https://github.com/matteogiorgi/vim-airline
+"    vim-startify              https://github.com/mhinz/vim-startify
+"    vim-fugitive              https://github.com/tpope/vim-fugitive
+"    fzf                       https://github.com/junegunn/fzf.vim
+"    auto-pairs                https://github.com/jiangmiao/auto-pairs
+"    vim-surround              https://github.com/tpope/vim-surround
+"    vim-multiple-cursors      https://github.com/terryma/vim-multiple-cursors
+"    vim-easymotion            https://github.com/easymotion/vim-easymotion
+"    vim-commentary            https://github.com/tpope/vim-commentary
+"    vim-gitgutter             https://github.com/airblade/vim-gitgutter
+"    vim-which-key             https://github.com/liuchengxu/vim-which-key
+"    goyo.vim                  https://github.com/junegunn/goyo.vim
+"    vim-pandoc                https://github.com/vim-pandoc/vim-pandoc
+"    vim-pandoc-syntax         https://github.com/vim-pandoc/vim-pandoc-syntax
+"    markdown-preview          https://github.com/iamcco/markdown-preview.nvim
+"    vim-table-mode            https://github.com/dhruvasagar/vim-table-mode
+"    vimtex                    https://github.com/lervag/vimtex
+"    vim-latex-live-preview    https://github.com/xuhdev/vim-latex-live-preview
+"    vim-css-color             https://github.com/ap/vim-css-color
+"    dracula                   https://github.com/dracula/vim/
+"    vim-devicons              https://github.com/ryanoasis/vim-devicons
 "
 "
 "                           COC EXTENSIONS
 "                     [ :CocInstall plugin-name ]
 "
-"    coc-marketplace         https://github.com/fannheyward/coc-marketplace
-"    coc-vimtex              https://github.com/neoclide/coc-vimtex
-"    coc-vimlsp              https://github.com/iamcco/coc-vimlsp
-"    coc-clang               https://github.com/clangd/coc-clangd
-"    coc-sh                  https://github.com/josa42/coc-sh
-"    coc-python              https://github.com/neoclide/coc-python
-"    coc-java                https://github.com/neoclide/coc-java
+"    coc-marketplace           https://github.com/fannheyward/coc-marketplace
+"    coc-vimtex                https://github.com/neoclide/coc-vimtex
+"    coc-vimlsp                https://github.com/iamcco/coc-vimlsp
+"    coc-clang                 https://github.com/clangd/coc-clangd
+"    coc-sh                    https://github.com/josa42/coc-sh
+"    coc-python                https://github.com/neoclide/coc-python
+"    coc-java                  https://github.com/neoclide/coc-java
+"    coc-html                  https://github.com/neoclide/coc-html
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -73,7 +76,7 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'ervandew/supertab'
     Plug 'kevinhwang91/rnvimr'
-    Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+    Plug 'matteogiorgi/vim-airline'
     Plug 'mhinz/vim-startify'
     Plug 'tpope/vim-fugitive'
     Plug 'junegunn/fzf.vim'
@@ -85,9 +88,12 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'airblade/vim-gitgutter'
     Plug 'liuchengxu/vim-which-key'
     Plug 'junegunn/goyo.vim'
-    Plug 'junegunn/limelight.vim'
     Plug 'vim-pandoc/vim-pandoc' | Plug 'vim-pandoc/vim-pandoc-syntax'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+    Plug 'dhruvasagar/vim-table-mode'
     Plug 'lervag/vimtex'
+    Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+    Plug 'ap/vim-css-color'
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -148,7 +154,8 @@ set nocursorline
 set noerrorbells
 set nofoldenable
 set nospell
-set timeoutlen=100
+set timeoutlen=500
+set updatetime=500
 
 if (has('nvim'))
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -162,7 +169,7 @@ let g:mapleader = "\<space>"
 let g:maplocalleader = ','
 let g:netrw_browsex_viewer= 'xdg-open'
 let g:switchedit = 'horizontal'
-let g:switchdir = 'home'
+let g:switchdir = 'local'
 let g:longline = 'none'
 let g:ale_linters = {
             \ 'c': ['gcc'],
@@ -183,7 +190,6 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme = 'minimalist'
-let g:limelight_conceal_ctermfg = 240
 let g:startify_files_number = 5
 let g:startify_list_order = [
             \ ['   Files:'], 'files',
@@ -226,9 +232,11 @@ let g:rnvimr_layout = { 'relative': 'editor',
             \ 'width': float2nr(round(1.0 * &columns)),
             \ 'height': float2nr(round(0.5 * &lines)),
             \ 'col': float2nr(round(0.0 * &columns)),
-            \ 'row': float2nr(round(0.47 * &lines)),
+            \ 'row': float2nr(round(0.46 * &lines)),
             \ 'style': 'minimal'
             \ }
+let g:livepreview_previewer = 'zathura'
+let g:livepreview_engine = 'xelatex'
 let g:which_key_map =  {
             \ 'q' : 'Quit',
             \ 'w' : 'Write',
@@ -237,6 +245,12 @@ let g:which_key_map =  {
             \ 'r' : 'Ranger',
             \ 'c' : 'Comment',
             \ 'u' : 'URL',
+            \ }
+let g:which_key_map['m'] = { 'name' : '+Movements',
+            \ 'h' : 'lHeft',
+            \ 'j' : 'dJown',
+            \ 'k' : 'Kup',
+            \ 'l' : 'rLight',
             \ }
 let g:which_key_map['b'] = { 'name' : '+Buffer',
             \ 'n' : 'New',
@@ -270,8 +284,8 @@ let g:which_key_map['a'] = { 'name' : '+Ale',
             \ }
 let g:which_key_map['v'] = { 'name' : '+View',
             \ 'g' : 'Goyo',
-            \ 'w' : 'Wrap',
-            \ 'p' : 'sPell',
+            \ 'w' : 'lineWrap',
+            \ 'p' : 'sPellcheck',
             \ 's' : 'Search',
             \ 'l' : 'Longline',
             \ 'q' : 'sQish',
@@ -284,6 +298,19 @@ let g:which_key_map['s'] = { 'name' : '+Surround',
             \ 's' : 'Surround',
             \ 'c' : 'Change',
             \ 'd' : 'Delete',
+            \ }
+let g:which_key_map['p'] = { 'name' : '+Markdown',
+            \ 'l' : 'Latex',
+            \ 'm' : 'Markdown',
+            \ 's' : 'Stop mdprev',
+            \ 't' : 'Toggle mdprev',
+            \ }
+let g:which_key_map['t'] = { 'name' : '+Table',
+            \ 'm' : 'tableMode',
+            \ 't' : 'Tableize',
+            \ 'r' : 'Realign',
+            \ 's' : 'Sort',
+            \ '?' : 'echocell?',
             \ }
 call which_key#register('<Space>', 'g:which_key_map')
 
@@ -315,6 +342,15 @@ nnoremap <leader>r :RnvimrToggle<CR>
 nmap <leader>c gcc<CR>
 vmap <leader>c gc<CR>
 map <leader>u <esc>gx<CR>
+" remember to check ad set the default web-browser with:
+" xdg-settings get default-web-browser
+" xdg-settings set default-web-browser brave-browser.desktop
+
+" Movements menu
+nnoremap <leader>mh <C-W><C-H>
+nnoremap <leader>mk <C-W><C-K>
+nnoremap <leader>mj <C-W><C-J>
+nnoremap <leader>ml <C-W><C-L>
 
 " Buffer menu
 nnoremap <leader>bn :enew<bar> :Startify<CR>
@@ -360,6 +396,12 @@ map <leader>ss <esc>ysiw
 map <leader>sc <esc>cs
 map <leader>sd <esc>ds
 
+" Preview menu
+nmap <leader>pl :LLPStartPreview<CR>
+nmap <leader>pm <Plug>MarkdownPreview
+nmap <leader>ps <Plug>MarkdownPreviewStop
+nmap <leader>pt <Plug>MarkdownPreviewToggle
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -402,7 +444,6 @@ endfunction
 function! s:goyo_enter()
     set showmode
     set showcmd
-    Limelight
 endfunction
 
 
@@ -411,6 +452,5 @@ function! s:goyo_leave()
     set noshowcmd
     set nocursorline
     :hi Normal ctermbg=NONE
-    Limelight!
 endfunction
 
