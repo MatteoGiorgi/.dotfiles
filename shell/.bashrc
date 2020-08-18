@@ -116,7 +116,7 @@ function extract
 }
 
 # Change directory exiting from ranger
-f ()
+ranger_jump ()
 {
     tempfile="$(mktemp -t tmp.XXXXXX)"
     /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
@@ -129,7 +129,7 @@ f ()
 }
 
 # Change directory exiting from fff
-ff ()
+fff_jump ()
 {
     fff "$@"
     cd "$(cat "${XDG_CACHE_HOME:=${HOME}}/.fff_d")"
@@ -214,3 +214,4 @@ source $HOME/.config/fzf/completion.bash
 # source /usr/share/fzf/key-bindings.bash
 # source /usr/share/fzf/completion.bash
 # source /home/rtbm/.config/broot/launcher/bash/br
+

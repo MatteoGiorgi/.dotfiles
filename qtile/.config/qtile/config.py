@@ -25,7 +25,9 @@ color_orange = 'ffb86c'        # #ffb86c
 color_pink = 'ff79c6'          # #ff79c6
 color_purple = 'bd93f9'        # #bd93f9
 color_red = 'ff5555'           # #ff5555
+color_lightred = 'ff7777'      # #ff7777
 color_yellow = 'f1fa8c'        # #f1fa8c
+color_lightyellow = 'f1fa8c'   # #f4f99d
 
 # Spacegray palette
 # color_black = '111314'     # black    (color0)
@@ -93,15 +95,15 @@ keys = [
 ]
 
 group_names = [
-        ("", 1),
-        ("", 2),
-        ("", 3),
-        ("", 4),
-        ("", 5),
-        ("", 6),
-        ("", 7),
-        ("", 8),
-        ("", 9)
+        ("", 1),
+        ("", 2),
+        ("", 3),
+        ("", 4),
+        ("", 5),
+        ("", 6),
+        ("", 7),
+        ("", 8),
+        ("", 9)
 ]
 groups = [Group(name, position=pos) for name, pos in group_names]
 for i, (name, pos) in enumerate(group_names, 1):
@@ -132,15 +134,23 @@ for i, (name, pos) in enumerate(group_names, 1):
 
 layout_theme = dict(
     border_width=4,
-    margin=16,
+    margin=20,
     border_focus=color_white,
     border_normal=color_gray
 )
 
 layouts = [
-    layout.MonadTall(name='者', **layout_theme),
-    layout.MonadWide(name='署', **layout_theme),
-    layout.Max(name='謹'),
+    layout.MonadTall(name='tall', **layout_theme),
+    layout.MonadWide(name='wide', **layout_theme),
+    layout.Max(name='maxi'),
+
+    # layout.MonadTall(name='ﱽ', **layout_theme),
+    # layout.MonadWide(name='ﱹ', **layout_theme),
+    # layout.Max(name='ﱻ'),
+
+    # layout.MonadTall(name='者', **layout_theme),
+    # layout.MonadWide(name='署', **layout_theme),
+    # layout.Max(name='謹'),
 
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),
@@ -185,15 +195,15 @@ screens = [
                     active=color_white,
                     inactive=color_gray,
                     hide_unused=False,
-                    this_current_screen_border=color_red,
+                    this_current_screen_border=color_lightred,
                     this_screen_border=color_blue,
-                    other_current_screen_border=color_red,
+                    other_current_screen_border=color_lightred,
                     other_screen_border=color_blue,
                     disable_drag=True
                 ),
                 widget.Spacer(
                     background=color_black,
-                    length=6
+                    length=4
                 ),
                 widget.TextBox(
                     background=color_white,
@@ -207,7 +217,7 @@ screens = [
                     foreground=color_black,
                     cursor=True,
                     prompt='{prompt} ',
-                    cursor_color=color_white,
+                    cursor_color=color_black,
                     cursorblink=0.5
                 ),
                 widget.TextBox(
@@ -234,31 +244,32 @@ screens = [
                     padding=0
                 ),
                 widget.TextBox(
-                    text='',
+                    text='',
                     background=color_blue,
-                    foreground=color_black,
+                    foreground=color_white,
                     mouse_callbacks={
                         'Button1':
                         lambda qtile: qtile.cmd_spawn('rofi-run -r'),
                         'Button3':
                         lambda qtile: qtile.cmd_spawn('rofi-run -l')
-                    }
+                    },
+                    padding=10
                 ),
                 widget.TextBox(
                     background=color_blue,
-                    foreground=color_black,
+                    foreground=color_white,
                     fontsize=17,
                     text='',
-                    padding=4
+                    padding=3
                 ),
                 widget.CurrentLayout(
                     background=color_blue,
-                    foreground=color_black
+                    foreground=color_white
                 ),
-                widget.Spacer(
-                    background=color_blue,
-                    length=6
-                ),
+                # widget.Spacer(
+                #     background=color_blue,
+                #     length=6
+                # ),
                 widget.TextBox(
                     background=color_blue,
                     foreground=color_white,
@@ -277,42 +288,39 @@ screens = [
                 ),
                 widget.TextBox(
                     background=color_white,
-                    foreground=color_red,
+                    foreground=color_lightred,
                     fontsize=17,
                     text='',
                     padding=0
                 ),
                 widget.Spacer(
-                    background=color_red,
+                    background=color_lightred,
                     length=6
                 ),
                 widget.TextBox(
-                    background=color_red,
+                    background=color_lightred,
                     foreground=color_black,
-                    text=' ',
-                    padding=0
+                    text='',
+                    fontsize=17,
+                    padding=4
                 ),
                 widget.KeyboardLayout(
-                    background=color_red,
+                    background=color_lightred,
                     foreground=color_black,
                     configured_keyboards=['it', 'us']
                 ),
                 widget.TextBox(
-                    background=color_red,
+                    background=color_lightred,
                     foreground=color_black,
                     fontsize=17,
                     text='',
                     padding=0
                 ),
-                widget.TextBox(
-                    background=color_red,
-                    foreground=color_black,
-                    text=''
-                ),
                 widget.Clock(
-                    background=color_red,
+                    background=color_lightred,
                     foreground=color_black,
-                    format='%H:%M',
+                    padding=8,
+                    format=' %H:%M',
                     mouse_callbacks={'Button1': toggle_calcurse}
                 ),
             ],

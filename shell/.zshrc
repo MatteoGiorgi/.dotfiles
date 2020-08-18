@@ -180,3 +180,4 @@ source $HOME/.config/fzf/completion.zsh
 # source /usr/share/fzf/key-bindings.zsh
 # source /usr/share/fzf/completion.zsh
 # source /home/rtbm/.config/broot/launcher/bash/br
+

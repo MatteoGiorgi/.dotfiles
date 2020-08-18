@@ -1,10 +1,10 @@
 set font "mononoki Nerd Font 9"
 set show-scrollbars
 set first-page-column 1
-set default-bg "#2e3436"
-set default-fg "#d3d7cf"
-set inputbar-bg "#d3d7cf"
-set inputbar-fg "#2e3436"
-set statusbar-bg "#2e3436"
-set statusbar-fg "#d3d7cf"
+set default-bg "#282A36"
+set default-fg "#F8F8F2"
+set inputbar-bg "#F8F8F2"
+set inputbar-fg "#282A36"
+set statusbar-bg "#282A36"
+set statusbar-fg "#F8F8F2"
 set smooth-scroll true
