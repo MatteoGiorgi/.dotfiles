@@ -133,7 +133,7 @@ for i, (name, pos) in enumerate(group_names, 1):
 #     ])
 
 layout_theme = dict(
-    border_width=4,
+    border_width=2,
     margin=20,
     border_focus=color_white,
     border_normal=color_gray
