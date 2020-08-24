@@ -1,0 +1,25 @@
+{
+    "diagnostic.displayByAle": true,
+    "tslint.enable": true,
+    "tslint.autoFixOnSave": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "css",
+        "markdown",
+        "Markdown",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-11",
+            "path": "/usr/lib/jvm/java-11-openjdk"
+        },
+        {
+            "name": "JavaSE-14",
+            "path": "/usr/lib/jvm/java-14-openjdk",
+            "default": true
+        }
+    ]
+}

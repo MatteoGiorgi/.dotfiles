@@ -24,10 +24,12 @@
 "    coc                       https://github.com/neoclide/coc.nvim
 "    supertab                  https://github.com/ervandew/supertab
 "    rnvimr                    https://github.com/kevinhwang91/rnvimr
+"    floaterm                  https://github.com/voldikss/vim-floaterm
 "    vim-airline               https://github.com/matteogiorgi/vim-airline
 "    vim-startify              https://github.com/mhinz/vim-startify
 "    vim-fugitive              https://github.com/tpope/vim-fugitive
-"    fzf                       https://github.com/junegunn/fzf.vim
+"    fzf                       https://github.com/junegunn/fzf
+"    fzf.vim                   https://github.com/junegunn/fzf.vim
 "    auto-pairs                https://github.com/jiangmiao/auto-pairs
 "    vim-surround              https://github.com/tpope/vim-surround
 "    vim-repeat                https://github.com/tpope/vim-repeat
@@ -38,6 +40,7 @@
 "    vim-which-key             https://github.com/liuchengxu/vim-which-key
 "    goyo                      https://github.com/junegunn/goyo.vim
 "    limelight                 https://github.com/junegunn/limelight.vim
+"    vimwiki                   https://github.com/vimwiki/vimwiki
 "    vim-pandoc                https://github.com/vim-pandoc/vim-pandoc
 "    vim-pandoc-syntax         https://github.com/vim-pandoc/vim-pandoc-syntax
 "    markdown-preview          https://github.com/iamcco/markdown-preview.nvim
@@ -60,6 +63,7 @@
 "    coc-python                https://github.com/neoclide/coc-python
 "    coc-java                  https://github.com/neoclide/coc-java
 "    coc-html                  https://github.com/neoclide/coc-html
+"    coc-xml                   https://github.com/fannheyward/coc-xml
 
 
 
@@ -84,9 +88,11 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'ervandew/supertab'
     Plug 'kevinhwang91/rnvimr'
+    Plug 'voldikss/vim-floaterm'
     Plug 'matteogiorgi/vim-airline'
     Plug 'mhinz/vim-startify'
     Plug 'tpope/vim-fugitive'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-surround'
@@ -98,6 +104,7 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'liuchengxu/vim-which-key'
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/limelight.vim'
+    Plug 'vimwiki/vimwiki'
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
@@ -149,8 +156,6 @@ set linebreak
 set textwidth=80
 set wrapmargin=80
 set formatoptions+=l
-set splitbelow
-set splitright
 set smartcase
 set encoding=UTF-8
 set nobackup
@@ -161,15 +166,8 @@ set noerrorbells
 set nofoldenable
 set foldmethod=manual
 set nospell
-set timeoutlen=500
+set timeoutlen=000
 set updatetime=500
-
-
-" unfortunatelly Limelight can't calculate background with truecolors enabled
-"
-" if (has('nvim'))
-"     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-" endif
 
 
 
@@ -197,6 +195,8 @@ let g:ale_fixers = {
             \ 'python': ['yapf'],
             \}
 let g:ale_fix_on_save = 1
+let g:ale_disable_lsp = 1
+let g:airline#extensions#ale#enabled = 1
 
 
 
@@ -206,6 +206,13 @@ let g:ale_fix_on_save = 1
 let g:tex_flavor = 'latex'
 let g:livepreview_previewer = 'zathura'
 let g:livepreview_engine = 'xelatex'
+
+
+
+
+"VIMWIKI________________________________________________________________________
+
+let g:vimwiki_global_ext = 0
 
 
 
@@ -269,6 +276,7 @@ let g:limelight_conceal_ctermfg = 'darkgray'
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme = 'minimalist'
 
@@ -280,17 +288,19 @@ let g:airline_theme = 'minimalist'
 let g:startify_files_number = 5
 let g:startify_list_order = [
             \ ['   Files:'], 'files',
-            \ ['   Dir:'], 'dir',
+            \ ['   Directory:'], 'dir',
             \ ['   Sessions:'], 'sessions',
             \ ['   Bookmarks:'], 'bookmarks',
             \ ]
 let g:startify_bookmarks = [
-            \ '~/.config/nvim/init.vim',
-            \ '~/.config/qtile/config.py',
-            \ '~/.zshrc',
-            \ '~/.bashrc',
-            \ '~/.vimrc',
+            \ '~/',
+            \ '~/.dotfiles/',
             \ ]
+let g:startify_custom_indices = [
+            \ 'a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 'l', 'm', 'n',
+            \ 'o', 'p', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'x'
+            \ ]
+let g:startify_session_dir = '~/.config/nvim/sessions'
 let g:startify_custom_header = [
             \ '        ███▄ ▄███▓    ██▒   █▓ ██▓ ███▄ ▄███▓       ',
             \ '        ██▒▀█▀ ██▒   ▓██░   █▒▓██▒▓██▒▀█▀ ██▒       ',
@@ -303,6 +313,17 @@ let g:startify_custom_header = [
             \ '                           ░   ░         ░          ',
             \ '                          ░                         ',
             \ ]
+
+
+
+
+"FLOATERM_______________________________________________________________________
+
+let g:floaterm_autoinsert=1
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
+let g:floaterm_wintitle=0
+let g:floaterm_autoclose=1
 
 
 
@@ -324,7 +345,7 @@ let g:rnvimr_action = {
 let g:rnvimr_layout = { 'relative': 'editor',
             \ 'width': float2nr(round(1.0 * &columns)),
             \ 'height': float2nr(round(0.5 * &lines)),
-            \ 'col': float2nr(round(0.0 * &columns)),
+            \ 'col': float2nr(round(0.00 * &columns)),
             \ 'row': float2nr(round(0.46 * &lines)),
             \ 'style': 'minimal'
             \ }
@@ -343,25 +364,35 @@ nnoremap <M-h> <C-W><C-H>
 nnoremap <M-k> <C-W><C-K>
 nnoremap <M-j> <C-W><C-J>
 nnoremap <M-l> <C-W><C-L>
-nnoremap <C-j> <C-d>
-nnoremap <C-k> <C-u>
-nnoremap <C-h> {
-nnoremap <C-l> }
+nnoremap <C-j> <C-d> zz
+nnoremap <C-k> <C-u> zz
+nnoremap <S-j> }}{ zz
+nnoremap <S-k> {{ zz
 nnoremap <silent><leader> :<c-u>WhichKey '<Space>'<CR>
+vnoremap <silent><leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 nnoremap <silent><localleader> :<c-u>WhichKey ','<CR>
+vnoremap <silent><localleader> :<c-u>WhichKeyVisual '<Space>'<CR>
+nnoremap <M-Tab> :bnext<CR>
+nnoremap <M-Backspace> :bprev<CR>
+nnoremap <M-space> :RnvimrToggle<CR>
+tnoremap <M-space> <C-\><C-n>:RnvimrToggle<CR>
+nnoremap <M-return> :FloatermToggle<CR>
+tnoremap <M-return> <C-\><C-n>:FloatermToggle<CR>
+
 nmap <C-p> :-r!xclip -o -sel clip<CR>
 vmap <C-y> :!xclip -f -sel clip<CR>
 vmap <Tab> >gv
 vmap <S-Tab> <gv
-nnoremap <M-Tab> :bnext<CR>
-nnoremap <M-Backspace> :bprev<CR>
 
-" main menu
+
+" Leader menu
 nnoremap <leader>q :quit<CR>
-nnoremap <leader>w :write<CR>
-nnoremap <leader>d :bdelete<CR>
-nnoremap <leader>i :call <SID>switch_dir()<CR>
-nnoremap <leader>r :RnvimrToggle<CR>
+nnoremap <leader>z :write<CR>
+nnoremap <leader>k :bdelete<CR>
+nnoremap <leader>r :wincmd r<CR>
+nnoremap <leader>i :call <SID>switch_edit()<CR>
+nnoremap <leader>d :call <SID>switch_dir()<CR>
+nnoremap <leader>0 :wincmd =<CR>
 nnoremap <leader>g :Goyo<CR>
 nmap <leader>x :LLPStartPreview<CR>
 map <leader>u <esc>gx<CR>
@@ -374,127 +405,174 @@ vmap <leader>l gc<CR>
 " add support to a plugin for vim-repeat whit the following command:
 " silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 let g:which_key_map =  {
-            \ 'q' : 'Quit',
-            \ 'w' : 'Write',
-            \ 'd' : 'Delete',
-            \ 'i' : 'dIr',
-            \ 'l' : 'LineComment',
-            \ 'r' : 'Ranger',
-            \ 'g' : 'Goyo',
-            \ 'x' : 'lateX',
-            \ 'u' : 'Url',
+            \ 'q' : 'Quit-split',
+            \ 'z' : 'Save-buffer',
+            \ 'k' : 'Kill-buffer',
+            \ 'r' : 'Rotate-splits',
+            \ 'i' : 'Invert-layout',
+            \ 'd' : 'Directory-swap',
+            \ '0' : '50-50',
+            \ 'g' : 'Goyo-distractionfree',
+            \ 'x' : 'Xtex-preview',
+            \ 'u' : 'Url-undercursor',
+            \ 'l' : 'Line-comment',
             \ }
 
-" Buffer menu
-nnoremap <leader>bn :enew<bar> :Startify<CR>
-nnoremap <leader>bs :new<bar> :Startify<CR>
-nnoremap <leader>bv :vnew<bar> :Startify<CR>
-nnoremap <leader>bo :wincmd o<CR>
-nnoremap <leader>br :wincmd r<CR>
-nnoremap <leader>bc :call <SID>switch_edit()<CR>
-nnoremap <leader>b0 :wincmd =<CR>
-let g:which_key_map['b'] = { 'name' : '+Buffer',
+" New-buffer menu
+nnoremap <leader>nn :enew<bar> :Startify<CR>
+nnoremap <leader>nk :new<bar> :Startify<CR>
+nnoremap <leader>nj :belowright split<bar> :Startify<CR>
+nnoremap <leader>nh :vnew<bar> :Startify<CR>
+nnoremap <leader>nl :belowright vsplit<bar> :Startify<CR>
+let g:which_key_map['n'] = { 'name' : '+New-buffer',
             \ 'n' : 'New',
+            \ 'j' : 'Split-down',
+            \ 'k' : 'Split-up',
+            \ 'h' : 'Split-left',
+            \ 'l' : 'Split-right',
+            \ }
+
+" Only-one menu
+nnoremap <leader>os :only<CR>
+nnoremap <leader>ob :%bdelete<bar> edit #<bar> normal `"<CR>
+let g:which_key_map['o'] = { 'name' : '+Only-one',
             \ 's' : 'Split',
-            \ 'v' : 'Vertical',
-            \ 'o' : 'OnlyOne',
-            \ 'r' : 'Rotate',
-            \ 'c' : 'splitChange',
-            \ '0' : '50-50',
+            \ 'b' : 'Buffer',
+            \ }
+
+" Sessions menu
+nnoremap <leader>sl :SLoad<CR>
+nnoremap <leader>ss :SSave<CR>
+nnoremap <leader>sd :SDelete<CR>
+nnoremap <leader>sq :SClose<CR>
+let g:which_key_map['s'] = { 'name' : '+Sessions',
+            \ 'l' : 'Load',
+            \ 's' : 'Save',
+            \ 'd' : 'Delete',
+            \ 'q' : 'Quit',
             \ }
 
 " Fzf menu
 nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fj :Buffers<CR>
-nnoremap <leader>fh :History<CR>
-nnoremap <leader>fl :BLines<CR>
+nnoremap <leader>fr :GFiles<CR>
+nnoremap <leader>fs :GFiles?<CR>
 nnoremap <leader>fc :Commits<CR>
+nnoremap <leader>fj :BCommits<CR>
+nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>fh :History<CR>
+nnoremap <leader>fl :Lines<CR>
+nnoremap <leader>fk :BLines<CR>
 let g:which_key_map['f'] = { 'name' : '+Fzf',
             \ 'f' : 'Files',
-            \ 'j' : 'Jumpbuffer',
+            \ 'r' : 'Repo',
+            \ 's' : 'Status',
+            \ 'c' : 'Commits-repo',
+            \ 'j' : 'Commits-buffer',
+            \ 'b' : 'Buffers',
             \ 'h' : 'History',
             \ 'l' : 'Lines',
-            \ 'c' : 'Commits',
+            \ 'k' : 'Lines-buffer',
+            \ }
+
+" Coc menu
+nmap <leader>cd <Plug>(coc-definition)
+nmap <leader>cr <Plug>(coc-references)
+let g:which_key_map['c'] = { 'name' : '+Coc',
+            \ 'd' : 'Definitions',
+            \ 'r' : 'References',
             \ }
 
 " Easymotion menu
-nmap <leader><space>h <Plug>(easymotion-bd-w)
-nmap <leader><space>j <Plug>(easymotion-j)
+nmap <leader><space>h <Plug>(easymotion-linebackward)
+nmap <leader><space>l <Plug>(easymotion-lineforward)
 nmap <leader><space>k <Plug>(easymotion-k)
+nmap <leader><space>j <Plug>(easymotion-j)
 let g:which_key_map[' '] = { 'name' : '+Easymotion',
-            \ 'h' : 'wHole',
-            \ 'j' : 'Jump',
-            \ 'k' : 'Kump',
+            \ 'h' : 'Line-backward',
+            \ 'l' : 'Line-forward',
+            \ 'k' : 'Lines-above',
+            \ 'j' : 'Lines-below',
             \ }
 
-" Gitgutter menu
-nmap <leader>hj <Plug>(GitGutterNextHunk)
-nmap <leader>hk <Plug>(GitGutterPrevHunk)
-let g:which_key_map['h'] = { 'name' : '+Hunk',
-            \ 'j' : 'Jump',
-            \ 'k' : 'Kump',
+" Hunk-gitgutter menu
+nmap <leader>hj <Plug>(GitGutterNextHunk)<bar> 'zz
+nmap <leader>hk <Plug>(GitGutterPrevHunk)<bar> 'zz
+let g:which_key_map['h'] = { 'name' : '+Hunk-gitgutter',
+            \ 'j' : 'Next-hunk',
+            \ 'k' : 'Previous-hunk',
             \ 'p' : 'Preview',
             \ 's' : 'Stage',
             \ 'u' : 'Undo',
             \ }
 
 " Ale menu
-nmap <leader>aj <Plug>(ale_next_wrap)
-nmap <leader>ak <Plug>(ale_previous_wrap)
+nmap <leader>aj <Plug>(ale_next_wrap)<bar> 'zz
+nmap <leader>ak <Plug>(ale_previous_wrap)<bar> 'zz
 let g:which_key_map['a'] = { 'name' : '+Ale',
-            \ 'j' : 'Jump',
-            \ 'k' : 'Kump',
-            \ }
-
-" View menu
-nnoremap <leader>vw :setlocal nowrap!<CR>
-nnoremap <leader>vp :setlocal spell! spelllang=en_us<CR>
-nnoremap <leader>vs :set hlsearch! hlsearch?<CR>
-nnoremap <leader>vl :call <SID>long_line()<CR>
-nnoremap <leader>vq <esc>ggVGgq<CR>
-let g:which_key_map['v'] = { 'name' : '+View',
-            \ 'w' : 'lineWrap',
-            \ 'p' : 'sPellcheck',
-            \ 's' : 'Search',
-            \ 'l' : 'Longline',
-            \ 'q' : 'sQish',
-            \ }
-
-" Execute menu
-nnoremap <leader>ec :w! \| !comp <c-r>%<CR><CR>
-nnoremap <leader>eo :!opout <c-r>%<CR><CR>
-let g:which_key_map['e'] = { 'name' : '+Execute',
-            \ 'c' : 'Comp',
-            \ 'o' : 'Opout',
+            \ 'j' : 'Next-error',
+            \ 'k' : 'Previous-error',
             \ }
 
 " Surround menu
-map <leader>sw <esc>ysiw
-map <leader>sc <esc>cs
-map <leader>sd <esc>ds
-let g:which_key_map['s'] = { 'name' : '+Surround',
-            \ 'w' : 'Word',
-            \ 'c' : 'Change',
+map <leader>jj <esc>ysiw
+vmap <leader>jj <S-s>
+map <leader>js <esc>cs
+map <leader>jd <esc>ds
+let g:which_key_map['j'] = { 'name' : '+Surround',
+            \ 'j' : 'Word/Block',
+            \ 's' : 'Substitute',
             \ 'd' : 'Delete',
             \ }
 
-" Markdown menu
+" Markdown-preview menu
 nmap <leader>ma <Plug>MarkdownPreview
 nmap <leader>md <Plug>MarkdownPreviewStop
 nmap <leader>mt <Plug>MarkdownPreviewToggle
-let g:which_key_map['m'] = { 'name' : '+Markdown',
-            \ 'a' : 'Activate',
-            \ 'd' : 'Deactivate',
-            \ 't' : 'Toggle',
+let g:which_key_map['m'] = { 'name' : '+Markdown-preview',
+            \ 'a' : 'Activate-preview',
+            \ 'd' : 'Deactivate-preview',
+            \ 't' : 'Toggle-preview',
             \ }
 
-" Markdown menu
-let g:which_key_map['t'] = { 'name' : '+Table',
-            \ 'm' : 'tableMode',
+" Vinwiki menu
+let g:which_key_map['w'] = { 'name' : '+Vimwiki',
+            \ 'w' : 'Index-buffer',
+            \ 't' : 'Index-tab',
+            \ 's' : 'Index-select',
+            \ 'i' : 'Diary-index',
+            \ 'd' : 'Delete',
+            \ 'r' : 'Rename',
+            \ }
+
+" Tablemode menu
+let g:which_key_map['t'] = { 'name' : '+Tablemode',
+            \ 'm' : 'Mode-toggle',
             \ 't' : 'Tableize',
             \ 'r' : 'Realign',
             \ 's' : 'Sort',
             \ '?' : 'echocell?',
+            \ }
+
+" View-options menu
+nnoremap <leader>vw :setlocal nowrap!<CR>
+nnoremap <leader>vs :setlocal spell! spelllang=en_us<CR>
+nnoremap <leader>vh :set hlsearch! hlsearch?<CR>
+nnoremap <leader>vl :call <SID>long_line()<CR>
+nnoremap <leader>v8 <esc>ggVGgq<CR>
+let g:which_key_map['v'] = { 'name' : '+View-options',
+            \ 'w' : 'Wrap-line',
+            \ 's' : 'Spelling-check',
+            \ 'h' : 'Highlight-search',
+            \ 'l' : 'Long-line',
+            \ '8' : '80-char',
+            \ }
+
+" Execute menu
+nnoremap <leader>e1 :w! \| !comp <c-r>%<CR><CR>
+nnoremap <leader>e2 :!opout <c-r>%<CR><CR>
+let g:which_key_map['e'] = { 'name' : '+Execute-scripts',
+            \ '1' : 'Comp',
+            \ '2' : 'Opout',
             \ }
 
 call which_key#register('<Space>', 'g:which_key_map')
@@ -503,22 +581,6 @@ call which_key#register('<Space>', 'g:which_key_map')
 
 
 "FUNCTIONS______________________________________________________________________
-
-function! GetExtension()
-    let ext = expand('%:e')
-    if (ext ==? 'py')
-        return 'python'
-    elseif (ext ==? 'hs')
-        return 'ghci'
-    elseif (ext ==? 'ml')
-        return 'ocaml'
-    elseif (ext ==? 'r')
-        return 'R'
-    elseif (ext ==? 'js')
-        return 'node'
-    endif
-endfunction
-
 
 function! s:long_line()
     if (g:longline ==? 'none')
@@ -556,6 +618,7 @@ endfunction
 
 
 function! s:goyo_enter()
+    set nonumber norelativenumber
     set showmode
     set showcmd
     Limelight
@@ -563,10 +626,27 @@ endfunction
 
 
 function! s:goyo_leave()
+    set number relativenumber
     set noshowmode
     set noshowcmd
     set nocursorline
     Limelight!
     hi Normal ctermbg=NONE
+endfunction
+
+
+function! GetExtension()
+    let ext = expand('%:e')
+    if (ext ==? 'py')
+        return 'python'
+    elseif (ext ==? 'hs')
+        return 'ghci'
+    elseif (ext ==? 'ml')
+        return 'ocaml'
+    elseif (ext ==? 'r')
+        return 'R'
+    elseif (ext ==? 'js')
+        return 'node'
+    endif
 endfunction
 

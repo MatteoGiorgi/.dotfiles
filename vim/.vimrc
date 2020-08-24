@@ -110,15 +110,20 @@ let g:currentmode={
     \ '!'  : 'Shell',
     \ 't'  : 'Terminal',
     \}
-let g:split = get(g:, 'split', '30vnew')
-let g:split_direction = get(g:, 'split_direction', 'nosplitbelow nosplitright')
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-command! -bar RangerChooser call RangerChooser()
-command! -nargs=* -complete=dir F call Run(<q-args>)
+if exists('g:loaded_fff')
+    finish
+endif
+let g:loaded_fff = 1
+let g:fff#split = '30vnew'
+let g:fff#split_direction = 'nosplitbelow nosplitright'
+
+command! -nargs=* -complete=dir F call fff#Run(<q-args>)
+command! -bar RangerChooser call fff#RangerChooser()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -132,15 +137,14 @@ noremap <S-h> <C-W><C-H>
 noremap <S-k> <C-W><C-K>
 noremap <S-j> <C-W><C-J>
 noremap <S-l> <C-W><C-L>
-noremap <leader>d :bdelete<CR>
+noremap <leader>q :quit<CR>
+noremap <leader>w :write<CR>
+noremap <leader>c :bdelete<CR>
 noremap <leader>o :wincmd o<CR>
 noremap <leader>b :enew<CR>
 noremap <leader>s :new<CR>
 noremap <leader>v :vnew<CR>
-noremap <leader>q :quit<CR>
-noremap <leader>w :write<CR>
-noremap <leader>f :F<CR>
-noremap <leader>h :RangerChooser<CR>
+noremap <leader><space> :F<CR>
 noremap <leader>p :setlocal nowrap!<CR>
 noremap <leader>r :wincmd r<CR>
 noremap <leader>e :call SwitchEdit()<CR>
@@ -195,81 +199,5 @@ function! SwitchEdit()
         let g:switchedit = 'horizontal'
         :wincmd K
     endif
-endfunction
-
-
-function! OpenFile(...)
-    let tmp_file = $XDG_CACHE_HOME
-
-    if !isdirectory(tmp_file)
-        let tmp_file = $HOME . '/.cache'
-    endif
-
-    let tmp_file .= '/fff/opened_file'
-    let tmp_file = fnameescape(tmp_file)
-    bd!
-
-    if filereadable(tmp_file)
-        let file_data = readfile(tmp_file)
-        execute delete(tmp_file)
-    else
-        return
-    endif
-
-    if filereadable(file_data[0])
-        execute 'e ' . file_data[0]
-    endif
-endfunction
-
-
-function! Run(command)
-    execute 'setlocal' . ' ' . g:split_direction
-    execute g:split
-    execute 'setlocal nonumber'
-    execute 'setlocal norelativenumber'
-
-    if has('nvim')
-        call termopen('fff -p ' . a:command,
-                    \ {'on_exit': function('open_file') })
-        startinsert
-    else
-        let buffer = term_start([&shell, &shellcmdflag, 'fff -p ' . a:command],
-                    \ {'curwin': 1, 'exit_cb': function('OpenFile')})
-
-        if !has('patch-8.0.1261')
-            call term_wait(buffer, 20)
-        endif
-    endif
-endfunction
-
-
-function! RangerChooser()
-    let temp = tempname()
-    " The option "--choosefiles" was added in ranger 1.5.1. Use the next line
-    " with ranger 1.4.2 through 1.5.0 instead.
-    "exec 'silent !ranger --choosefile=' . shellescape(temp)
-    if has('gui_running')
-        exec 'silent !xterm -e ranger --choosefiles=' . shellescape(temp)
-    else
-        exec 'silent !ranger --choosefiles=' . shellescape(temp)
-    endif
-    if !filereadable(temp)
-        redraw!
-        " Nothing to read.
-        return
-    endif
-    let names = readfile(temp)
-    if empty(names)
-        redraw!
-        " Nothing to open.
-        return
-    endif
-    " Edit the first item.
-    exec 'edit ' . fnameescape(names[0])
-    " Add any remaning items to the arg list/buffer list.
-    for name in names[1:]
-        exec 'argadd ' . fnameescape(name)
-    endfor
-    redraw!
 endfunction
 
