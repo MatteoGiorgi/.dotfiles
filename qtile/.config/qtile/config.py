@@ -78,7 +78,7 @@ keys = [
     Key([mod], "Return", lazy.spawn("rofi-run -r")),
     Key([mod, "control"], "Escape", lazy.spawn("betterlockscreen -l dim")),
     Key([mod], "q", lazy.spawn("xkill")),
-    Key([mod], "k", lazy.spawn("kitty")),
+    Key([mod], "y", lazy.spawn("kitty")),
     Key([mod], "a", lazy.spawn("alacritty")),
     Key([mod], "t", lazy.spawn("termite")),
     Key([mod], "x", lazy.spawn("xterm")),
@@ -167,9 +167,10 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='mononoki Nerd Font',
+    font='mononoki nerd font',
     fontsize=14,
     padding=6,
+    margin_y=2,
     background=color_black,
     foreground=color_white
 )
@@ -301,7 +302,7 @@ screens = [
                 widget.KeyboardLayout(
                     background=color_lightred,
                     foreground=color_black,
-                    fmt=' {}',
+                    fmt=' {}',
                     configured_keyboards=['it', 'us']
                 ),
                 widget.TextBox(
@@ -315,7 +316,7 @@ screens = [
                     background=color_lightred,
                     foreground=color_black,
                     padding=8,
-                    format=' %H:%M',
+                    format=' %H:%M',
                     mouse_callbacks={'Button1': toggle_calcurse}
                 ),
             ],

@@ -269,9 +269,12 @@ let g:SuperTabDefaultCompletionType = 'context'
 
 "GOYO_&_LIMELIGHT_______________________________________________________________
 
-let g:goyo_width = 100
-let g:goyo_height = '80%'
+let g:goyo_width = 82
+let g:goyo_height = '60%'
 let g:limelight_conceal_ctermfg = 'darkgray'
+let g:limelight_conceal_guifg = '#4b5056'
+let g:limelight_default_coefficient = 0.5
+let g:limelight_paragraph_span = 0
 
 
 
@@ -324,10 +327,10 @@ let g:startify_custom_header = [
 "FLOATERM_______________________________________________________________________
 
 let g:floaterm_autoinsert=1
-let g:floaterm_width=0.99
-let g:floaterm_height=0.95
+let g:floaterm_width=1.00
+let g:floaterm_height=1.00
 let g:floaterm_autoclose=1
-let g:floaterm_title=''
+let g:floaterm_title='floaterm(%s|%s)'
 let g:floaterm_borderchars=[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 " let g:floaterm_borderchars=['━', '┃', '━', '┃', '┏', '┓', '┛', '┗']
 
@@ -349,9 +352,9 @@ let g:rnvimr_action = {
             \ }
 let g:rnvimr_layout = { 'relative': 'editor',
             \ 'width': float2nr(round(1.0 * &columns)),
-            \ 'height': float2nr(round(0.94 * &lines)),
-            \ 'col': float2nr(round(0.00 * &columns)),
-            \ 'row': float2nr(round(0.02 * &lines)),
+            \ 'height': float2nr(round(1.0 * &lines)),
+            \ 'col': float2nr(round(0.0 * &columns)),
+            \ 'row': float2nr(round(0.0 * &lines)),
             \ 'style': 'minimal'
             \ }
 
@@ -636,7 +639,8 @@ function! s:goyo_leave()
     set noshowcmd
     set nocursorline
     Limelight!
-    hi Normal ctermbg=NONE
+    highlight Normal ctermbg=NONE guibg=NONE
+    highlight NonText ctermbg=NONE guibg=NONE
 endfunction
 
 
