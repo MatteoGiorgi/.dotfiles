@@ -78,6 +78,7 @@ keys = [
     Key([mod], "Return", lazy.spawn("rofi-run -r")),
     Key([mod, "control"], "Escape", lazy.spawn("betterlockscreen -l dim")),
     Key([mod], "q", lazy.spawn("xkill")),
+    Key([mod], "k", lazy.spawn("kitty")),
     Key([mod], "a", lazy.spawn("alacritty")),
     Key([mod], "t", lazy.spawn("termite")),
     Key([mod], "x", lazy.spawn("xterm")),
@@ -297,16 +298,10 @@ screens = [
                     background=color_lightred,
                     length=6
                 ),
-                widget.TextBox(
-                    background=color_lightred,
-                    foreground=color_black,
-                    text='',
-                    fontsize=17,
-                    padding=4
-                ),
                 widget.KeyboardLayout(
                     background=color_lightred,
                     foreground=color_black,
+                    fmt=' {}',
                     configured_keyboards=['it', 'us']
                 ),
                 widget.TextBox(

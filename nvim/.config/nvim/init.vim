@@ -23,7 +23,7 @@
 "    ale                       https://github.com/dense-analysis/ale
 "    coc                       https://github.com/neoclide/coc.nvim
 "    supertab                  https://github.com/ervandew/supertab
-"    rnvimr                    https://github.com/kevinhwang91/rnvimr
+"    rnvimr                    https://github.com/matteogiorgi/rnvimr
 "    floaterm                  https://github.com/voldikss/vim-floaterm
 "    vim-airline               https://github.com/matteogiorgi/vim-airline
 "    vim-startify              https://github.com/mhinz/vim-startify
@@ -87,7 +87,7 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'dense-analysis/ale'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'ervandew/supertab'
-    Plug 'kevinhwang91/rnvimr'
+    Plug 'matteogiorgi/rnvimr'
     Plug 'voldikss/vim-floaterm'
     Plug 'matteogiorgi/vim-airline'
     Plug 'mhinz/vim-startify'
@@ -125,26 +125,6 @@ syntax on
 color dracula
 filetype plugin indent on
 
-highlight Normal ctermbg=NONE
-highlight GitGutterAdd ctermfg=Green
-highlight GitGutterChange ctermfg=Yellow
-highlight GitGutterDelete ctermfg=Red
-highlight link RnvimrNormal CursorLine
-
-augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-
-augroup vimrc
-    autocmd InsertEnter * set cul
-    autocmd InsertLeave * set nocul
-augroup END
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
 set clipboard=unnamedplus
 set number relativenumber
 set mouse=a
@@ -168,6 +148,30 @@ set foldmethod=manual
 set nospell
 set timeoutlen=000
 set updatetime=500
+set termguicolors
+
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight GitGutterAdd ctermfg=Green
+highlight GitGutterChange ctermfg=Yellow
+highlight GitGutterDelete ctermfg=Red
+highlight Floaterm guibg=NONE
+highlight FloatermBorder guibg=NONE guifg=LightGray
+highlight link RnvimrNormal CursorLine
+
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+augroup vimrc
+    autocmd InsertEnter * set cul
+    autocmd InsertLeave * set nocul
+augroup END
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 
 
@@ -278,7 +282,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#ale#enabled = 1
-let g:airline_theme = 'minimalist'
+let g:airline_theme = 'dracula'
 
 
 
@@ -320,10 +324,12 @@ let g:startify_custom_header = [
 "FLOATERM_______________________________________________________________________
 
 let g:floaterm_autoinsert=1
-let g:floaterm_width=0.8
-let g:floaterm_height=0.8
-let g:floaterm_wintitle=0
+let g:floaterm_width=0.99
+let g:floaterm_height=0.95
 let g:floaterm_autoclose=1
+let g:floaterm_title=''
+let g:floaterm_borderchars=[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+" let g:floaterm_borderchars=['━', '┃', '━', '┃', '┏', '┓', '┛', '┗']
 
 
 
@@ -332,7 +338,6 @@ let g:floaterm_autoclose=1
 
 let g:rnvimr_enable_ex = 1
 let g:rnvimr_enable_picker = 1
-let g:rnvimr_border_attr = {'fg': 14, 'bg': -1}
 let g:rnvimr_enable_bw = 1
 let g:rnvimr_ranger_cmd = 'ranger --cmd="set column_ratios 1,1"'
 let g:rnvimr_action = {
@@ -344,9 +349,9 @@ let g:rnvimr_action = {
             \ }
 let g:rnvimr_layout = { 'relative': 'editor',
             \ 'width': float2nr(round(1.0 * &columns)),
-            \ 'height': float2nr(round(0.5 * &lines)),
+            \ 'height': float2nr(round(0.94 * &lines)),
             \ 'col': float2nr(round(0.00 * &columns)),
-            \ 'row': float2nr(round(0.46 * &lines)),
+            \ 'row': float2nr(round(0.02 * &lines)),
             \ 'style': 'minimal'
             \ }
 
