@@ -150,8 +150,12 @@ set timeoutlen=000
 set updatetime=500
 set termguicolors
 
+if has('linebreak')
+    let &showbreak='⤷ '
+endif
+
 highlight Normal ctermbg=NONE guibg=NONE
-highlight NonText ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE ctermfg=LightGray guifg='#4b5056'
 highlight GitGutterAdd ctermfg=Green
 highlight GitGutterChange ctermfg=Yellow
 highlight GitGutterDelete ctermfg=Red
@@ -184,6 +188,20 @@ let g:netrw_browsex_viewer = 'xdg-open'
 let g:switchedit = 'horizontal'
 let g:switchdir = 'local'
 let g:longline = 'none'
+
+
+
+
+"FFF____________________________________________________________________________
+
+if exists('g:loaded_fff')
+    finish
+endif
+let g:loaded_fff = 1
+let g:fff#split = '30vnew'
+let g:fff#split_direction = 'nosplitbelow nosplitright'
+command! -nargs=* -complete=dir F call fff#Run(<q-args>)
+command! -bar R call fff#RangerChooser()
 
 
 
@@ -223,6 +241,7 @@ let g:vimwiki_global_ext = 0
 
 "PANDOC_&_MDPREVIEW_____________________________________________________________
 
+let g:pandoc#spell#enabled =0
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
@@ -330,8 +349,8 @@ let g:floaterm_autoinsert=1
 let g:floaterm_width=1.00
 let g:floaterm_height=1.00
 let g:floaterm_autoclose=1
-let g:floaterm_title='floaterm(%s|%s)'
-let g:floaterm_borderchars=[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+let g:floaterm_title='[%s|%s]'
+let g:floaterm_borderchars=['', '', '', '', '', '', '', '']
 " let g:floaterm_borderchars=['━', '┃', '━', '┃', '┏', '┓', '┛', '┗']
 
 
@@ -382,6 +401,7 @@ nnoremap <silent><localleader> :<c-u>WhichKey ','<CR>
 vnoremap <silent><localleader> :<c-u>WhichKeyVisual '<Space>'<CR>
 nnoremap <M-Tab> :bnext<CR>
 nnoremap <M-Backspace> :bprev<CR>
+nnoremap <M-q> :F<CR>
 nnoremap <M-space> :RnvimrToggle<CR>
 tnoremap <M-space> <C-\><C-n>:RnvimrToggle<CR>
 nnoremap <M-return> :FloatermToggle<CR>
