@@ -1,3 +1,5 @@
+/vim/.vim/plugged/*
 /nvim/.config/nvim/plugged/*
+/nvim/.config/nvim/undodir/*
 /qutebrowser/.config/qutebrowser/bookmarks/*
 /vimb/.config/vimb/bookmark/*

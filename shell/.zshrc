@@ -17,9 +17,13 @@ compinit
 ### QuteTile config ###
 alias cls="clear"
 alias ..="cd .."
+alias ...="cd .. && cd .."
+alias ....="cd .. && cd .. && cd .."
+alias .....="cd .. && cd .. && cd .. && cd .."
 alias cd..="cd .."
 alias ls="ls -CF --color=auto"
 alias ll="ls -lis --color=auto"
+alias aa='exa --tree -l --git'
 alias l="ls -lisa --color=auto"
 alias lsl="ls -lhFA | less"
 alias home="cd ~"
@@ -39,7 +43,7 @@ alias grep='grep --color=auto'
 alias vimpager="vimpager -u ~/.vimpagerrc"
 alias ranger='ranger_jump'
 alias fff='fff_jump'
-alias lsd='lsd -F'
+alias wvim='nvim -u ~/.config/nvim/init_write_mode.vim'
 
 # Creates an archive (*.tar.gz) from given directory.
 function maketar()
@@ -133,6 +137,7 @@ mcd ()
 # (do I have to "export" PATH and PROMPT?)
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export PAGER="vimpager"
+export BAT_PAGER="vimpager"
 export VISUAL="nvim"
 export EDITOR="nvim"
 export TERM="xterm-256color"
@@ -141,6 +146,7 @@ export BROWSER="brave"
 export READER="zathura"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export BAT_THEME="Dracula"
 
 # fff configs
 export FFF_LS_COLORS=1
@@ -170,7 +176,9 @@ export FFF_W3M_YOFFSET=0
 export FFF_FILE_FORMAT="%f"
 export FFF_MARK_FORMAT=" %f*"
 
-export PROMPT="%B[%F{cyan}%n%f@%F{magenta}%m%f] [%F{blue}%9~%f] %(?.%F{green}√.%F{red}?%?)%f"$'\n'"%#%b "
+export PROMPT="%B%K{cyan}%F{black} %n  %m %K{blue}%F{cyan}%K{blue}%F{black} %9~ %(?.%K{green}%F{blue} %K{green}%F{black}  %k%F{green}.%K{magenta}%F{blue} %K{magenta}%F{black} %? %k%F{magenta})%k%f"$'\n'"%#%b "
+# export PROMPT="%B[%F{cyan}%n%f@%F{magenta}%m%f] [%F{blue}%9~%f] %(?.%F{green} .%F{red} %?)%f"$'\n'"%#%b "
+
 ### End config ###
 
 pfetch

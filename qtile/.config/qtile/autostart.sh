@@ -10,9 +10,10 @@
 
 picom &
 ~/.fehbg &
-volumeicon &
+volumeicon & # remember to install xfce4-volumed too
 mocicon &
 nm-applet &
 blueman-applet &
 xfce4-power-manager &
-deadd-notification-center
+/usr/lib/xfce4/notifyd/xfce4-notifyd &
+kupfer --no-splash

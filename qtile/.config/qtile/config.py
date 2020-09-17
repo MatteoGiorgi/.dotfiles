@@ -16,6 +16,7 @@ from libqtile import layout, bar, widget, hook
 mod = "mod4"
 color_black = '282A36'         # #282A36
 color_white = 'BFBFBF'         # #BFBFBF
+color_graywhite = '999999'     # #999999
 color_superwhite = 'F8F8F8'    # #F8F8F8
 color_gray = '4B5056'          # #4B5056
 color_blue = '6272A4'          # #6272A4
@@ -54,6 +55,12 @@ keys = [
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod], "w", lazy.window.kill()),
 
+    # Flip master/stack, toggle floating and move between groups
+    Key([mod, "control"], "space", lazy.layout.flip()),
+    Key([mod, "control"], "Return", lazy.window.toggle_floating()),
+    Key([mod], "h", lazy.screen.prev_group()),
+    Key([mod], "l", lazy.screen.next_group()),
+
     # Move windows up or down in current stack
     Key([mod], "j", lazy.layout.shuffle_down()),
     Key([mod], "k", lazy.layout.shuffle_up()),
@@ -63,30 +70,25 @@ keys = [
     Key([mod, "control"], "k", lazy.layout.grow()),
 
     # Reset windows ratios
-    Key([mod, "control"], "n", lazy.layout.normalize()),
-    Key([mod, "control"], "m", lazy.layout.maximize()),
-
-    # Flip master/stack, toggle floating and move between groups
-    Key([mod, "control"], "space", lazy.layout.flip()),
-    Key([mod, "control"], "Return", lazy.window.toggle_floating()),
-    Key([mod], "h", lazy.screen.prev_group()),
-    Key([mod], "l", lazy.screen.next_group()),
-
+    Key([mod, "control"], "h", lazy.layout.normalize()),
+    Key([mod, "control"], "l", lazy.layout.maximize()),
 
     # Shortcuts for Qtile-cmd, Alacritty, Rofi-menu, Settings, ...
+    Key(["control"], "Return", lazy.spawncmd(prompt='%')),
+    Key([mod, "control"], "Escape", lazy.spawn("betterlockscreen -l dim")),
     Key([mod], "Escape", lazy.spawn("rofi-run -l")),
     Key([mod], "Return", lazy.spawn("rofi-run -r")),
-    Key([mod, "control"], "Escape", lazy.spawn("betterlockscreen -l dim")),
     Key([mod], "q", lazy.spawn("xkill")),
-    Key([mod], "y", lazy.spawn("kitty")),
+    Key([mod], "i", lazy.spawn("kitty")),
     Key([mod], "a", lazy.spawn("alacritty")),
     Key([mod], "t", lazy.spawn("termite")),
     Key([mod], "x", lazy.spawn("xterm")),
+    Key([mod, "control"], "y", lazy.spawn("kitty -e tmux")),
+    Key([mod, "control"], "a", lazy.spawn("alacritty -e tmux")),
+    Key([mod, "control"], "t", lazy.spawn("termite -e tmux")),
+    Key([mod, "control"], "x", lazy.spawn("xterm -e tmux")),
     Key([mod], "m", lazy.spawn("xterm -e mocp")),
-    Key([mod], "b", lazy.spawn("qutebrowser")),
     Key([mod], "s", lazy.spawn("xfce4-settings-manager")),
-    Key([mod], "n", lazy.spawn("deadd-toggle")),
-    Key([mod], "p", lazy.spawncmd(prompt='%')),
 
 
     # Chanage the bloody volume
@@ -96,15 +98,15 @@ keys = [
 ]
 
 group_names = [
-        ("", 1),
-        ("", 2),
-        ("", 3),
-        ("", 4),
-        ("", 5),
-        ("", 6),
-        ("", 7),
-        ("", 8),
-        ("", 9)
+        ("₁ ", 1),
+        ("₂ ", 2),
+        ("₃ ", 3),
+        ("₄ ", 4),
+        ("₅ ", 5),
+        ("₆ ", 6),
+        ("₇ ", 7),
+        ("₈ ", 8),
+        ("₉ ", 9)
 ]
 groups = [Group(name, position=pos) for name, pos in group_names]
 for i, (name, pos) in enumerate(group_names, 1):
@@ -141,9 +143,9 @@ layout_theme = dict(
 )
 
 layouts = [
-    layout.MonadTall(name='tall', **layout_theme),
-    layout.MonadWide(name='wide', **layout_theme),
-    layout.Max(name='maxi'),
+    layout.MonadTall(name='Tall', **layout_theme),
+    layout.MonadWide(name='Wide', **layout_theme),
+    layout.Max(name='Maxi'),
 
     # layout.MonadTall(name='ﱽ', **layout_theme),
     # layout.MonadWide(name='ﱹ', **layout_theme),
@@ -170,7 +172,6 @@ widget_defaults = dict(
     font='mononoki nerd font',
     fontsize=14,
     padding=6,
-    margin_y=2,
     background=color_black,
     foreground=color_white
 )
@@ -192,44 +193,26 @@ screens = [
         top=bar.Bar(
             [
                 widget.GroupBox(
+                    font='mononoki nerd font Bold',
                     highlight_method='text',
                     borderwidth=0,
-                    active=color_white,
+                    active=color_gray,
                     inactive=color_gray,
-                    hide_unused=False,
-                    this_current_screen_border=color_lightred,
+                    hide_unused=True,
+                    this_current_screen_border=color_white,
                     this_screen_border=color_blue,
-                    other_current_screen_border=color_lightred,
+                    other_current_screen_border=color_white,
                     other_screen_border=color_blue,
                     disable_drag=True
-                ),
-                widget.Spacer(
-                    background=color_black,
-                    length=4
-                ),
-                widget.TextBox(
-                    background=color_white,
-                    foreground=color_black,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Prompt(
-                    background=color_white,
-                    foreground=color_black,
-                    cursor=True,
-                    prompt='{prompt} ',
-                    cursor_color=color_black,
-                    cursorblink=0.5
                 ),
                 widget.TextBox(
                     background=color_black,
                     foreground=color_white,
                     fontsize=17,
-                    text='',
-                    padding=0
+                    text='',
                 ),
                 widget.WindowName(
+                    font='mononoki nerd font Bold',
                     fmt='{:.60}',
                     for_current_screen=True,
                     show_state=False,
@@ -240,13 +223,29 @@ screens = [
                 ),
                 widget.TextBox(
                     background=color_black,
+                    foreground=color_white,
+                    fontsize=17,
+                    text='',
+                    padding=0
+                ),
+                widget.Prompt(
+                    font='mononoki nerd font Bold',
+                    background=color_black,
+                    foreground=color_white,
+                    cursor=True,
+                    prompt='{prompt} ',
+                    cursor_color=color_white,
+                    cursorblink=0.5
+                ),
+                widget.TextBox(
+                    background=color_black,
                     foreground=color_blue,
                     fontsize=17,
                     text='',
                     padding=0
                 ),
                 widget.TextBox(
-                    text='',
+                    text='',
                     background=color_blue,
                     foreground=color_white,
                     mouse_callbacks={
@@ -264,14 +263,13 @@ screens = [
                     text='',
                     padding=3
                 ),
-                widget.CurrentLayout(
+                widget.KeyboardLayout(
+                    font='mononoki nerd font Bold',
                     background=color_blue,
-                    foreground=color_white
+                    foreground=color_white,
+                    configured_keyboards=['it', 'us'],
+                    display_map={'it': 'Ita', 'us': 'Usa'}
                 ),
-                # widget.Spacer(
-                #     background=color_blue,
-                #     length=6
-                # ),
                 widget.TextBox(
                     background=color_blue,
                     foreground=color_white,
@@ -299,11 +297,10 @@ screens = [
                     background=color_lightred,
                     length=6
                 ),
-                widget.KeyboardLayout(
+                widget.CurrentLayout(
+                    font='mononoki nerd font Bold',
                     background=color_lightred,
-                    foreground=color_black,
-                    fmt=' {}',
-                    configured_keyboards=['it', 'us']
+                    foreground=color_black
                 ),
                 widget.TextBox(
                     background=color_lightred,
@@ -313,6 +310,7 @@ screens = [
                     padding=0
                 ),
                 widget.Clock(
+                    font='mononoki nerd font Bold',
                     background=color_lightred,
                     foreground=color_black,
                     padding=8,
@@ -344,7 +342,7 @@ cursor_warp = False
 floating_layout = layout.Floating(
     border_focus=color_white,
     border_normal=color_gray,
-    border_width=4,
+    border_width=2,
     float_rules=[
         # Run utility of `xprop` to see the wm class and name of an X client.
         {'wmclass': 'confirm'},

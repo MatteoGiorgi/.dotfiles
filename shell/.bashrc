@@ -47,9 +47,13 @@ ALERT=${BWhite}${On_Red} # Bold White on red background
 
 alias cls="clear"
 alias ..="cd .."
+alias ...="cd .. && cd .."
+alias ....="cd .. && cd .. && cd .."
+alias .....="cd .. && cd .. && cd .. && cd .."
 alias cd..="cd .."
 alias ls="ls -CF --color=auto"
 alias ll="ls -lisa --color=auto"
+alias aa='exa --tree -l --git'
 alias lsl="ls -lhFA | less"
 alias home="cd ~"
 alias df="df -ahiT --total"
@@ -68,7 +72,6 @@ alias grep='grep --color=auto'
 alias vimpager="vimpager -u ~/.vimpagerrc"
 alias ranger='ranger_jump'
 alias fff='fff_jump'
-alias lsd='lsd -F'
 
 # Creates an archive (*.tar.gz) from given directory.
 function maketar()
@@ -161,7 +164,8 @@ mcd ()
 # set PATH so it includes user's private bin directories
 # (do I have to "export" PATH and PROMPT?)
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-export PAGER="most"
+export PAGER="vimpager"
+export BAT_PAGER="vimpager"
 export VISUAL="nvim"
 export EDITOR="nvim"
 export TERM="xterm-256color"
@@ -170,6 +174,7 @@ export BROWSER="brave"
 export READER="zathura"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export BAT_THEME="Dracula"
 
 # fff configs
 export FFF_LS_COLORS=1

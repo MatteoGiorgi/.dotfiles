@@ -1,3 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
-let g:netrw_dirhist_1='/home/rtbm/fun'
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/'
+let g:netrw_dirhist_3='/home'
+let g:netrw_dirhist_2='/home/rtbm'
+let g:netrw_dirhist_1='/home/rtbm/.dotfiles'
+let g:netrw_dirhist_0='/home/rtbm/.dotfiles/vim'
+let g:netrw_dirhist_9='/home/rtbm/.dotfiles'
+let g:netrw_dirhist_8='/home/rtbm/.dotfiles/vim'
+let g:netrw_dirhist_7='/home/rtbm'
+let g:netrw_dirhist_6='/home/rtbm/.dotfiles/vim'
+let g:netrw_dirhist_5='/home/rtbm'
