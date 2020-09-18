@@ -11,10 +11,10 @@ function! superbar#ActiveStatusLine()
     let l:statusline .= "%<"
     let l:statusline .= "\ "
     let l:statusline .= "%2*\\ "
-    let l:statusline .= "%3*\ \ \ "
+    let l:statusline .= "%3*\ \ "
     let l:statusline .= "%F"
     let l:statusline .= "\ %="
-    let l:statusline .= "%2*\ \ %{&modified?'\ ':''}"
+    let l:statusline .= "%2*\ %{&modified?'\ ':''}"
     let l:statusline .= "%3*%{&readonly?'\ ':''}"
     let l:statusline .= "\ \"
     let l:statusline .= "%4*\ %{&filetype!=#''?&filetype:'none'}"
@@ -31,7 +31,7 @@ endfunction
 
 function! superbar#InactiveStatusLine()
     let l:statusline = ""
-    let l:statusline .= "\ \ \ "
+    let l:statusline .= "\ \ "
     let l:statusline .= "\ %F"
     let l:statusline .= "\ %="
     let l:statusline .= "%{&modified?'\ ':''}"

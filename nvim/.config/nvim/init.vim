@@ -18,7 +18,7 @@
 "    auto-pairs                https://github.com/jiangmiao/auto-pairs
 "    vim-surround              https://github.com/tpope/vim-surround
 "    vim-commentary            https://github.com/tpope/vim-commentary
-"    supertab                  https://github.com/ervandew/supertab
+"    vimcompletesme            https://github.com/ajh17/VimCompletesMe
 "    fzf                       https://github.com/junegunn/fzf
 "    fzf.vim                   https://github.com/junegunn/fzf.vim
 "    undotree                  https://github.com/mbbill/undotree
@@ -46,7 +46,7 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
-    Plug 'ervandew/supertab'
+    Plug 'ajh17/VimCompletesMe'
     Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
     Plug 'junegunn/fzf.vim'
     Plug 'mbbill/undotree'
@@ -84,6 +84,8 @@ set nofoldenable
 set foldmethod=manual
 set nospell
 set omnifunc=syntaxcomplete#Complete
+set complete+=k/usr/share/dict/british
+set complete+=k/usr/share/dict/italian
 set laststatus=2
 
 if exists('+termguicolors')
@@ -143,7 +145,7 @@ augroup END
 
 
 " Change multiple statusbar in vimenter
-augroup StatuslineAutocmds
+augroup statuslineautocmds
     autocmd!
     autocmd VimEnter              * call superbar#UpdateInactiveWindows()
     autocmd WinEnter,BufWinEnter  * call superbar#StatusLine("active")
@@ -209,10 +211,16 @@ let g:root#patterns = [
 
 
 
-"SUPERTAB_______________________________________________________________________
+"VIMCOMPLETESME_________________________________________________________________
 
-let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabContextDefaultCompletionType = '<c-n>'
+let b:vcm_tab_complete = "omni"
+
+
+
+
+"FZF____________________________________________________________________________
+
+let g:fzf_layout = { 'down': '50%' }
 
 
 
@@ -225,13 +233,6 @@ let g:undotree_ShortIndicators = 1
 let g:undotree_SplitWidth = 30
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_HelpLine = 0
-
-
-
-
-"FZF____________________________________________________________________________
-
-let g:fzf_layout = { 'down': '50%' }
 
 
 
@@ -289,6 +290,10 @@ nnoremap <leader>x :SwitchDir<CR>
 " Commentary
 nmap <leader><Space> gcc<CR>
 vmap <leader><Space> gc<CR>
+
+
+" Vimcompletesme
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 
 " Surround
