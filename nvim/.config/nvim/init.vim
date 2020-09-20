@@ -275,6 +275,10 @@ vmap <Tab> >gv
 vmap <S-Tab> <gv
 
 
+" Toggle accent
+nnoremap <silent>- :ToggleAccent<space><CR>
+
+
 " Replace selection
 nnoremap <leader>r :%s///gc<Left><Left><Left>
 xnoremap <leader>r :s///gc<Left><Left><Left>
@@ -339,13 +343,31 @@ function! FzfStatusline()
 endfunction
 
 
+function! ToggleAccent()
+    let withAccent   = ["á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú"]
+    let withNoAccent = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
+    let character = matchstr(getline('.'), '\%' . col('.') . 'c.')
+    let position = match(withNoAccent, character)
+    if position != -1
+        execute ":normal! r" . withAccent[position]
+    else
+        let position = match(withAccent, character)
+        if position != -1
+            execute ":normal! r" . withNoAccent[position]
+        endif
+    endif
+endfunction
+
+
+
 
 
 "NETRW_&_SWITCH_&_OTHER_USEFUL_COMMANDS_________________________________________
 
+command! Squish execute "normal \ggVGgq"
 command! Root call root#FindRoot()
 command! -nargs=1 ChangeRoot call switch#change_root(<f-args>)
 command! ChangeRootCurrent call switch#change_root_current()
 command! SwitchDir call switch#switch_dir()
-command! Squish execute "normal \ggVGgq"
 command! Longline call LongLine()
+command! ToggleAccent call ToggleAccent()
