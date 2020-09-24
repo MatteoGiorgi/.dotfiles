@@ -12,7 +12,7 @@ function! superbar#ActiveStatusLine()
     let l:statusline .= "\ "
     let l:statusline .= "%2*\\ "
     let l:statusline .= "%3*\ \ "
-    let l:statusline .= "%F"
+    let l:statusline .= "%f"
     let l:statusline .= "\ %="
     let l:statusline .= "%2*\ %{&modified?'\ ':''}"
     let l:statusline .= "%3*%{&readonly?'\ ':''}"
@@ -60,3 +60,26 @@ function! superbar#UpdateInactiveWindows()
         endif
     endfor
 endfunction
+
+
+let g:currentmode={
+    \ 'n'  : 'Normal',
+    \ 'no' : 'N·Operator Pending',
+    \ 'v'  : 'Visual',
+    \ 'V'  : 'V·Line',
+    \ '' : 'V·Block',
+    \ 's'  : 'Select',
+    \ 'S'  : 'S·Line',
+    \ '' : 'S·Block',
+    \ 'i'  : 'Insert',
+    \ 'R'  : 'Replace',
+    \ 'Rv' : 'V·Replace',
+    \ 'c'  : 'Command',
+    \ 'cv' : 'Vim Ex',
+    \ 'ce' : 'Ex',
+    \ 'r'  : 'Prompt',
+    \ 'rm' : 'More',
+    \ 'r?' : 'Confirm',
+    \ '!'  : 'Shell',
+    \ 't'  : 'Terminal',
+    \}

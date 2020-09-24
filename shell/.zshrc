@@ -135,7 +135,7 @@ mcd ()
 
 # set PATH so it includes user's private bin directories
 # (do I have to "export" PATH and PROMPT?)
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin"
 export PAGER="vimpager"
 export BAT_PAGER="vimpager"
 export VISUAL="nvim"
@@ -146,7 +146,7 @@ export BROWSER="brave"
 export READER="zathura"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export BAT_THEME="Dracula"
+export BAT_THEME="base16"
 
 # fff configs
 export FFF_LS_COLORS=1

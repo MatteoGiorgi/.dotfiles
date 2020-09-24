@@ -84,7 +84,7 @@ set nofoldenable
 set foldmethod=manual
 set nospell
 set omnifunc=syntaxcomplete#Complete
-set complete+=k/usr/share/dict/british
+set complete+=k/usr/share/dict/british-english
 set complete+=k/usr/share/dict/italian
 set laststatus=2
 
@@ -161,27 +161,6 @@ let g:mapleader = "\<space>"
 let g:maplocalleader = ','
 let g:netrw_browsex_viewer = 'xdg-open'
 let g:longline = 'none'
-let g:currentmode={
-    \ 'n'  : 'Normal',
-    \ 'no' : 'N·Operator Pending',
-    \ 'v'  : 'Visual',
-    \ 'V'  : 'V·Line',
-    \ '' : 'V·Block',
-    \ 's'  : 'Select',
-    \ 'S'  : 'S·Line',
-    \ '' : 'S·Block',
-    \ 'i'  : 'Insert',
-    \ 'R'  : 'Replace',
-    \ 'Rv' : 'V·Replace',
-    \ 'c'  : 'Command',
-    \ 'cv' : 'Vim Ex',
-    \ 'ce' : 'Ex',
-    \ 'r'  : 'Prompt',
-    \ 'rm' : 'More',
-    \ 'r?' : 'Confirm',
-    \ '!'  : 'Shell',
-    \ 't'  : 'Terminal',
-    \}
 
 
 

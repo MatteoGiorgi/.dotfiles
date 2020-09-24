@@ -74,7 +74,8 @@ keys = [
     Key([mod, "control"], "l", lazy.layout.maximize()),
 
     # Shortcuts for Qtile-cmd, Alacritty, Rofi-menu, Settings, ...
-    Key(["control"], "Return", lazy.spawncmd(prompt='%')),
+    Key(["control"], "BackSpace", lazy.spawncmd(prompt='%')),
+    Key([mod], "BackSpace", lazy.spawncmd(prompt='%')),
     Key([mod, "control"], "Escape", lazy.spawn("betterlockscreen -l dim")),
     Key([mod], "Escape", lazy.spawn("rofi-run -l")),
     Key([mod], "Return", lazy.spawn("rofi-run -r")),
@@ -82,10 +83,12 @@ keys = [
     Key([mod], "i", lazy.spawn("kitty")),
     Key([mod], "a", lazy.spawn("alacritty")),
     Key([mod], "t", lazy.spawn("termite")),
+    Key([mod], "u", lazy.spawn("xfce4-terminal")),
     Key([mod], "x", lazy.spawn("xterm")),
     Key([mod, "control"], "y", lazy.spawn("kitty -e tmux")),
     Key([mod, "control"], "a", lazy.spawn("alacritty -e tmux")),
     Key([mod, "control"], "t", lazy.spawn("termite -e tmux")),
+    Key([mod, "control"], "u", lazy.spawn("xfce4-terminal -e tmux")),
     Key([mod, "control"], "x", lazy.spawn("xterm -e tmux")),
     Key([mod], "m", lazy.spawn("xterm -e mocp")),
     Key([mod], "s", lazy.spawn("xfce4-settings-manager")),
@@ -181,7 +184,7 @@ extension_defaults = widget_defaults.copy()
 # Custom callbacks
 def toggle_calcurse(qtile):
     home = str(Path.home())
-    if os.path.exists(home+'/.local/share/calcurse/.calcurse.pid'):
+    if os.path.exists(home+'/.local/share/calcurse/.calcurse.pid') or os.path.exists(home+'/.calcurse/.calcurse.pid'):
         os.system('killall calcurse')
         # os.remove(home+"/.local/share/calcurse/.calcurse.pid")
     else:
@@ -195,6 +198,7 @@ screens = [
                 widget.GroupBox(
                     font='mononoki nerd font Bold',
                     highlight_method='text',
+                    margin_y=3,
                     borderwidth=0,
                     active=color_gray,
                     inactive=color_gray,

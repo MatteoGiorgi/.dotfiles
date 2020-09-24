@@ -43,7 +43,7 @@ set nospell
 set wildmenu
 set wildmode=list:longest,list:full
 set omnifunc=syntaxcomplete#Complete
-set complete+=k/usr/share/dict/british
+set complete+=k/usr/share/dict/british-english
 set complete+=k/usr/share/dict/italian
 set t_Co=256
 set laststatus=2
