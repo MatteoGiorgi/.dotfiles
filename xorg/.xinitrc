@@ -9,3 +9,15 @@
 xrdb -load ~/.Xresources &
 xfsettingsd &
 exec qtile
+
+# To be able to launch this file from a login manager (such as lightdm), create
+# the file "/usr/shared/xsessions/qtile.desktop" with the following content:
+#
+#     [Desktop Entry]
+#     Version=1.0
+#     Name=Qtile Session
+#     Comment=Use this session to run Qtile as your window manager
+#     Exec=/home/geoteo/.xinitrc
+#     Icon=
+#     Type=Application
+#     DesktopNames=QTILE
