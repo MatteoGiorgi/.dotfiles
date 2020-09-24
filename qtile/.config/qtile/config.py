@@ -271,8 +271,8 @@ screens = [
                     font='mononoki nerd font Bold',
                     background=color_blue,
                     foreground=color_white,
-                    configured_keyboards=['it', 'us'],
-                    display_map={'it': 'Ita', 'us': 'Usa'}
+                    configured_keyboards=['it', 'us', 'gb'],
+                    display_map={'it': 'Ita', 'us': 'Usa', 'gb': 'Gbr'}
                 ),
                 widget.TextBox(
                     background=color_blue,

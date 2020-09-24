@@ -2,7 +2,9 @@
 /nvim/.config/nvim/plugged/*
 /nvim/.config/nvim/undodir/*
 /nvim/.config/nvim/.netrwhist
-/qtile/.config/qtile/__pycache__
+/qtile/.config/qtile/__pycache__/*
 /qutebrowser/.config/qutebrowser/bookmarks/*
-/ranger/.config/ranger/__pycache__
+/ranger/.config/ranger/__pycache__/*
+/ranger/.config/ranger/plugins/__pycache__/*
+/ranger/.config/ranger/plugins/__init__.py
 /vimb/.config/vimb/bookmark/*
