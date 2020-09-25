@@ -1,17 +1,21 @@
 syntax on
 color dracula
-hi Normal ctermbg=NONE
 
 set runtimepath+=~/.vim_runtime
 set clipboard=unnamedplus
 set mouse=a
-set t_Co=256
 set hlsearch
+set incsearch
 set encoding=UTF-8
+scriptencoding utf-8
+set noswapfile
 set nobackup
 set showmode
 set showcmd
 set nocursorline
 set noerrorbells
+set t_Co=256
 
-let mapleader = "\<space>"
+if exists('+termguicolors')
+    set termguicolors
+endif

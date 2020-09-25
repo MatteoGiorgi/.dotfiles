@@ -43,7 +43,6 @@ alias grep='grep --color=auto'
 alias vimpager="vimpager -u ~/.vimpagerrc"
 alias ranger='ranger_jump'
 alias fff='fff_jump'
-alias wvim='nvim -u ~/.config/nvim/init_write_mode.vim'
 
 # Creates an archive (*.tar.gz) from given directory.
 function maketar()
@@ -142,7 +141,7 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 export TERM="xterm-256color"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
-export BROWSER="brave"
+export BROWSER="firefox"
 export READER="zathura"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
