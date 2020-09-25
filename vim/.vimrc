@@ -25,7 +25,7 @@ set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set hlsearch
 set incsearch
 set colorcolumn=81
-set nowrap
+set wrap
 set formatoptions+=l
 set smartcase
 set smartindent
@@ -56,6 +56,7 @@ if has('linebreak')
     let &showbreak='⤷ '
 endif
 
+highlight LineNr       guibg=NONE
 highlight CursorLine   guibg='#2A2C38'
 highlight ColorColumn  guibg='#2A2C38'
 highlight StatusLine   guibg='#343746'

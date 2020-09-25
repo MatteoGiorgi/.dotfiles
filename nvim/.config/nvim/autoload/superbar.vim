@@ -19,7 +19,7 @@ function! superbar#ActiveStatusLine()
     let l:statusline .= "\ \"
     let l:statusline .= "%4*\ %{&filetype!=#''?&filetype:'none'}"
     let l:statusline .= "%(\ \|%{(&bomb\|\|&fileencoding!~#'^$\\\|utf-8'?'\ '.&fileencoding.(&bomb?'-bom':''):'').(&fileformat!=#(has('win32')?'dos':'unix')?'\ '.&fileformat:'')}%)"
-    let l:statusline .= "%(\ \\ %{&modifiable?(&expandtab?'et\ ':'noet\ ').&shiftwidth:''}%)"
+    " let l:statusline .= "%(\ \\ %{&modifiable?(&expandtab?'et\ ':'noet\ ').&shiftwidth:''}%)"
     let l:statusline .= "\ \"
     let l:statusline .= "\ %{&number?'':printf('%2d,',line('.'))}"
     let l:statusline .= "%-2v"

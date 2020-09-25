@@ -68,7 +68,7 @@ set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set hlsearch
 set incsearch
 set colorcolumn=81
-set nowrap
+set wrap
 set formatoptions+=l
 set smartcase
 set smartindent
@@ -101,6 +101,7 @@ if has('persistent_undo')
     set undofile
 endif
 
+highlight LineNr       guibg=NONE
 highlight CursorLine   guibg='#2A2C38'
 highlight ColorColumn  guibg='#2A2C38'
 highlight VertSplit    guibg='#343746' guifg='#343746'
@@ -136,8 +137,8 @@ augroup END
 " Change cursorline and statusbar colors in insert mode
 augroup vimrc
     autocmd InsertEnter * set cul
-    autocmd InsertEnter * highlight User1 guibg='#FF7777' guifg='#343746' gui=BOLD
-    autocmd InsertEnter * highlight User2 guibg='#343746' guifg='#FF7777' gui=BOLD
+    autocmd InsertEnter * highlight User1 guibg='#6272A4' guifg='#BFBFBF' gui=BOLD
+    autocmd InsertEnter * highlight User2 guibg='#343746' guifg='#6272A4' gui=BOLD
     autocmd InsertLeave * set nocul
     autocmd InsertLeave * highlight User1 guibg='#BFBFBF' guifg='#343746' gui=BOLD
     autocmd InsertLeave * highlight User2 guibg='#343746' guifg='#BFBFBF' gui=BOLD
