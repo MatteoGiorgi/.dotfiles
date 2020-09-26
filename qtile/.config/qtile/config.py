@@ -20,6 +20,7 @@ color_graywhite = '999999'     # #999999
 color_superwhite = 'F8F8F8'    # #F8F8F8
 color_gray = '4B5056'          # #4B5056
 color_blue = '6272A4'          # #6272A4
+color_bluegray = '343746'      # #343746
 color_cyan = '8be9fd'          # #8be9fd
 color_green = '50fa7b'         # #50fa7b
 color_orange = 'ffb86c'        # #ffb86c
