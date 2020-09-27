@@ -21,11 +21,33 @@ function! superbar#ActiveStatusLine()
     let l:statusline .= "%(\ \|%{(&bomb\|\|&fileencoding!~#'^$\\\|utf-8'?'\ '.&fileencoding.(&bomb?'-bom':''):'').(&fileformat!=#(has('win32')?'dos':'unix')?'\ '.&fileformat:'')}%)"
     " let l:statusline .= "%(\ \\ %{&modifiable?(&expandtab?'et\ ':'noet\ ').&shiftwidth:''}%)"
     let l:statusline .= "\ \"
-    let l:statusline .= "\ %{&number?'':printf('%2d,',line('.'))}"
-    let l:statusline .= "%-2v"
-    let l:statusline .= "\ %2p%%"
+    let l:statusline .= "%{superbar#rhs()}"
+    " let l:statusline .= "\ ℓ\ %{&number?'':printf('%2d,',line('.'))}"
+    " let l:statusline .= "%-2v"
+    " let l:statusline .= "\ %2p%%"
     let l:statusline .= "\ "
     return l:statusline
+endfunction
+
+
+function! superbar#rhs() abort
+    let l:rhs=' '
+    if winwidth(0) > 80
+        let l:column=virtcol('.')
+        let l:width=virtcol('$')
+        let l:line=line('.')
+        let l:height=line('$')
+        
+        let l:rhs.=' '
+        let l:rhs.=l:line
+        let l:rhs.='/'
+        let l:rhs.=l:height
+        let l:rhs.='   '
+        let l:rhs.=l:column
+        let l:rhs.='/'
+        let l:rhs.=l:width
+    endif
+    return l:rhs
 endfunction
 
 
