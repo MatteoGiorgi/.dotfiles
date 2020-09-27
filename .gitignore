@@ -8,4 +8,7 @@
 /ranger/.config/ranger/__pycache__/*
 /ranger/.config/ranger/plugins/__pycache__/*
 /ranger/.config/ranger/plugins/__init__.py
+/ranger/.config/ranger/plugins/fzf-marks/__pycache__/*
+/ranger/.config/ranger/plugins/ranger-devicons/__pycache__/*
+/ranger/.config/ranger/plugins/ranger-gitplug/__pycache__/*
 /vimb/.config/vimb/bookmark/*
