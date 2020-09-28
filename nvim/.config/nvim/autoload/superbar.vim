@@ -33,19 +33,18 @@ endfunction
 function! superbar#rhs() abort
     let l:rhs=' '
     if winwidth(0) > 80
-        let l:column=virtcol('.')
-        let l:width=virtcol('$')
-        let l:line=line('.')
-        let l:height=line('$')
+        let l:column = virtcol('.')
+        let l:width = virtcol('$')
+        let l:line = line('.')
+        let l:height = line('$')
         
-        let l:rhs.=' '
-        let l:rhs.=l:line
-        let l:rhs.='/'
-        let l:rhs.=l:height
-        let l:rhs.='   '
-        let l:rhs.=l:column
-        let l:rhs.='/'
-        let l:rhs.=l:width
+        let l:rhs .= 'ℓ '
+        let l:rhs .= l:line
+        let l:rhs .= ':'
+        let l:rhs .= l:column
+        let l:rhs .= ' '
+        let l:rhs .= l:line*100/l:height
+        let l:rhs .= '%'
     endif
     return l:rhs
 endfunction
