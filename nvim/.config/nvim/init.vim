@@ -58,7 +58,7 @@ call plug#end()
 "SETTINGS_______________________________________________________________________
 
 syntax on
-color dracula
+color dracula16
 filetype plugin indent on
 
 set clipboard=unnamedplus

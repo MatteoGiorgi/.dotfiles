@@ -14,7 +14,7 @@
 "SETTINGS_______________________________________________________________________
 
 syntax on
-color dracula
+color dracula16
 filetype plugin indent on
 
 set runtimepath+=~/.vim_runtime
