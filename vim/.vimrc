@@ -58,6 +58,7 @@ endif
 
 highlight LineNr       guibg=NONE
 highlight SignColumn   guibg=NONE
+highlight CursorLineNr guibg=NONE
 highlight CursorLine   guibg='#2A2C38'
 highlight ColorColumn  guibg='#2A2C38'
 highlight StatusLine   guibg='#343746'

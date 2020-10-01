@@ -52,7 +52,7 @@ endfunction
 
 function! superbar#InactiveStatusLine()
     let l:statusline = ""
-    let l:statusline .= "\ \ "
+    let l:statusline .= "%3*\ \ "
     let l:statusline .= "\ %F"
     let l:statusline .= "\ %="
     let l:statusline .= "%{&modified?'\ ':''}"
