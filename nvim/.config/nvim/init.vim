@@ -103,7 +103,7 @@ endif
 
 highlight LineNr       guibg=NONE
 highlight SignColumn   guibg=NONE
-highlight CursorLineNr guibg=NONE
+highlight CursorLineNr guibg=NONE guifg='#F1FA8C'
 highlight CursorLine   guibg='#2A2C38'
 highlight ColorColumn  guibg='#2A2C38'
 highlight VertSplit    guibg='#343746' guifg='#343746'

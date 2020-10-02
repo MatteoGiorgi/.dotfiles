@@ -75,7 +75,6 @@ keys = [
     Key([mod, "control"], "l", lazy.layout.maximize()),
 
     # Shortcuts for Qtile-cmd, Alacritty, Rofi-menu, Settings, ...
-    Key(["control"], "BackSpace", lazy.spawncmd(prompt='%')),
     Key([mod], "BackSpace", lazy.spawncmd(prompt='%')),
     Key([mod, "control"], "Escape", lazy.spawn("betterlockscreen -l dim")),
     Key([mod], "Escape", lazy.spawn("rofi-run -l")),
