@@ -18,8 +18,8 @@
 "    auto-pairs                https://github.com/jiangmiao/auto-pairs
 "    vim-surround              https://github.com/tpope/vim-surround
 "    vim-commentary            https://github.com/tpope/vim-commentary
+"    vim-polyglot              https://github.com/sheerun/vim-polyglot
 "    vimcompletesme            https://github.com/ajh17/VimCompletesMe
-"    fzf                       https://github.com/junegunn/fzf
 "    fzf.vim                   https://github.com/junegunn/fzf.vim
 "    undotree                  https://github.com/mbbill/undotree
 
@@ -46,9 +46,9 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
+    Plug 'sheerun/vim-polyglot'
     Plug 'ajh17/VimCompletesMe'
-    Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
-    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', {'do': { -> fzf#install() }} | Plug 'junegunn/fzf.vim'
     Plug 'mbbill/undotree'
 call plug#end()
 

@@ -4,13 +4,13 @@ let g:switch#currentdir = expand('%:p:h')
 
 function! switch#change_root(newroot)
     let g:switch#rootdir = a:newroot
-    echo '  Root at:' expand(g:switch#rootdir)
+    echo 'Root at:' expand(g:switch#rootdir)
 endfunction
 
 
 function! switch#change_root_current()
     let g:switch#rootdir = expand('%:p:h')
-    echo '  Root at:' expand(g:switch#rootdir)
+    echo 'Root at:' expand(g:switch#rootdir)
 endfunction
 
 
