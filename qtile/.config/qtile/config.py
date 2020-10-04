@@ -296,22 +296,22 @@ screens = [
                 ),
                 widget.TextBox(
                     background=color_blue,
-                    foreground=color_lightred,
+                    foreground=color_lightyellow,
                     fontsize=17,
                     text='',
                     padding=0
                 ),
                 widget.Spacer(
-                    background=color_lightred,
+                    background=color_lightyellow,
                     length=6
                 ),
                 widget.CurrentLayout(
                     font='mononoki nerd font Bold',
-                    background=color_lightred,
+                    background=color_lightyellow,
                     foreground=color_black
                 ),
                 widget.TextBox(
-                    background=color_lightred,
+                    background=color_lightyellow,
                     foreground=color_black,
                     fontsize=17,
                     text='',
@@ -319,7 +319,7 @@ screens = [
                 ),
                 widget.Clock(
                     font='mononoki nerd font Bold',
-                    background=color_lightred,
+                    background=color_lightyellow,
                     foreground=color_black,
                     padding=8,
                     format=' %H:%M',
