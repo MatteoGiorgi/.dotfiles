@@ -29,7 +29,9 @@ color_purple = 'bd93f9'        # #bd93f9
 color_red = 'ff5555'           # #ff5555
 color_lightred = 'ff7777'      # #ff7777
 color_yellow = 'f1fa8c'        # #f1fa8c
-color_lightyellow = 'f1fa8c'   # #f4f99d
+color_lightyellow = 'f4f99d'   # #f4f99d
+color_magenta = 'ff79c6'       # #f4f99d
+color_lightmagenta = 'ff92d0'  # #f4f99d
 
 # Spacegray palette
 # color_black = '111314'     # black    (color0)
@@ -245,15 +247,15 @@ screens = [
                 ),
                 widget.TextBox(
                     background=color_black,
-                    foreground=color_blue,
+                    foreground=color_white,
                     fontsize=17,
                     text='',
                     padding=0
                 ),
                 widget.TextBox(
                     text='',
-                    background=color_blue,
-                    foreground=color_white,
+                    background=color_white,
+                    foreground=color_black,
                     mouse_callbacks={
                         'Button1':
                         lambda qtile: qtile.cmd_spawn('rofi-run -r'),
@@ -263,37 +265,37 @@ screens = [
                     padding=10
                 ),
                 widget.TextBox(
-                    background=color_blue,
-                    foreground=color_white,
+                    background=color_white,
+                    foreground=color_black,
                     fontsize=17,
                     text='',
                     padding=3
                 ),
                 widget.KeyboardLayout(
                     font='mononoki nerd font Bold',
-                    background=color_blue,
-                    foreground=color_white,
+                    background=color_white,
+                    foreground=color_black,
                     configured_keyboards=['it', 'us', 'gb'],
                     display_map={'it': 'Ita', 'us': 'Usa', 'gb': 'Gbr'}
                 ),
                 widget.TextBox(
-                    background=color_blue,
-                    foreground=color_white,
+                    background=color_white,
+                    foreground=color_blue,
                     fontsize=17,
                     text='',
                     padding=0
                 ),
                 widget.Systray(
-                    background=color_white,
-                    foreground=color_black,
+                    background=color_blue,
+                    foreground=color_white,
                     icon_size=14
                 ),
                 widget.Spacer(
-                    background=color_white,
+                    background=color_blue,
                     length=6
                 ),
                 widget.TextBox(
-                    background=color_white,
+                    background=color_blue,
                     foreground=color_lightred,
                     fontsize=17,
                     text='',
