@@ -17,5 +17,12 @@
     },
     "workbench.tree.indent": 16,
     "workbench.tree.renderIndentGuides": "none",
-    "editor.folding": false
+    "editor.folding": false,
+    "vim.cursorStylePerMode.normal": "block",
+    "vim.cursorStylePerMode.insert": "line",
+    "vim.cursorStylePerMode.replace": "line",
+    "vim.cursorStylePerMode.visual": "block",
+    "vim.cursorStylePerMode.visualblock": "block",
+    "vim.cursorStylePerMode.visualline": "block",
+    "vim.easymotion": true
 }
