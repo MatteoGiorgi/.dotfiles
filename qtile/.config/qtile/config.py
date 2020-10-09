@@ -19,6 +19,7 @@ color_white = 'BFBFBF'         # #BFBFBF
 color_graywhite = '999999'     # #999999
 color_superwhite = 'F8F8F8'    # #F8F8F8
 color_gray = '4B5056'          # #4B5056
+color_darkgray = '4d4d4d'      # #4D4D4D
 color_blue = '6272A4'          # #6272A4
 color_bluegray = '343746'      # #343746
 color_cyan = '8be9fd'          # #8be9fd
@@ -32,6 +33,8 @@ color_yellow = 'f1fa8c'        # #f1fa8c
 color_lightyellow = 'f4f99d'   # #f4f99d
 color_magenta = 'ff79c6'       # #f4f99d
 color_lightmagenta = 'ff92d0'  # #f4f99d
+color_purple = 'bd93f9'        # #bd93f9
+color_lightpurple = 'caa9fa'   # #caa9fa
 
 # Spacegray palette
 # color_black = '111314'     # black    (color0)
@@ -77,8 +80,6 @@ keys = [
     Key([mod, "control"], "l", lazy.layout.maximize()),
 
     # Shortcuts for Qtile-cmd, Alacritty, Rofi-menu, Settings, ...
-    Key([mod], "BackSpace", lazy.spawncmd(prompt='%')),
-    Key([mod, "control"], "Escape", lazy.spawn("betterlockscreen -l dim")),
     Key([mod], "Escape", lazy.spawn("rofi-run -l")),
     Key([mod], "Return", lazy.spawn("rofi-run -r")),
     Key([mod], "q", lazy.spawn("xkill")),
@@ -96,6 +97,8 @@ keys = [
     Key([mod, "control"], "x", lazy.spawn("xterm -e tmux")),
     Key([mod], "m", lazy.spawn("xterm -e mocp")),
     Key([mod], "s", lazy.spawn("xfce4-settings-manager")),
+    Key([mod], "BackSpace", lazy.spawncmd(prompt='%')),
+    Key(["control"], "Escape", lazy.spawn("betterlockscreen -l dim")),
 
 
     # Chanage the bloody volume
@@ -296,22 +299,22 @@ screens = [
                 ),
                 widget.TextBox(
                     background=color_blue,
-                    foreground=color_lightyellow,
+                    foreground=color_lightpurple,
                     fontsize=17,
                     text='',
                     padding=0
                 ),
                 widget.Spacer(
-                    background=color_lightyellow,
+                    background=color_lightpurple,
                     length=6
                 ),
                 widget.CurrentLayout(
                     font='mononoki nerd font Bold',
-                    background=color_lightyellow,
+                    background=color_lightpurple,
                     foreground=color_black
                 ),
                 widget.TextBox(
-                    background=color_lightyellow,
+                    background=color_lightpurple,
                     foreground=color_black,
                     fontsize=17,
                     text='',
@@ -319,7 +322,7 @@ screens = [
                 ),
                 widget.Clock(
                     font='mononoki nerd font Bold',
-                    background=color_lightyellow,
+                    background=color_lightpurple,
                     foreground=color_black,
                     padding=8,
                     format=' %H:%M',
