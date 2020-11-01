@@ -1,9 +1,7 @@
 #!/usr/bin/env sh
 
 echo "$*" | grep "\.ar\." && {
-    swallow alacritty \
-        --config-file ~/.config/alacritty/alacritty_ar.yml \
-        -e "$EDITOR" "$*" &
+    swallow xterm -e "$EDITOR" "$*" &
     exit
 }
 
@@ -19,10 +17,7 @@ case $(file --mime-type "$*" -bL) in
     video/*)
         pidof mpv || swallow mpv "$*"
         ;;
-    application/pdf | application/postscript)
-        pidof zathura || swallow zathura "$*"
-        ;;
-    application/djvu | application/postscript)
+    application/pdf | application/postscript | application/djvu)
         pidof zathura || swallow zathura "$*"
         ;;
     image/gif)

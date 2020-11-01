@@ -12,9 +12,6 @@
     "editor.cursorBlinking": "solid",
     "editor.renderLineHighlight": "none",
     "editor.lineNumbers": "relative",
-    "files.exclude": {
-        "**/.*": true
-    },
     "workbench.tree.indent": 16,
     "workbench.tree.renderIndentGuides": "none",
     "editor.folding": false,
@@ -24,5 +21,9 @@
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",
     "vim.cursorStylePerMode.visualline": "block",
-    "vim.easymotion": true
+    "vim.easymotion": true,
+    "files.exclude": {
+        "**/.*": true
+    },
+    "workbench.startupEditor": "none"
 }

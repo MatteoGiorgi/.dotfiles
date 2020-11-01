@@ -53,7 +53,7 @@ alias .....="cd .. && cd .. && cd .. && cd .."
 alias cd..="cd .."
 alias ls="ls -CF --color=auto"
 alias ll="ls -lisa --color=auto"
-alias aa='exa --tree -l --git'
+alias aa='exa -l --git'
 alias l="ls -lisa --color=auto"
 alias lsl="ls -lhFA | less"
 alias home="cd ~"
