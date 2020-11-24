@@ -43,6 +43,8 @@
       <property name="&lt;Super&gt;Escape" type="string" value="rofi-run -l"/>
       <property name="&lt;Super&gt;u" type="string" value="xfce4-terminal"/>
       <property name="&lt;Super&gt;i" type="string" value="lxterminal"/>
+      <property name="&lt;Alt&gt;x" type="string" value="xfce4-terminal --drop-down"/>
+      <property name="&lt;Alt&gt;F1" type="string" value="xfce4-popup-applicationsmenu"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
