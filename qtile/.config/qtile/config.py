@@ -102,9 +102,13 @@ keys = [
 
 
     # Chanage the bloody volume
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 5")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 5")),
-    Key([], "XF86AudioMute", lazy.spawn("pamixer -t")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer set Master 1dB+ unmute")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer set Master 1dB- unmute")),
+    # Key([], "XF86AudioMute", lazy.spawn("amixer set Master 0dB+ mute")),
+
+    # Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 5")),
+    # Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 5")),
+    # Key([], "XF86AudioMute", lazy.spawn("pamixer -t")),
 ]
 
 group_names = [
