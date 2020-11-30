@@ -116,7 +116,7 @@ group_names = [
         ("₆ ", 6),
         ("₇ ", 7),
         ("₈ ", 8),
-        ("₉ ", 9)
+        ("₉ ", 9)
 ]
 groups = [Group(name, position=pos) for name, pos in group_names]
 for i, (name, pos) in enumerate(group_names, 1):
@@ -200,7 +200,7 @@ def toggle_calcurse(qtile):
 
 screens = [
     Screen(
-        top=bar.Bar(
+        bottom=bar.Bar(
             [
                 widget.GroupBox(
                     font='mononoki nerd font Bold',
