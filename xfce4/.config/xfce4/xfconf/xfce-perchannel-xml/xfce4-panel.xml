@@ -64,6 +64,7 @@
       <property name="names-visible" type="empty"/>
       <property name="show-frame" type="bool" value="false"/>
       <property name="names-ordered" type="array">
+        <value type="string" value="vlc"/>
         <value type="string" value="system-config-printer"/>
         <value type="string" value="xfce terminal"/>
         <value type="string" value="telegramdesktop"/>
@@ -84,7 +85,7 @@
     <property name="plugin-9" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="show-notifications" type="bool" value="false"/>
-      <property name="mpris-players" type="string" value="chromium.instance12109;chromium.instance1831;chromium.instance3070;chromium.instance49938;chromium.instance52421;chromium.instance58884;chromium.instance9553;firefox.instance10627;firefox.instance2279;firefox.instance2859;firefox.instance30645;firefox.instance3208;firefox.instance5759;io.github.celluloid_player.Celluloid.instance-1"/>
+      <property name="mpris-players" type="string" value="chromium.instance12109;chromium.instance1831;chromium.instance3070;chromium.instance49938;chromium.instance52421;chromium.instance58884;chromium.instance73542;chromium.instance9553;firefox.instance10627;firefox.instance2279;firefox.instance2859;firefox.instance30645;firefox.instance3208;firefox.instance5759;firefox.instance74927;io.github.celluloid_player.Celluloid.instance-1;vlc"/>
     </property>
     <property name="plugin-10" type="empty"/>
     <property name="plugin-11" type="empty"/>

@@ -89,12 +89,14 @@ keys = [
     Key([mod], "u", lazy.spawn("xfce4-terminal")),
     Key([mod], "i", lazy.spawn("lxterminal")),
     Key([mod], "x", lazy.spawn("xterm")),
+    Key([mod], "z", lazy.spawn("uxterm")),
     Key([mod, "control"], "y", lazy.spawn("kitty -e tmux")),
     Key([mod, "control"], "a", lazy.spawn("alacritty -e tmux")),
     Key([mod, "control"], "t", lazy.spawn("termite -e tmux")),
     Key([mod, "control"], "u", lazy.spawn("xfce4-terminal -e tmux")),
     Key([mod, "control"], "i", lazy.spawn("lxterminal -e tmux")),
     Key([mod, "control"], "x", lazy.spawn("xterm -e tmux")),
+    Key([mod, "control"], "z", lazy.spawn("uxterm -e tmux")),
     Key([mod], "m", lazy.spawn("xterm -e mocp")),
     Key([mod], "s", lazy.spawn("xfce4-settings-manager")),
     Key([mod], "BackSpace", lazy.spawncmd(prompt='%')),
@@ -102,9 +104,13 @@ keys = [
 
 
     # Chanage the bloody volume
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer set Master 1dB+ unmute")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer set Master 1dB- unmute")),
-    # Key([], "XF86AudioMute", lazy.spawn("amixer set Master 0dB+ mute")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q -D pulse sset Master 3%+")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q -D pulse sset Master 3%-")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer -q -D pulse sset Master toggle")),
+
+    # Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q sset Master 3%+")),
+    # Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q sset Master 3%-")),
+    # Key([], "XF86AudioMute", lazy.spawn("amixer -q sset Master toggle")),
 
     # Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 5")),
     # Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 5")),

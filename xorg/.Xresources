@@ -35,6 +35,30 @@ XTerm.vt100.metaSendsEscape: true
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+
+UXTerm*renderFont: true
+UXTerm*faceName: xft:mononoki\ Nerd\ Font
+UXTerm*faceSize: 9
+UXTerm*utf8: 2
+UXTerm*locale: true
+UXTerm*loginshell: true
+UXTerm*savelines: 16384
+UXTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+UXTerm*background: #282A36
+UXTerm*foreground: #F8F8F2
+UXTerm*fullscreen: never
+UXTerm.omitTranslation: fullscreen
+
+UXTerm.vt100.translations: #override \n\
+  Ctrl Alt <Key> j: smaller-vt-font() \n\
+  Ctrl Alt <Key> k: larger-vt-font()
+
+UXTerm.vt100.metaSendsEscape: true
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 !rofi.modi:                           ssh,window,drun,run
 !rofi.sidebar-mode:                   true
 !rofi.terminal:                       termite
@@ -76,6 +100,7 @@ rofi.separator-style:                none
 rofi.hide-scrollbar:                 true
 !rofi.markup-rows:                    false
 !rofi.scrollbar-width:                8
+
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
