@@ -31,7 +31,6 @@ MiscSearchDialogOpacity=100
 MiscShowUnsafePasteDialog=TRUE
 ScrollingUnlimited=TRUE
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
-FontUseSystem=TRUE
 ColorForeground=#F8F8F2
 ColorBackground=#282A36
 ColorCursor=#F8F8F2

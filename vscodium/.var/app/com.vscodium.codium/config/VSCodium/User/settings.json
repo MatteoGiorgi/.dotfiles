@@ -28,5 +28,8 @@
     "workbench.startupEditor": "none",
     "editor.wordWrap": "on",
     "latex-workshop.bibtex-format.tab": "4 spaces",
-    "latex-workshop.view.pdf.viewer": "tab"
+    "latex-workshop.view.pdf.viewer": "tab",
+    "window.zoomLevel": 0,
+    "terminal.explorerKind": "external",
+    "terminal.integrated.shell.linux": "/bin/bash"
 }
