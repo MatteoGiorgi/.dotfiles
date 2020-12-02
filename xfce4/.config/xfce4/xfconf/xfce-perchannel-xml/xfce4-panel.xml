@@ -64,6 +64,7 @@
       <property name="names-visible" type="empty"/>
       <property name="show-frame" type="bool" value="false"/>
       <property name="names-ordered" type="array">
+        <value type="string" value="blueman-tray"/>
         <value type="string" value="vlc"/>
         <value type="string" value="system-config-printer"/>
         <value type="string" value="xfce terminal"/>

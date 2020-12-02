@@ -12,3 +12,12 @@ Remember to install the followings:
 ```
 $ sudo apt install plank
 ```
+
+
+
+
+### Arch
+
+```
+$ sudo pacman -S plank
+```

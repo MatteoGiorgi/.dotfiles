@@ -12,3 +12,5 @@ $ flatpak run com.vscodium.codium
 
 - Dracula theme
 - Vscodium vim
+- Markdown All in One
+- LaTeX Workshop
