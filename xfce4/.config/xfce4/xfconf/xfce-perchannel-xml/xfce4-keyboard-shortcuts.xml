@@ -34,18 +34,17 @@
       <property name="XF86Mail" type="string" value="exo-open --launch MailReader"/>
       <property name="Print" type="string" value="xfce4-screenshooter"/>
       <property name="XF86WWW" type="string" value="exo-open --launch WebBrowser"/>
-      <property name="&lt;Super&gt;p" type="string" value="xfce4-display-settings --minimal"/>
       <property name="override" type="bool" value="true"/>
-      <property name="&lt;Super&gt;x" type="string" value="xterm"/>
       <property name="&lt;Super&gt;s" type="string" value="xfce4-settings-manager"/>
       <property name="&lt;Super&gt;q" type="string" value="xkill"/>
       <property name="&lt;Super&gt;Return" type="string" value="rofi-run -r"/>
       <property name="&lt;Super&gt;Escape" type="string" value="rofi-run -l"/>
-      <property name="&lt;Super&gt;u" type="string" value="xfce4-terminal"/>
       <property name="&lt;Super&gt;i" type="string" value="lxterminal"/>
       <property name="&lt;Alt&gt;x" type="string" value="xfce4-terminal --drop-down"/>
       <property name="&lt;Alt&gt;F1" type="string" value="xfce4-popup-applicationsmenu"/>
-      <property name="&lt;Super&gt;z" type="string" value="uxterm"/>
+      <property name="&lt;Super&gt;d" type="string" value="xfce4-display-settings --minimal"/>
+      <property name="&lt;Super&gt;x" type="string" value="xfce4-terminal"/>
+      <property name="&lt;Super&gt;u" type="string" value="uxterm"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
