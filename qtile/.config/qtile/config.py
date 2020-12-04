@@ -26,7 +26,6 @@ color_cyan = '8be9fd'          # #8be9fd
 color_green = '50fa7b'         # #50fa7b
 color_orange = 'ffb86c'        # #ffb86c
 color_pink = 'ff79c6'          # #ff79c6
-color_purple = 'bd93f9'        # #bd93f9
 color_red = 'ff5555'           # #ff5555
 color_lightred = 'ff7777'      # #ff7777
 color_yellow = 'f1fa8c'        # #f1fa8c
@@ -83,10 +82,10 @@ keys = [
     Key([mod], "Escape", lazy.spawn("rofi-run -l")),
     Key([mod], "Return", lazy.spawn("rofi-run -r")),
     Key([mod], "q", lazy.spawn("xkill")),
-    Key([mod], "i", lazy.spawn("lxterminal")),
-    Key([mod], "x", lazy.spawn("xfce4-terminal")),
     Key([mod], "u", lazy.spawn("uxterm")),
-    Key([mod], "m", lazy.spawn("uxterm -e mocp")),
+    Key([mod], "x", lazy.spawn("xfce4-terminal")),
+    Key([mod], "i", lazy.spawn("lxterminal")),
+    Key([mod], "m", lazy.spawn("lxterminal -e mocp")),
     Key([mod], "s", lazy.spawn("xfce4-settings-manager")),
     Key([mod], "p", lazy.spawncmd(prompt='%')),
     Key([mod, "control"], "i", lazy.spawn("lxterminal -e tmux")),
@@ -225,13 +224,21 @@ screens = [
                 ),
                 widget.WindowName(
                     font='mononoki nerd font Bold',
-                    fmt='{:.60}',
+                    fmt='{:.50}',
                     for_current_screen=True,
                     show_state=False,
                     mouse_callbacks={
                         'Button1':
                         lambda qtile: qtile.cmd_spawn('rofi-run -w')
                     }
+                ),
+                widget.Moc(
+                    font='mononoki nerd font Bold',
+                    background=color_black,
+                    foreground=color_white,
+                    max_chars=10,
+                    play_color=color_green,
+                    padding=12
                 ),
                 widget.TextBox(
                     background=color_black,
