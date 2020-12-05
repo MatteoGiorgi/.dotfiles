@@ -1,6 +1,14 @@
 c.fonts.default_family = ['mononoki Nerd Font']
 c.fonts.default_size = '10pt'
 
+# Bindings for normal mode
+config.bind('xb', 'config-cycle statusbar.hide true false')
+config.bind('xt', 'config-cycle tabs.show always never')
+config.bind('xx', 'config-cycle statusbar.hide true false;; config-cycle tabs.show always never')
+# config.bind('M', 'hint links spawn mpv {hint-url}')
+# config.bind('Z', 'hint links spawn uxterm -e youtube-dl {hint-url}')
+# config.bind('t', 'set-cmd-text -s :open -t')
+
 
 
 

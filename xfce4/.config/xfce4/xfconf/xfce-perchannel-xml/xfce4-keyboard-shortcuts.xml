@@ -45,6 +45,7 @@
       <property name="&lt;Super&gt;d" type="string" value="xfce4-display-settings --minimal"/>
       <property name="&lt;Super&gt;x" type="string" value="xfce4-terminal"/>
       <property name="&lt;Super&gt;u" type="string" value="uxterm"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Return" type="string" value="xfce4-popup-whiskermenu"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
