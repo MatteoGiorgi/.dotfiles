@@ -15,13 +15,21 @@
 "                   [ Plug 'repo-name/plugin-name' ]
 "
 "    vim-plug                  https://github.com/junegunn/vim-plug
+"    ale                       https://github.com/dense-analysis/ale
 "    auto-pairs                https://github.com/jiangmiao/auto-pairs
 "    vim-surround              https://github.com/tpope/vim-surround
 "    vim-commentary            https://github.com/tpope/vim-commentary
+"    vim-fugitive              https://github.com/tpope/vim-fugitive
+"    vim-signify               https://github.com/mhinz/vim-signify
+"    vim-startify              https://github.com/mhinz/vim-startify
+"    clever-f                  https://github.com/rhysd/clever-f.vim
 "    vim-polyglot              https://github.com/sheerun/vim-polyglot
 "    vimcompletesme            https://github.com/ajh17/VimCompletesMe
 "    fzf.vim                   https://github.com/junegunn/fzf.vim
 "    undotree                  https://github.com/mbbill/undotree
+"    floaterm                  https://github.com/voldikss/vim-floaterm
+"    vim-airline               https://github.com/vim-airline/vim-airline
+"    vim-devicons              https://github.com/ryanoasis/vim-devicons
 
 
 
@@ -43,13 +51,21 @@ augroup vimenter
 augroup END
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
+    Plug 'dense-analysis/ale'
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-fugitive'
+    Plug 'mhinz/vim-signify'
+    Plug 'mhinz/vim-startify'
+    Plug 'rhysd/clever-f.vim'
     Plug 'sheerun/vim-polyglot'
     Plug 'ajh17/VimCompletesMe'
     Plug 'junegunn/fzf', {'do': { -> fzf#install() }} | Plug 'junegunn/fzf.vim'
     Plug 'mbbill/undotree'
+    Plug 'voldikss/vim-floaterm'
+    Plug 'vim-airline/vim-airline'
+    Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 
@@ -83,10 +99,11 @@ set noerrorbells
 set nofoldenable
 set foldmethod=manual
 set nospell
-set omnifunc=syntaxcomplete#Complete
+set omnifunc=ale#completion#OmniFunc "syntaxcomplete#Complete
 set complete+=k/usr/share/dict/british-english
 set complete+=k/usr/share/dict/italian
 set laststatus=2
+set updatetime=100
 
 if exists('+termguicolors')
     set termguicolors
@@ -108,6 +125,12 @@ highlight CursorLine   guibg='#2A2C38'
 highlight ColorColumn  guibg='#2A2C38'
 highlight VertSplit    guibg='#343746' guifg='#343746'
 
+highlight FloatermBorder guibg=NONE guifg=#44475A
+
+highlight SignifySignAdd    guibg=NONE guifg=#00FF00
+highlight SignifySignDelete guibg=NONE guifg=#FF0000
+highlight SignifySignChange guibg=NONE guifg=#FFFF00
+
 
 
 
@@ -122,12 +145,6 @@ if g:root#auto == 1
 endif
 
 
-" Change statusbar in fzf windows
-augroup fzfstatusline
-    autocmd! User FzfStatusLine call FzfStatusline()
-augroup END
-
-
 " Change linenumber behaviour in insert mode
 augroup numbertoggle
     autocmd!
@@ -136,23 +153,10 @@ augroup numbertoggle
 augroup END
 
 
-" Change cursorline and statusbar colors in insert mode
+" Change cursorline colors in insert mode
 augroup vimrc
     autocmd InsertEnter * set cul
-    autocmd InsertEnter * highlight User1 guibg='#6272A4' guifg='#BFBFBF' gui=BOLD
-    autocmd InsertEnter * highlight User2 guibg='#343746' guifg='#6272A4' gui=BOLD
     autocmd InsertLeave * set nocul
-    autocmd InsertLeave * highlight User1 guibg='#BFBFBF' guifg='#343746' gui=BOLD
-    autocmd InsertLeave * highlight User2 guibg='#343746' guifg='#BFBFBF' gui=BOLD
-augroup END
-
-
-" Change multiple statusbar in vimenter
-augroup statuslineautocmds
-    autocmd!
-    autocmd VimEnter              * call superbar#UpdateInactiveWindows()
-    autocmd WinEnter,BufWinEnter  * call superbar#StatusLine("active")
-    autocmd WinLeave              * call superbar#StatusLine("inactive")
 augroup END
 
 
@@ -202,7 +206,19 @@ let b:vcm_tab_complete = "omni"
 
 "FZF____________________________________________________________________________
 
-let g:fzf_layout = { 'down': '50%' }
+let g:fzf_preview_window = 'right:60%'
+let g:fzf_layout = { 'down': '60%' } "{ 'window': { 'width': 0.8, 'height': 0.8 } }
+
+
+
+
+"FLOATERM_______________________________________________________________________
+
+let g:floaterm_keymap_toggle = '<M-1>'
+let g:floaterm_keymap_next = '<M-2>'
+let g:floaterm_keymap_new  = '<M-3>'
+let g:floaterm_width = 0.7
+let g:floaterm_height = 0.7
 
 
 
@@ -215,6 +231,80 @@ let g:undotree_ShortIndicators = 1
 let g:undotree_SplitWidth = 30
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_HelpLine = 0
+
+
+
+
+"CLEVER_F_______________________________________________________________________
+
+let g:clever_f_smart_case = 0
+let g:clever_f_ignore_case = 0
+let g:clever_f_show_prompt = 1
+
+
+
+
+"ALE____________________________________________________________________________
+
+let g:ale_fix_on_save = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ale_linters = {
+            \ 'vim': ['vint'],
+            \ 'c': ['gcc', 'clang'],
+            \ 'cpp': ['gcc', 'clang'],
+            \ 'java': ['java'],
+            \ 'python': ['flake8', 'pylint'],
+            \ 'javascript': ['eslint'],
+            \}
+let g:ale_fixers = {
+            \ 'python': ['yapf'],
+            \}
+
+
+
+
+"AIRLINE________________________________________________________________________
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#ale#enabled = 1
+let g:airline_theme = 'dracula'
+
+
+
+
+"STARTIFY_______________________________________________________________________
+
+let g:startify_files_number = 5
+let g:startify_list_order = [
+            \ ['   Files:'], 'files',
+            \ ['   Directory:'], 'dir',
+            \ ['   Sessions:'], 'sessions',
+            \ ['   Bookmarks:'], 'bookmarks',
+            \ ]
+let g:startify_bookmarks = [
+            \ '~/',
+            \ '~/.dotfiles/',
+            \ ]
+let g:startify_custom_indices = [
+            \ 'a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 'l', 'm', 'n',
+            \ 'o', 'p', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'x'
+            \ ]
+let g:startify_session_dir = '~/.config/nvim/sessions'
+let g:startify_custom_header = [
+            \'                                                             ',
+            \'    /##    /#                      /##    /##/##             ',
+            \'   | ###  | ##                    | ##   | #|__/             ',
+            \'   | #### | ##  /######   /###### | ##   | ##/##/######/#### ',
+            \'   | ## ##| ## /##__  ## /##__  ##|  ## / ##| #| ##_  ##_  ##',
+            \'   | ##  ## ##| ########| ##  | ## \  ## ##/| #| ## \ ## \ ##',
+            \'   | ##\  ####| ##_____/| ##  | ##  \  ###/ | #| ## | ## | ##',
+            \'   |  # \  ## |  #######|  ######    \  #/  | #| ## | ## | ##',
+            \'    \__  \__/  \_______/ \______/     \_/   |__|__/ |__/ |__/',
+            \'                                                             ',
+            \'                                                             ',
+            \ ]
 
 
 
@@ -247,6 +337,7 @@ nnoremap <leader>q :quit<CR>
 nnoremap <leader>z :write<CR>
 nnoremap <leader>e :enew<CR>
 nnoremap <leader>d :bdelete<CR>
+nnoremap <leader>i :SClose<CR>
 
 map <leader>u <esc>gx
 nmap <silent><M-Tab> :bnext<CR><C-g>
@@ -289,16 +380,23 @@ map  <leader>a <esc>cs
 map  <leader>A <esc>ds
 
 
-" Netrw & UndotreeToggle
+" Netrw - UndotreeToggle
 nnoremap <leader><Tab> :Explore<CR>
 nnoremap <leader><Backspace> :UndotreeToggle<CR>
+
+
+" I love my terminal file managers!
+nnoremap <leader>1 :FloatermNew vifm<CR>
+nnoremap <leader>2 :FloatermNew ranger<CR>
+nnoremap <leader>3 :FloatermNew fff<CR>
+nnoremap <leader>4 :FloatermNew nnn<CR>
 
 
 " Fzf
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>h :History<CR>
-nnoremap <leader>j :Buffers<CR>
+nnoremap <leader>j :Ag<CR>
 nnoremap <leader>k :Commands<CR>
 nnoremap <leader>K :History:<CR>
 nnoremap <leader>l :BLines<CR>
@@ -307,49 +405,12 @@ nnoremap <leader>L :Lines<CR>
 
 
 
-"FUNCTIONS______________________________________________________________________
-
-function! LongLine()
-    if (g:longline ==? 'none')
-        let g:longline = 'all'
-        setlocal virtualedit=all
-    else
-        let g:longline = 'none'
-        setlocal virtualedit=
-    endif
-endfunction
-
-
-function! FzfStatusline()
-    setlocal statusline=%3*\ \ \ \ FZF
-endfunction
-
-
-function! ToggleAccent()
-    let withAccent   = ["á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú"]
-    let withNoAccent = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
-    let character = matchstr(getline('.'), '\%' . col('.') . 'c.')
-    let position = match(withNoAccent, character)
-    if position != -1
-        execute ":normal! r" . withAccent[position]
-    else
-        let position = match(withAccent, character)
-        if position != -1
-            execute ":normal! r" . withNoAccent[position]
-        endif
-    endif
-endfunction
-
-
-
-
-
-"NETRW_&_SWITCH_&_OTHER_USEFUL_COMMANDS_________________________________________
+"USEFUL_COMMANDS________________________________________________________________
 
 command! Squish execute "normal \ggVGgq"
 command! Root call root#FindRoot()
 command! -nargs=1 ChangeRoot call switch#change_root(<f-args>)
 command! ChangeRootCurrent call switch#change_root_current()
 command! SwitchDir call switch#switch_dir()
-command! Longline call LongLine()
-command! ToggleAccent call ToggleAccent()
+command! Longline call utility#LongLine()
+command! ToggleAccent call utility#ToggleAccent()

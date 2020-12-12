@@ -71,6 +71,7 @@ alias logs="find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1
 alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 alias grep='grep --color=auto'
 alias vimpager="vimpager -u ~/.vimpagerrc"
+alias vifm="vifmrun"
 alias ranger='ranger_jump'
 alias fff='fff_jump'
 

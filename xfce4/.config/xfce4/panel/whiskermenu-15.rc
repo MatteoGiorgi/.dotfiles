@@ -1,5 +1,5 @@
-favorites=exo-web-browser.desktop,exo-mail-reader.desktop,exo-file-manager.desktop
-recent=xfce4-session-logout.desktop,ranger.desktop,exo-mail-reader.desktop,exo-web-browser.desktop,telegramdesktop.desktop,xfce4-mime-settings.desktop,brave-browser.desktop
+favorites=firefox.desktop,thunderbird.desktop,thunar.desktop,xfce4-terminal.desktop,xed.desktop
+recent=telegramdesktop.desktop,geany.desktop,xfce4-terminal.desktop,thunar.desktop,xed.desktop,vim.desktop,nvim.desktop,vieb.desktop,org.gnome.Calculator.desktop,xfce-settings-manager.desktop
 button-title=\ \ \ \ \ 
 button-icon=xfce4-whiskermenu
 button-single-row=false

@@ -1,31 +1,36 @@
 
-    [N]  Ctrl + h      ->    Shrink window horizontally                                [N]  Space + r         ->    Replace search selection
-    [N]  Ctrl + j      ->    Shrink window vertically                                  [V]  Space + r         ->    Replace search selection inside selected text
-    [N]  Ctrl + k      ->    Expand window vertically
-    [N]  Ctrl + l      ->    Expand window horizontally                                [N]  Space + C         ->    Change root directory
-                                                                                       [N]  Space + c         ->    Change root directory to current
-    [N]  Alt + h       ->    Open new buffer left                                      [N]  Space + X         ->    Seek & change current directory
-    [N]  Alt + j       ->    Open new buffer below                                     [N]  Space + x         ->    Jump between current and root directory
-    [N]  Alt + k       ->    Open new buffer above
-    [N]  Alt + l       ->    Open new buffer right                                     [N]  Space + Space     ->    Comment current line
-                                                                                       [V]  Space + Space     ->    Comment selected lines
-    [N]  Alt + Tab     ->    Next buffer                                               [I]  Return            ->    Insert selected word
-    [N]  Alt + Bspace  ->    Prev buffer
-                                                                                       [ ]  Space + s + ?     ->    Surround current word
-    [N]  Tab           ->    Jump to next paragraph & centering                        [V]  Space + s + ?     ->    Surround current selected text
-    [N]  Bspace        ->    Jump to prev paragraph & centering                        [ ]  Space + a + ??    ->    Change surroundings
-                                                                                       [ ]  Space + A + ?     ->    Delete surroundings
-    [V]  Shift + j     ->    Move selected text down
-    [V]  Shift + k     ->    Move selected text up                                     [N]  Space + Tab       ->    Activate Netrw in current window
-                                                                                       [N]  Space + Bspace    ->    Toggle Undotree
-    [N]  Space + w     ->    Activate wincmd
-    [N]  Space + q     ->    Quit window                                               [N]  Space + f         ->    Fzf files from current directory
-    [N]  Space + z     ->    Write buffer                                              [N]  Space + g         ->    Fzf files in current git repo
-    [N]  Space + e     ->    New empty buffer                                          [N]  Space + h         ->    Fzf files from history
-    [N]  Space + d     ->    Delete buffer                                             [N]  Space + j         ->    Fzf opened buffers
-                                                                                       [N]  Space + k         ->    Fzf commands
-    [ ]  Space + u     ->    Open URL under the cursor                                 [N]  Space + K         ->    Fzf commands history
-                                                                                       [N]  Space + l         ->    Fzf lines in current buffer
-    [V]  Tab           ->    Shift selected text one tab right                         [N]  Space + L         ->    Fzf lines in opened buffers
-    [V]  Shift + Tab   ->    Shift selected text one tab left
+         [ ]  Alt + Return    ->    Pop this memo up                                           [N]  Space + C         ->    Change root directory
+                                                                                               [N]  Space + c         ->    Change root directory to current
+         [N]  Ctrl + h        ->    Shrink window horizontally                                 [N]  Space + X         ->    Seek & change current directory
+         [N]  Ctrl + j        ->    Shrink window vertically                                   [N]  Space + x         ->    Jump between current and root directory
+         [N]  Ctrl + k        ->    Expand window vertically
+         [N]  Ctrl + l        ->    Expand window horizontally                                 [N]  Space + Space     ->    Comment current line
+                                                                                               [V]  Space + Space     ->    Comment selected lines
+         [N]  Alt + h         ->    Open new buffer left                                       [I]  Return            ->    Insert selected word
+         [N]  Alt + j         ->    Open new buffer below
+         [N]  Alt + k         ->    Open new buffer above                                      [ ]  Space + s + ?     ->    Surround current word
+         [N]  Alt + l         ->    Open new buffer right                                      [V]  Space + s + ?     ->    Surround current selected text
+                                                                                               [ ]  Space + a + ??    ->    Change surroundings
+         [N]  Alt + Tab       ->    Next buffer                                                [ ]  Space + A + ?     ->    Delete surroundings
+         [N]  Alt + Bspace    ->    Prev buffer
+                                                                                               [N]  Space + Tab       ->    Activate Netrw in current window
+         [N]  Tab             ->    Jump to next paragraph & centering                         [N]  Space + Bspace    ->    Toggle Undotree
+         [N]  Bspace          ->    Jump to prev paragraph & centering
+                                                                                               [N]  Space + f         ->    Fzf files from current directory
+         [V]  Shift + j       ->    Move selected text down                                    [N]  Space + g         ->    Fzf files in current git repo
+         [V]  Shift + k       ->    Move selected text up                                      [N]  Space + h         ->    Fzf files from history
+                                                                                               [N]  Space + j         ->    Ag words in files from current dir
+         [N]  Space + w       ->    Activate wincmd                                            [N]  Space + k         ->    Fzf commands
+         [N]  Space + q       ->    Quit window                                                [N]  Space + K         ->    Fzf commands history
+         [N]  Space + z       ->    Write buffer                                               [N]  Space + l         ->    Fzf lines in current buffer
+         [N]  Space + e       ->    New empty buffer                                           [N]  Space + L         ->    Fzf lines in opened buffers
+         [N]  Space + d       ->    Delete buffer
+         [N]  Space + i       ->    Delete all buffers                                         [N]  Space + 1         ->    Vifm in Floaterm
+                                                                                               [N]  Space + 2         ->    Ranger in Floaterm
+         [V]  Tab             ->    Shift selected text one tab right                          [N]  Space + 3         ->    fff in Floaterm
+         [V]  Shift + Tab     ->    Shift selected text one tab left                           [N]  Space + 4         ->    nnn in Floaterm
 
+         [ ]  Space + u       ->    Open URL under the cursor                                  [N]  Alt + 1           ->    Toggle Floaterm
+                                                                                               [N]  Alt + 2           ->    Next Floaterm tab
+         [N]  Space + r       ->    Replace search selection                                   [N]  Alt + 3           ->    New Floaterm tab
+         [V]  Space + r       ->    Replace search selection in v-block

@@ -1,0 +1,5 @@
+2020/12/08-13:17:40.559 1352 Reusing MANIFEST /home/geoteo/.config/Vieb/Partitions/main/IndexedDB/https_addons.mozilla.org_0.indexeddb.leveldb/MANIFEST-000001
+2020/12/08-13:17:53.074 16a7 Level-0 table #5: started
+2020/12/08-13:17:53.077 16a7 Level-0 table #5: 1269 bytes OK
+2020/12/08-13:17:53.081 16a7 Delete type=0 #3
+2020/12/08-13:17:53.081 16a7 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

@@ -82,15 +82,12 @@ keys = [
     Key([mod], "Escape", lazy.spawn("rofi-run -l")),
     Key([mod], "Return", lazy.spawn("rofi-run -r")),
     Key([mod], "q", lazy.spawn("xkill")),
-    Key([mod], "i", lazy.spawn("lxterminal")),
-    Key([mod], "x", lazy.spawn("xfce4-terminal")),
     Key([mod], "u", lazy.spawn("uxterm")),
-    Key([mod], "m", lazy.spawn("uxterm -e mocp")),
+    Key([mod], "i", lazy.spawn("lxterminal")),
+    Key([mod], "o", lazy.spawn("xfce4-terminal")),
     Key([mod], "s", lazy.spawn("xfce4-settings-manager")),
+    Key([mod], "m", lazy.spawn("xterm -e mocp")),
     Key([mod], "p", lazy.spawncmd(prompt='%')),
-    Key([mod, "control"], "i", lazy.spawn("lxterminal -e tmux")),
-    Key([mod, "control"], "i", lazy.spawn("xfce4-terminal -e tmux")),
-    Key([mod, "control"], "u", lazy.spawn("uxterm -e tmux")),
     Key(["control"], "Escape", lazy.spawn("betterlockscreen -l dim")),
 
 
