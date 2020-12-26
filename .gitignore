@@ -27,11 +27,9 @@
 /moc/.moc/pid
 /moc/.moc/socket2
 /moc/.moc/softmixer
-/xfce4/.config/xfce4/Verve/*
-/xfce4/.config/xfce4/help.rc
-/xfce4/.config/xfce4/helpers.rc
-/xfce4/.config/xfce4/xfce4-screenshooter
 /kupfer/.config/kupfer/config-kupfer.plugin.favorites-v2.pickle
 /kupfer/.config/kupfer/mnemonics.pickle
 /plank/.config/*
+/vifm/.config/vifm/vifminfo
+/xed/.config/*
 /micro/.config/micro/buffers/*
