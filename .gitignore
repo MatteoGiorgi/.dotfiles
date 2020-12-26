@@ -31,3 +31,7 @@
 /xfce4/.config/xfce4/help.rc
 /xfce4/.config/xfce4/helpers.rc
 /xfce4/.config/xfce4/xfce4-screenshooter
+/kupfer/.config/kupfer/config-kupfer.plugin.favorites-v2.pickle
+/kupfer/.config/kupfer/mnemonics.pickle
+/plank/.config/*
+/micro/.config/micro/buffers/*

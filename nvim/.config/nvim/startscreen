@@ -1,0 +1,101 @@
+   /##########                 /##    /##/##
+  |___  ##___/                | ##   | #|__/
+      | ##  /######   /###### | ##   | ##/##/######/####
+      | ## /##__  ## /##__  ##|  ## / ##| #| ##_  ##_  ##
+      | ##| ########| ##  | ## \  ## ##/| #| ## \ ## \ ##       . O
+      | ##| ##_____/| ##  | ##  \  ###/ | #| ## | ## | ##        \|_,
+      |  #|  #######|  ######    \  #/  | #| ## | ## | ##         |
+       \_/ \_______/ \______/     \_/   |__|__/ |__/ |__/        / \
+
+  ===========>    e: edit    i: insert    q: quit    <===============
+
+
+  [N]  Alt + Return    ------------->    Visulize this page
+  [ ]  Space + u    ---------------->    Open URL under the cursor
+
+  [N]  Ctrl + h    ----------------->    Shrink window horizontally
+  [N]  Ctrl + j    ----------------->    Shrink window vertically
+  [N]  Ctrl + k    ----------------->    Expand window vertically
+  [N]  Ctrl + l    ----------------->    Expand window horizontally
+
+  [N]  Space + Alt + h    ---------->    Move window to the left
+  [N]  Space + Alt + j    ---------->    Move window down
+  [N]  Space + Alt + k    ---------->    Move window uo
+  [N]  Space + Alt + l    ---------->    Move window to the right
+
+  [N]  Alt + h    ------------------>    Open new buffer left
+  [N]  Alt + j    ------------------>    Open new buffer below
+  [N]  Alt + k    ------------------>    Open new buffer above
+  [N]  Alt + l    ------------------>    Open new buffer right
+
+  [N]  Alt + d    ------------------>    Jump to next paragraph & center line
+  [N]  Alt + u    ------------------>    Jump to prev paragraph & center line
+
+  [V]  Shift + j    ---------------->    Move selected text down
+  [V]  Shift + k    ---------------->    Move selected text up
+
+  [N]  Space + w    ---------------->    Activate wincmd
+  [N]  Space + q    ---------------->    Quit window
+  [N]  Space + z    ---------------->    Write buffer
+  [N]  Space + e    ---------------->    New empty buffer
+  [N]  Space + d    ---------------->    Delete buffer
+  [N]  Space + i    ---------------->    Back to startpage
+
+  [V]  Tab    ---------------------->    Shift selected text one tab right
+  [V]  Shift + Tab    -------------->    Shift selected text one tab left
+
+  [N]  Space + r    ---------------->    Replace search selection
+  [V]  Space + r    ---------------->    Replace search selection in v-block
+
+  [N]  Space + C    ---------------->    Change root directory
+  [N]  Space + c    ---------------->    Change root directory to current
+  [N]  Space + X    ---------------->    Seek & change current directory
+  [N]  Space + x    ---------------->    Jump between current and root directory
+
+  [N]  Space + Space    ------------>    Comment current line
+  [V]  Space + Space    ------------>    Comment selected lines
+  [I]  Return    ------------------->    Insert selected word
+
+  [ ]  Space + s + ?    ------------>    Surround current word
+  [V]  Space + s + ?    ------------>    Surround current selected text
+  [ ]  Space + a + ??    ----------->    Change surroundings
+  [ ]  Space + A + ?    ------------>    Delete surroundings
+
+  [N]  Space + Tab    -------------->    Activate Vifm
+  [N]  Space + Esc    -------------->    Toggle Undotree
+
+  [N]  Space + j    ---------------->    Gv commit browser current file
+  [V]  Space + j    ---------------->    Gv commit browser selected text
+  [N]  Space + J    ---------------->    Gv commit browser all repo
+
+  [N]  Space + f    ---------------->    Fzf files from current directory
+  [N]  Space + g    ---------------->    Fzf files in current git repo
+  [N]  Space + h    ---------------->    Fzf files from history
+  [N]  Space + k    ---------------->    Fzf commands
+  [N]  Space + K    ---------------->    Fzf commands history
+  [N]  Space + l    ---------------->    Fzf lines in current buffer
+  [N]  Space + L    ---------------->    Fzf lines in opened buffers
+
+  [N]  Alt + Return    ------------->    Next buffer
+  [N]  leader + 1    --------------->    go to buffer 1
+  [N]  leader + 2    --------------->    go to buffer 2
+  [N]  leader + 3    --------------->    go to buffer 3
+  [N]  leader + 4    --------------->    go to buffer 4
+  [N]  leader + 5    --------------->    go to buffer 5
+  [N]  leader + 6    --------------->    go to buffer 6
+  [N]  leader + 7    --------------->    go to buffer 7
+  [N]  leader + 8    --------------->    go to buffer 8
+  [N]  leader + 9    --------------->    go to buffer 9
+  [N]  leader + 0    --------------->    go to buffer 10
+
+
+   /##########                 /##    /##/##
+  |___  ##___/                | ##   | #|__/
+      | ##  /######   /###### | ##   | ##/##/######/####
+      | ## /##__  ## /##__  ##|  ## / ##| #| ##_  ##_  ##
+      | ##| ########| ##  | ## \  ## ##/| #| ## \ ## \ ##       . O
+      | ##| ##_____/| ##  | ##  \  ###/ | #| ## | ## | ##        \|_,
+      |  #|  #######|  ######    \  #/  | #| ## | ## | ##         |
+       \_/ \_______/ \______/     \_/   |__|__/ |__/ |__/        / \
+
+

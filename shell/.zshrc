@@ -8,7 +8,8 @@ bindkey -v
 
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/rtbm/.zshrc'
+# zstyle :compinstall filename '/home/rtbm/.zshrc'
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|?=** r:|?=**'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
@@ -23,9 +24,10 @@ alias .....="cd .. && cd .. && cd .. && cd .."
 alias cd..="cd .."
 alias ls="ls -CF --color=auto"
 alias ll="ls -lis --color=auto"
-alias aa='exa -l --git'
 alias l="ls -lisa --color=auto"
 alias lsl="ls -lhFA | less"
+alias aa='exa -l --git --icons --group-directories-first'
+alias a='exa -l --git --tree --icons --group-directories-first'
 alias home="cd ~"
 alias df="df -ahiT --total"
 alias mkdir="mkdir -pv"
@@ -43,7 +45,7 @@ alias grep='grep --color=auto'
 alias vimpager="vimpager -u ~/.vimpagerrc"
 alias vifm="vifmrun"
 alias ranger='ranger_jump'
-alias fff='fff_jump'
+alias qq='shfm_jump'
 
 # Creates an archive (*.tar.gz) from given directory.
 function maketar()
@@ -90,6 +92,11 @@ function extract
     fi
 }
 
+# Change directory exiting from shfm
+shfm_jump() {
+        cd "$(command shfm "$@")"
+    }
+
 # Change directory exiting from ranger
 ranger_jump ()
 {
@@ -101,13 +108,6 @@ ranger_jump ()
         cd -- "$(cat "$tempfile")"
     fi
     rm -f -- "$tempfile"
-}
-
-# Change directory exiting from fff
-fff_jump ()
-{
-    $HOME/bin/fff "$@"
-    cd "$(cat "${XDG_CACHE_HOME:=${HOME}}/.fff_d")"
 }
 
 # jump directorys upwards until it hits a directory with multiple folders
@@ -146,37 +146,11 @@ export BROWSER="firefox"
 export READER="zathura"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 export BAT_THEME="base16"
+export MICRO_TRUECOLOR=1
 
-# fff configs
-export FFF_LS_COLORS=1
-export FFF_HIDDEN=0
-export FFF_COL1=2
-export FFF_COL2=7
-export FFF_COL3=6
-export FFF_COL4=1
-export FFF_COL5=0
-export FFF_OPENER="xdg-open"
-export FFF_STAT_CMD="stat"
-export FFF_CD_ON_EXIT=1
-export FFF_CD_FILE=~/.fff_d
-export FFF_TRASH=~/.local/share/fff/trash
-export FFF_TRASH_CMD="mv"
-export FFF_FAV1=~/projects
-export FFF_FAV2=~/.bashrc
-export FFF_FAV3=~/Pictures/Wallpapers/
-export FFF_FAV4=/usr/share
-export FFF_FAV5=/
-export FFF_FAV6=
-export FFF_FAV7=
-export FFF_FAV8=
-export FFF_FAV9=
-export FFF_W3M_XOFFSET=0
-export FFF_W3M_YOFFSET=0
-export FFF_FILE_FORMAT="%f"
-export FFF_MARK_FORMAT=" %f*"
-
-export PROMPT="%B%K{cyan}%F{black} %n  %m %K{blue}%F{cyan}%K{blue}%F{black} %9~ %(?.%K{green}%F{blue} %K{green}%F{black}  %k%F{green}.%K{magenta}%F{blue} %K{magenta}%F{black} %? %k%F{magenta})%k%f"$'\n'"%#%b "
+export PROMPT="%B%K{blue}%F{black} %n  %m %K{yellow}%F{blue}%K{yellow}%F{black} %9~ %(?.%K{green}%F{yellow} %K{green}%F{black}  %k%F{green}.%K{magenta}%F{yellow} %K{magenta}%F{black} %? %k%F{magenta})%k%f"$'\n'"%#%b "
 # export PROMPT="%B[%F{cyan}%n%f@%F{magenta}%m%f] [%F{blue}%9~%f] %(?.%F{green} .%F{red} %?)%f"$'\n'"%#%b "
 
 ### End config ###

@@ -45,8 +45,10 @@ set wildmode=list:longest,list:full
 set omnifunc=syntaxcomplete#Complete
 set complete+=k/usr/share/dict/british-english
 set complete+=k/usr/share/dict/italian
-set t_Co=256
+set completeopt=menuone,longest
+set shortmess+=c
 set laststatus=2
+set t_Co=256
 
 if exists('+termguicolors')
     set termguicolors
@@ -58,11 +60,12 @@ endif
 
 highlight LineNr       guibg=NONE
 highlight SignColumn   guibg=NONE
-highlight CursorLineNr guibg=NONE
-highlight CursorLine   guibg='#2A2C38'
-highlight ColorColumn  guibg='#2A2C38'
-highlight StatusLine   guibg='#343746'
-highlight VertSplit    guibg='#343746' guifg='#343746'
+highlight CursorLineNr guibg=NONE guifg=#F1FA8C
+
+highlight CursorLine  guibg=#2A2C38
+highlight ColorColumn guibg=#2A2C38
+highlight VertSplit   guibg=#3A3C4E guifg=#3A3C4E
+highlight StatusLine  guibg=#3A3C4E guifg=#CAA9FA "#62D6E8
 
 
 
@@ -77,7 +80,7 @@ augroup numbertoggle
 augroup END
 
 
-" Change cursorline and statusbar colors in insert mode
+" Change cursorline colors in insert mode
 augroup vimrc
     autocmd InsertEnter * set cul
     autocmd InsertLeave * set nocul
@@ -107,11 +110,16 @@ let g:netrw_altv = 1
 
 "KEYMAPPINGS____________________________________________________________________
 
-" Generics
-nnoremap <silent><C-h> <C-W><C-<>
-nnoremap <silent><C-l> <C-W><C->>
-nnoremap <silent><C-j> <C-W><C-->
-nnoremap <silent><C-k> <C-W><C-+>
+
+nnoremap <silent><C-h> :vertical resize -5<CR>
+nnoremap <silent><C-l> :vertical resize +5<CR>
+nnoremap <silent><C-j> :resize -5<CR>
+nnoremap <silent><C-k> :resize +5<CR>
+
+nnoremap <leader>k :new<CR>
+nnoremap <leader>j :belowright new<CR>
+nnoremap <leader>h :vnew<CR>
+nnoremap <leader>l :belowright vnew<CR>
 
 xnoremap K :move '<-2<CR>gv=gv
 xnoremap J :move '>+1<CR>gv=gv
@@ -121,20 +129,16 @@ nnoremap <leader>q :quit<CR>
 nnoremap <leader>z :write<CR>
 nnoremap <leader>e :enew<CR>
 nnoremap <leader>d :bdelete<CR>
+nnoremap <leader>f :Explore<CR>
 
-map <leader>u <esc>gx
-nmap <silent><Tab> :bnext<CR><C-g>
-nmap <silent><Backspace> :bprev<CR><C-g>
 nmap <C-p> :-r!xclip -o -sel clip<CR>
 vmap <C-y> :!xclip -f -sel clip<CR>
+map <leader>u <esc>gx
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
+nmap <silent><Tab> :bnext<CR><C-g>
+nmap <silent><Backspace> :bprev<CR><C-g>
 
-" Replace selection
 nnoremap <leader>r :%s///gc<Left><Left><Left>
 xnoremap <leader>r :s///gc<Left><Left><Left>
-
-
-" Vimcompletesme
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"

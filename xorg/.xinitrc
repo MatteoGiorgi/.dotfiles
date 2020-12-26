@@ -7,6 +7,7 @@
 #    xfsettingsd to launch xsettings demon
 
 xrdb -load ~/.Xresources &
+[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap &
 xfsettingsd &
 exec qtile
 

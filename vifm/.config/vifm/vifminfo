@@ -18,270 +18,243 @@ l2
 r2
 
 # Left window history (oldest to newest):
-d/home
-	geoteo
-1
-d/
-	home
-5
-d/home
-	geoteo
-1
-d/home/geoteo
-	Pictures
-17
-d/home/geoteo/Pictures
-	boom.png
-3
-d/home/geoteo
-	Pictures
-17
-d/home
-	geoteo
-1
-d/
-	home
-5
-d/home
-	geoteo
-1
-d/home/geoteo
-	.dotfiles
-7
-d/home/geoteo/.dotfiles
-	nvim
-16
-d/home/geoteo/.dotfiles/nvim
-	.config
-1
-d/home/geoteo/.dotfiles/nvim/.config
-	nvim
-1
-d/home/geoteo/.dotfiles/nvim/.config/nvim
-	autoload
-1
-d/home/geoteo/.dotfiles/nvim/.config/nvim/autoload
-	repeat.vim
-3
-d/home/geoteo/.dotfiles/nvim/.config/nvim
-	autoload
-1
-d/home/geoteo/.dotfiles/nvim/.config
-	nvim
-1
-d/home/geoteo/.dotfiles/nvim
-	.config
+d/home/geoteo/.dotfiles/bin
+	.local
 1
 d/home/geoteo/.dotfiles
-	nvim
-16
-d/home/geoteo
-	Pictures
-12
-d/home/geoteo/Pictures
+	bin
+5
+d/home/geoteo/.dotfiles/bin
+	.local
+1
+d/home/geoteo/.dotfiles/bin/.local
+	share
+1
+d/home/geoteo/.dotfiles/bin/.local/share
+	man
+1
+d/home/geoteo/.dotfiles/bin/.local/share/man
+	man1
+1
+d/home/geoteo/.dotfiles/bin/.local/share/man/man1
+	shfm.1
+1
+d/home/geoteo/.dotfiles/bin/.local/share/man
+	man1
+1
+d/home/geoteo/.dotfiles/bin/.local/share
+	man
+1
+d/home/geoteo/.dotfiles/bin/.local
+	share
+1
+d/home/geoteo/.dotfiles/bin
+	.local
+1
+d/home/geoteo/.dotfiles
+	bin
+5
+d/home/geoteo/.dotfiles/bin
+	bin
+2
+d/home/geoteo/.dotfiles/bin/bin
 	..
 0
-d/home/geoteo
-	.dotfiles
-7
+d/home/geoteo/.dotfiles/bin
+	bin
+2
 d/home/geoteo/.dotfiles
-	nvim
-16
-d/home/geoteo/.dotfiles/nvim
-	.config
-1
-d/home/geoteo/.dotfiles/nvim/.config
-	nvim
-1
-d/home/geoteo/.dotfiles/nvim/.config/nvim
-	.netrwhist
-6
-d/home/geoteo/.dotfiles/nvim/.config
-	nvim
-1
-d/home/geoteo/.dotfiles/nvim
-	.config
-1
-d/home/geoteo/.dotfiles/nvim/.config
-	nvim
-1
-d/home/geoteo/.dotfiles/nvim
-	.config
-1
-d/home/geoteo/.dotfiles
-	nvim
-16
-d/home/geoteo
-	.dotfiles
-7
-d/home
-	geoteo
-1
-d/home/geoteo
-	Pictures
-8
-d/home/geoteo/Pictures
-	dt-wallpapers
-1
-d/home/geoteo/Pictures/dt-wallpapers
-	0005.jpg
-5
-d/home/geoteo/Pictures
-	wallpapers
-2
-d/home/geoteo/Pictures/wallpapers
-	videos
-3
-d/home/geoteo/Pictures/wallpapers/videos
-	vid_02.mp4
-4
-d/home/geoteo/Pictures/wallpapers
-	ntbt
-2
-d/home/geoteo/Pictures/wallpapers/ntbt
-	general_ripper.jpg
-7
-d/home/geoteo/Pictures/wallpapers
-	ntbt
-2
-d/home/geoteo/Pictures
-	wallpapers
-2
-d/home/geoteo
-	.dotfiles
-7
-d/home/geoteo/.dotfiles
-	ranger
-11
-d/home/geoteo/.dotfiles/ranger
-	.config
-1
-d/home/geoteo/.dotfiles/ranger/.config
-	ranger
-1
-d/home/geoteo/.dotfiles/ranger/.config/ranger
-	commands.py
-2
-d/home/geoteo/.dotfiles/ranger/.config
-	ranger
-1
-d/home/geoteo/.dotfiles/ranger
-	.config
-1
-d/home/geoteo/.dotfiles
-	ranger
-20
-d/home/geoteo
-	Pictures
-8
-d/home/geoteo/Pictures
-	wallpapers
-2
-d/home/geoteo
-	Pictures
-8
-d/home
-	geoteo
-1
-d/
-	home
-5
-d/home
-	geoteo
-1
-d/home/geoteo
-	Pictures
-34
-d/home/geoteo/Pictures
-	boom.png
-3
-d/home/geoteo/.dotfiles/nvim/.config/nvim
-	colors
-2
-d/home/geoteo/.dotfiles/nvim/.config
-	nvim
-1
-d/home/geoteo/.dotfiles/nvim/.config/nvim
-	colors
-2
-d/home/geoteo/.dotfiles/nvim/.config/nvim/colors
-	..
-0
-d/home/geoteo/.dotfiles/nvim/.config/nvim
-	sessions
-4
-d/home/geoteo/.dotfiles/nvim/.config
-	nvim
-1
-d/home/geoteo/.dotfiles/nvim
-	..
-0
-d/home/geoteo/.dotfiles
-	nvim
-15
-d/home/geoteo
-	Public
+	kupfer
 9
-d/home/geoteo/.dotfiles/nvim/.config/nvim
-	colors
-2
-d/home/geoteo/.dotfiles/nvim/.config
-	nvim
+d/home/geoteo/.dotfiles/kupfer
+	.config
 1
-d/home/geoteo/.dotfiles/nvim
+d/home/geoteo/.dotfiles/kupfer/.config
+	kupfer
+1
+d/home/geoteo/.dotfiles/kupfer/.config/kupfer
+	..
+0
+d/home/geoteo/.dotfiles/kupfer/.config
+	kupfer
+1
+d/home/geoteo/.dotfiles/kupfer
+	.config
+1
+d/home/geoteo/.dotfiles
+	luakit
+9
+d/home/geoteo/.dotfiles/luakit
 	..
 0
 d/home/geoteo/.dotfiles
-	nvim
+	lxterminal
+10
+d/home/geoteo/.dotfiles/lxterminal
+	.config
+1
+d/home/geoteo/.dotfiles/lxterminal/.config
+	lxterminal
+1
+d/home/geoteo/.dotfiles/lxterminal/.config/lxterminal
+	lxterminal.conf
+1
+d/home/geoteo/.dotfiles/lxterminal/.config
+	lxterminal
+1
+d/home/geoteo/.dotfiles/lxterminal
+	.config
+1
+d/home/geoteo/.dotfiles
+	moc
+12
+d/home/geoteo/.dotfiles/moc
+	.moc
+1
+d/home/geoteo/.dotfiles/moc/.moc
+	cache
+1
+d/home/geoteo/.dotfiles/moc/.moc/cache
+	moc_version_tag
+1
+d/home/geoteo/.dotfiles/moc/.moc
+	..
+0
+d/home/geoteo/.dotfiles/moc
+	.moc
+1
+d/home/geoteo/.dotfiles
+	plank
 15
-d/home/geoteo
-	Pictures
-8
-d/home/geoteo/Pictures
-	dt-wallpapers
+d/home/geoteo/.dotfiles/plank
+	.config
 1
-d/home/geoteo/Pictures/dt-wallpapers
-	0016.jpg
-16
-d/home/geoteo/Pictures
-	dt-wallpapers
+d/home/geoteo/.dotfiles/plank/.config
+	plank
 1
-d/home/geoteo
-	Pictures
-8
-d/home/geoteo/.dotfiles/qtile/.config/qtile
-	..
-0
-d/home/geoteo/.dotfiles/qtile/.config
-	qtile
+d/home/geoteo/.dotfiles/plank/.config/plank
+	dock1
 1
-d/home/geoteo/.dotfiles/qtile
-	..
-0
-d/home/geoteo/.dotfiles
-	vim
-27
-d/home/geoteo/.dotfiles/vim
-	..
-0
-d/home/geoteo/.dotfiles
-	vim
-28
-d/home/geoteo/.dotfiles/vim
-	.vimrc
+d/home/geoteo/.dotfiles/plank/.config/plank/dock1
+	launchers
+1
+d/home/geoteo/.dotfiles/plank/.config/plank/dock1/launchers
+	firefox.dockitem
+1
+d/home/geoteo/.dotfiles/plank/.config/plank/dock1
+	launchers
+1
+d/home/geoteo/.dotfiles/plank/.config/plank
+	dock1
+1
+d/home/geoteo/.dotfiles/plank/.config
+	plank
+1
+d/home/geoteo/.dotfiles/plank
+	.local
 2
-d/home/geoteo/Documents/EserciziJava/GestioneCongresso
-	Congresso.java
+d/home/geoteo/.dotfiles/plank/.local
+	share
+1
+d/home/geoteo/.dotfiles/plank/.local/share
+	plank
+1
+d/home/geoteo/.dotfiles/plank/.local/share/plank
+	themes
+1
+d/home/geoteo/.dotfiles/plank/.local/share/plank/themes
+	Dracula
+1
+d/home/geoteo/.dotfiles/plank/.local/share/plank/themes/Dracula
+	dock.theme
+1
+d/home/geoteo/.dotfiles/plank/.local/share/plank/themes
+	Dracula
+1
+d/home/geoteo/.dotfiles/plank/.local/share/plank
+	themes
+1
+d/home/geoteo/.dotfiles/plank/.local/share
+	plank
+1
+d/home/geoteo/.dotfiles/plank/.local
+	share
+1
+d/home/geoteo/.dotfiles/plank
+	.local
 2
-d/home/geoteo/Documents/EserciziJava
-	GestioneCongresso
+d/home/geoteo/.dotfiles
+	qutebrowser
+17
+d/home/geoteo/.dotfiles/qutebrowser
+	.config
+1
+d/home/geoteo/.dotfiles/qutebrowser/.config
+	qutebrowser
+1
+d/home/geoteo/.dotfiles/qutebrowser/.config/qutebrowser
+	bookmarks
+1
+d/home/geoteo/.dotfiles/qutebrowser/.config
+	qutebrowser
+1
+d/home/geoteo/.dotfiles/qutebrowser
+	.config
+1
+d/home/geoteo/.dotfiles
+	qutebrowser
+17
+d/home/geoteo
+	.dotfiles
+7
+d/home/geoteo/.dotfiles
+	vifm
+24
+d/home/geoteo/.dotfiles/vifm
+	.config
+1
+d/home/geoteo/.dotfiles/vifm/.config
+	vifm
+1
+d/home/geoteo/.dotfiles/vifm/.config/vifm
+	scripts
+2
+d/home/geoteo/.dotfiles/vifm/.config/vifm/scripts
+	..
+0
+d/home/geoteo/.dotfiles/vifm/.config/vifm
+	colors
+1
+d/home/geoteo/.dotfiles/vifm/.config/vifm/colors
+	..
+0
+d/home/geoteo/.dotfiles/vifm/.config/vifm
+	vifmrc
 5
-d/home/geoteo/Documents
-	ecc19
-4
+d/home/geoteo/.dotfiles/vifm/.config
+	vifm
+1
+d/home/geoteo/.dotfiles/vifm
+	.config
+1
+d/home/geoteo/.dotfiles
+	qutebrowser
+18
+d/home/geoteo/.dotfiles/qutebrowser
+	.config
+1
+d/home/geoteo/.dotfiles/qutebrowser/.config
+	qutebrowser
+1
+d/home/geoteo/.dotfiles/qutebrowser
+	.config
+1
+d/home/geoteo/.dotfiles
+	sxiv
+21
 d/home/geoteo
-	Documents
-4
+	.dotfiles
+7
 d/home
 	geoteo
 1
@@ -289,338 +262,365 @@ d/home/geoteo
 	Documents
 2
 d/home/geoteo/Documents
-	EserciziJava
-1
-d/home/geoteo/Documents/EserciziJava
-	GestioneCongresso
-3
-d/home/geoteo/Documents/EserciziJava/GestioneCongresso
-	input.txt
-6
-d/home/geoteo/Documents/EserciziJava
-	GestioneCongresso
-3
-d/home/geoteo/.dotfiles/nvim/.config/nvim
-	colors
-2
-d/home/geoteo/Documents/java20/assignment11
-	input.txt
-6
-d/home/geoteo/.dotfiles/nvim/.config/nvim
-	colors
-0
-d/home/geoteo/Documents/java20/assignment11
-	Congresso.java
-2
-d/home/geoteo/Desktop
+	messy
+12
+d/home/geoteo/Documents/messy
+	gitconfig
+4
+d/home/geoteo/Documents/messy/gitconfig
 	..
 0
-d/home/geoteo/.dotfiles/nvim/.config/nvim
-	undodir
+d/home/geoteo/Documents/messy
+	gitconfig
 5
+d/home/geoteo/Documents/messy/gitconfig
+	.gitconfig
+1
+d/home/geoteo/Documents/messy
+	gitconfig
+5
+d/home/geoteo/Documents
+	messy
+12
+d/home/geoteo/Documents/messy
+	qutebrowser
+8
+d/home/geoteo/Documents
+	pystuff
+13
+d/home/geoteo/Documents/pystuff
+	..
+0
+d/home/geoteo/Documents
+	pystuff
+13
+d/home/geoteo
+	.dotfiles
+7
+d/home/geoteo/.dotfiles
+	ranger
+19
+d/home/geoteo/.dotfiles/ranger
+	README.md
+2
+d/home/geoteo/.dotfiles/qtile
+	.config
+1
+d/home/geoteo/.dotfiles
+	qtile
+17
+d/home/geoteo/.dotfiles/qtile
+	README.md
+2
+d/home/geoteo/.dotfiles
+	ranger
+19
+d/home/geoteo/.dotfiles/ranger
+	README.md
+2
 d
 
 # Right window history (oldest to newest):
-D/home/geoteo/.config/xfce4/xfconf/xfce-perchannel-xml
-	..
-0
-D/home/geoteo/.config/xfce4/xfconf
-	xfce-perchannel-xml
+D/home
+	geoteo
 1
-D/home/geoteo/.config/xfce4
-	xfwm4
-6
-D/home/geoteo/.config/xfce4/xfwm4
+D/home/geoteo
+	.unused
+14
+D/home/geoteo/.unused
+	nvim
+7
+D/home/geoteo/.unused/nvim
+	.config
+1
+D/home/geoteo/.unused/nvim/.config
+	nvim
+1
+D/home/geoteo/.unused/nvim/.config/nvim
+	autoload
+1
+D/home/geoteo/.unused/nvim/.config/nvim/autoload
+	lightline
+2
+D/home/geoteo/.unused/nvim/.config/nvim/autoload/lightline
+	colorscheme
+1
+D/home/geoteo/.unused/nvim/.config/nvim/autoload/lightline/colorscheme
 	..
 0
-D/home/geoteo/.config/xfce4
-	xfwm4
+D/home/geoteo/.unused/nvim/.config/nvim/autoload/lightline
+	colorscheme
+1
+D/home/geoteo/.unused/nvim/.config/nvim/autoload
+	lightline
+2
+D/home/geoteo/.unused/nvim/.config/nvim
+	autoload
+1
+D/home/geoteo/.unused/nvim/.config/nvim/autoload
+	lightline
+2
+D/home/geoteo/.unused/nvim/.config/nvim
+	autoload
+1
+D/home/geoteo/.unused/nvim/.config/nvim/autoload
+	superbar.vim
 5
-D/home/geoteo/.config
-	xfce4
-23
-D/home/geoteo/.config/xfce4
-	Verve
+D/home/geoteo/.unused/nvim/.config/nvim
+	autoload
 1
-D/home/geoteo/.config
-	xfce4
-24
-D/home/geoteo/.config/xfce4
-	xfwm4
-6
-D/home/geoteo/.config
-	..
-0
+D/home/geoteo/.unused/nvim/.config
+	nvim
+1
+D/home/geoteo/.unused/nvim
+	.config
+1
+D/home/geoteo/.unused
+	bin
+2
+D/home/geoteo/.unused/bin
+	bin
+2
+D/home/geoteo/.unused/bin/bin
+	check-update
+2
+D/home/geoteo/.unused/bin
+	bin
+2
+D/home/geoteo/.unused
+	bin
+2
 D/home/geoteo
-	.dotfiles
+	.unused
+14
+D/home/geoteo/.unused
+	nvim
 7
-D/home/geoteo/.dotfiles
-	nvim
-16
-D/home/geoteo/.dotfiles/nvim
+D/home/geoteo/.unused/nvim
 	.config
 1
-D/home/geoteo/.dotfiles/nvim/.config
+D/home/geoteo/.unused/nvim/.config
 	nvim
 1
-D/home/geoteo/.dotfiles/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload
-	airline
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload/airline
-	themes
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload
-	airline
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload
-	lightline
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.dotfiles/nvim/.config
-	nvim
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload
-	plug.vim
-2
-D/home/geoteo/.dotfiles/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload
-	plug.vim
-2
-D/home/geoteo/.dotfiles/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.dotfiles/nvim/.config
-	nvim
-1
-D/home/geoteo/.dotfiles/nvim
-	.config
-1
-D/home/geoteo/.dotfiles
-	nvim
-16
-D/home/geoteo
-	Downloads
-29
-D/home/geoteo/Downloads
+D/home/geoteo/.unused/nvim/.config/nvim
 	..
 0
-D/home/geoteo
-	.dotfiles
+D/home/geoteo/.unused/nvim/.config
+	nvim
+1
+D/home/geoteo/.unused/nvim
+	.config
+1
+D/home/geoteo/.unused
+	nvim
 7
-D/home/geoteo/.dotfiles
-	nvim
-16
-D/home/geoteo/.dotfiles/nvim
+D/home/geoteo/.unused/nvim
 	.config
 1
-D/home/geoteo/.dotfiles/nvim/.config
+D/home/geoteo/.unused/nvim/.config
 	nvim
 1
-D/home/geoteo/.dotfiles/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload
-	lightline
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload/lightline
-	colorscheme
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload/lightline/colorscheme
-	..
-0
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload/lightline
-	colorscheme
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload
-	lightline
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload
-	airline
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload/airline
-	themes
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload/airline/themes
-	minimalist.vim
+D/home/geoteo/.unused/nvim/.config/nvim
+	colors
 2
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload/airline
-	themes
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload
-	airline
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload
-	airline
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload
-	repeat.vim
-3
-D/home/geoteo/.dotfiles/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.dotfiles/nvim/.config/nvim/autoload
-	..
-0
-D/home/geoteo/.dotfiles/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.dotfiles/nvim/.config
+D/home/geoteo/.unused/nvim/.config
 	nvim
 1
-D/home/geoteo/.dotfiles/nvim
+D/home/geoteo/.unused/nvim
 	.config
 1
-D/home/geoteo/.dotfiles
+D/home/geoteo/.unused
+	nvim
+7
+D/home/geoteo
+	.unused
+14
+D/home
+	geoteo
+1
+D/home/geoteo
+	.config
+4
+D/home/geoteo/.config
+	..
+0
+D/home/geoteo
+	.unused
+4
+D/home/geoteo/.unused
 	kupfer
-12
+11
+D/home/geoteo
+	.unused
+4
+D/home/geoteo/.unused
+	bin
+2
+D/home/geoteo/.unused/bin
+	bin
+2
+D/home/geoteo/.unused/bin/bin
+	devour
+4
+D/home/geoteo/.unused/bin
+	bin
+2
+D/home/geoteo/.unused
+	broot
+2
+D/home/geoteo/.unused/broot
+	.config
+1
+D/home/geoteo/.unused/broot/.config
+	broot
+1
+D/home/geoteo/.unused/broot/.config/broot
+	launcher
+1
+D/home/geoteo/.unused/broot/.config/broot/launcher
+	bash
+1
+D/home/geoteo/.unused/broot/.config/broot/launcher/bash
+	br
+1
+D/home/geoteo/.unused/broot/.config/broot/launcher
+	bash
+1
+D/home/geoteo/.unused/broot/.config/broot
+	launcher
+1
+D/home/geoteo/.unused/broot/.config
+	broot
+1
+D/home/geoteo/.unused/broot
+	.config
+1
+D/home/geoteo/.unused
+	dunst
+5
+D/home/geoteo/.unused/dunst
+	.config
+1
+D/home/geoteo/.unused/dunst/.config
+	dunst
+1
+D/home/geoteo/.unused/dunst/.config/dunst
+	..
+0
+D/home/geoteo/.unused/dunst/.config
+	dunst
+1
+D/home/geoteo/.unused/dunst
+	.config
+1
+D/home/geoteo/.unused
+	picom
+8
+D/home/geoteo/.unused/picom
+	.config
+1
+D/home/geoteo/.unused/picom/.config
+	picom
+1
+D/home/geoteo/.unused/picom/.config/picom
+	picom.conf
+1
+D/home/geoteo/.unused/picom/.config
+	picom
+1
+D/home/geoteo/.unused/picom
+	.config
+1
+D/home/geoteo/.unused
+	gitconfig
+6
+D/home/geoteo/.unused/gitconfig
+	.gitconfig
+1
+D/home/geoteo/.unused
+	gitconfig
+6
+D/home/geoteo
+	.unused
+4
+D/home/geoteo/.unused
+	gtksourceview
+7
+D/home/geoteo/.unused/gtksourceview
+	.local
+1
+D/home/geoteo/.unused/gtksourceview/.local
+	share
+1
+D/home/geoteo/.unused/gtksourceview/.local/share
+	gtksourceview-3.0
+1
+D/home/geoteo/.unused/gtksourceview/.local/share/gtksourceview-3.0
+	styles
+1
+D/home/geoteo/.unused/gtksourceview/.local/share/gtksourceview-3.0/styles
+	dracula.xml
+1
+D/home/geoteo/.unused/gtksourceview/.local/share/gtksourceview-3.0
+	styles
+1
+D/home/geoteo/.unused/gtksourceview/.local/share
+	gtksourceview-3.0
+1
+D/home/geoteo/.unused/gtksourceview/.local
+	share
+1
+D/home/geoteo/.unused/gtksourceview
+	.local
+1
+D/home/geoteo/.unused
+	xfce4
+9
+D/home/geoteo/.unused/xfce4
+	.config
+1
+D/home/geoteo/.unused/xfce4/.config
+	xfce4
+1
+D/home/geoteo/.unused/xfce4/.config/xfce4
+	xfce4-screenshooter
+9
+D/home/geoteo/.unused/xfce4/.config
+	xfce4
+1
+D/home/geoteo/.unused/xfce4
+	.config
+1
+D/home/geoteo/.unused
+	dunst
+3
+D/home/geoteo
+	.unused
+4
+D/home/geoteo/.unused
+	README.md
+11
+D/home/geoteo
+	.unused
+4
+D/home
+	geoteo
+1
 D/home/geoteo
 	.dotfiles
 7
 D/home/geoteo/.dotfiles
-	bin
-5
-D/home/geoteo/.dotfiles/bin
-	bin
-2
-D/home/geoteo/.dotfiles/bin/bin
-	vifmrun
-16
-D/home/geoteo/.dotfiles/bin
-	bin
-2
-D/home/geoteo/.dotfiles
-	bin
-5
-D/home/geoteo
-	Pictures
-34
-D/home/geoteo/Pictures
-	wallpapers
-2
-D/home/geoteo/Pictures/wallpapers
-	pic_22.jpg
-32
-D/home/geoteo/Pictures
-	wallpapers
-2
-D/home/geoteo
-	Pictures
-34
-D/home/geoteo/Pictures
-	wallpapers
-2
-D/home/geoteo/Pictures/wallpapers
-	..
-0
-D/home/geoteo/Pictures
-	wallpapers
-2
+	sxiv
+21
 D/home/geoteo
 	.unused
 22
 D/home/geoteo/.unused
-	emacs
-6
-D/home/geoteo/.unused/emacs
-	.emacs
+	xfce4
+9
+D/home/geoteo/.unused/xfce4
+	README.md
 2
-D/home/geoteo/.unused
-	emacs
-6
-D/home/geoteo
-	.unused
-22
-D/home/geoteo/.unused
-	nvim
-7
-D/home/geoteo/.unused/nvim
-	.config
-1
-D/home/geoteo/.unused/nvim/.config
-	nvim
-1
-D/home/geoteo/.unused/nvim/.config/nvim
-	init.vim
-2
-D/home/geoteo/.unused/nvim/.config
-	nvim
-1
-D/home/geoteo/.unused/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.unused/nvim/.config
-	nvim
-1
-D/home/geoteo/.unused/nvim
-	.config
-1
-D/home/geoteo/.unused/nvim/.config
-	nvim
-1
-D/home/geoteo/.unused/nvim
-	.config
-1
-D/home/geoteo/.unused
-	bin
-2
-D/home/geoteo
-	.config
-5
-D/home/geoteo/.config
-	..
-0
-D/home/geoteo
-	.dotfiles
-7
-D/home/geoteo/.dotfiles
-	..
-0
-D/home/geoteo
-	Documents
-2
-D/home/geoteo/Documents
-	ecc20
-5
-D/home/geoteo/Documents/ecc20
-	..
-0
-D/home/geoteo/Documents
-	java20
-7
-D/home/geoteo/Documents/java20
-	assignment11
-12
-D/home/geoteo/Documents/java20/assignment11
-	..
-0
-D/home/geoteo/Documents/java20
-	assignment11
-12
-D/home/geoteo/Documents/java20/assignment11
-	Client.java
-1
 D
 
 # Command line history (oldest to newest):
@@ -631,21 +631,53 @@ D
 :!mkdir -p autoload
 :!mkdir airline
 :!mv bloat_init.vim init.vim
-:q
 :mkdir assignment11
+:q
+:help s
+:mkdir -p gtksourceview/.local/share
+:mkdir bin
+:nvim 
+:nvim fff.1
+:mkdir xmodmap
+:touch speed
+:chmod 755 speed
+:chmod 755 
+:tabclose
+:sh
+:shell
 
 # Search history (oldest to newest):
 /vim
+/un
+/zshrc
+/dotfile
+/dot
+/nvim
+/dotfil
+/pictu
+/unused
 
 # Prompt history (oldest to newest):
-pintro
 pkeymappings_logo
 passignment11
+pinit_bloat.vim
+pintro
+pstartscreen
+pbloat.vim
+pDesert2.jpg
+pstylesk
+pstyles
+pgtksourceview-4.0
+pgtksourceview-4
+ptheme.lua
+px-apps
+pxed
 
 # Local filter history (oldest to newest):
 
 # Registers:
-""/home/geoteo/Documents/EserciziJava/GestioneCongresso
+""/home/geoteo/.unused/LICENSE
+""/home/geoteo/.unused/README.md
 
 # Directory stack (oldest to newest):
 
@@ -674,14 +706,72 @@ t/home/geoteo/.local/share/vifm/Trash/000_GestioneCongresso
 	/home/geoteo/Documents/java20/assignment11/GestioneCongresso
 t/home/geoteo/.local/share/vifm/Trash/000_assignment11
 	/home/geoteo/Documents/java20/assignment11
+t/home/geoteo/.local/share/vifm/Trash/000_keymappings_logo
+	/home/geoteo/.unused/nvim/.config/nvim/keymappings_logo
+t/home/geoteo/.local/share/vifm/Trash/000_keymappings_nologo
+	/home/geoteo/.unused/nvim/.config/nvim/keymappings_nologo
+t/home/geoteo/.local/share/vifm/Trash/000_styles
+	/home/geoteo/.local/share/gtksourceview-3.0/styles
+t/home/geoteo/.local/share/vifm/Trash/000_gummi
+	/home/geoteo/.local/share/gummi
+t/home/geoteo/.local/share/vifm/Trash/000_otb-dotfiles
+	/home/geoteo/Pictures/otb-dotfiles
+t/home/geoteo/.local/share/vifm/Trash/000_~
+	/home/geoteo/~
+t/home/geoteo/.local/share/vifm/Trash/000_newdir
+	/home/geoteo/newdir
+t/home/geoteo/.local/share/vifm/Trash/000_startscreen
+	/home/geoteo/.dotfiles/vim/.vim/startscreen
+t/home/geoteo/.local/share/vifm/Trash/000_fff.1
+	/home/geoteo/.dotfiles/bin/.local/share/man/man1/fff.1
+t/home/geoteo/.local/share/vifm/Trash/000_fff.vim
+	/home/geoteo/.dotfiles/nvim/.config/nvim/autoload/fff.vim
+t/home/geoteo/.local/share/vifm/Trash/000_fff
+	/home/geoteo/.unused/bin/bin/fff
+t/home/geoteo/.local/share/vifm/Trash/000_plug.vim
+	/home/geoteo/.unused/nvim/.config/nvim/autoload/plug.vim
+t/home/geoteo/.local/share/vifm/Trash/000_root.vim
+	/home/geoteo/.unused/nvim/.config/nvim/autoload/root.vim
+t/home/geoteo/.local/share/vifm/Trash/000_switch.vim
+	/home/geoteo/.unused/nvim/.config/nvim/autoload/switch.vim
+t/home/geoteo/.local/share/vifm/Trash/000_utility.vim
+	/home/geoteo/.unused/nvim/.config/nvim/autoload/utility.vim
+t/home/geoteo/.local/share/vifm/Trash/001_startscreen
+	/home/geoteo/.unused/nvim/.config/nvim/startscreen
+t/home/geoteo/.local/share/vifm/Trash/000_dracula.vim
+	/home/geoteo/.unused/nvim/.config/nvim/colors/dracula.vim
+t/home/geoteo/.local/share/vifm/Trash/000_dracula16.vim
+	/home/geoteo/.unused/nvim/.config/nvim/colors/dracula16.vim
+t/home/geoteo/.local/share/vifm/Trash/000_bbbb
+	/home/geoteo/bbbb
+t/home/geoteo/.local/share/vifm/Trash/000_dddd
+	/home/geoteo/dddd
+t/home/geoteo/.local/share/vifm/Trash/000_desert-dracula.vim
+	/home/geoteo/.dotfiles/nvim/.config/nvim/colors/desert-dracula.vim
+t/home/geoteo/.local/share/vifm/Trash/000_peaksea.vim
+	/home/geoteo/.dotfiles/nvim/.config/nvim/colors/peaksea.vim
+t/home/geoteo/.local/share/vifm/Trash/000_inkpot.vim
+	/home/geoteo/.dotfiles/nvim/.config/nvim/colors/inkpot.vim
+t/home/geoteo/.local/share/vifm/Trash/000_jinx.vim
+	/home/geoteo/.dotfiles/nvim/.config/nvim/colors/jinx.vim
+t/home/geoteo/.local/share/vifm/Trash/000_nord.vim
+	/home/geoteo/.dotfiles/nvim/.config/nvim/colors/nord.vim
+t/home/geoteo/.local/share/vifm/Trash/000_one-dark.vim
+	/home/geoteo/.dotfiles/nvim/.config/nvim/colors/one-dark.vim
+t/home/geoteo/.local/share/vifm/Trash/000_vem.vim
+	/home/geoteo/.dotfiles/nvim/.config/nvim/colors/vem.vim
+t/home/geoteo/.local/share/vifm/Trash/000_gv.vim
+	/home/geoteo/.dotfiles/nvim/.config/nvim/autoload/gv.vim
+t/home/geoteo/.local/share/vifm/Trash/000_lightline
+	/home/geoteo/.dotfiles/nvim/.config/nvim/autoload/lightline
 
 # State:
 f
 i1
-[.1
+[.0
 [F
 F
 I1
-].1
+].0
 ]F
 s0

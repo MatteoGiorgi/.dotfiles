@@ -84,7 +84,6 @@ keys = [
     Key([mod], "q", lazy.spawn("xkill")),
     Key([mod], "u", lazy.spawn("uxterm")),
     Key([mod], "i", lazy.spawn("lxterminal")),
-    Key([mod], "o", lazy.spawn("xfce4-terminal")),
     Key([mod], "s", lazy.spawn("xfce4-settings-manager")),
     Key([mod], "m", lazy.spawn("xterm -e mocp")),
     Key([mod], "p", lazy.spawncmd(prompt='%')),
@@ -152,6 +151,7 @@ layout_theme = dict(
 
 layouts = [
     layout.MonadTall(name='Tall', **layout_theme),
+    layout.Floating(name='Flot', **layout_theme),
     layout.MonadWide(name='Wide', **layout_theme),
     layout.Max(name='Maxi'),
 
@@ -166,7 +166,6 @@ layouts = [
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),
     # layout.Columns(),
-    # layout.Floating(),
     # layout.Matrix(),
     # layout.RatioTile(),
     # layout.Stack(num_stacks=2),
@@ -224,7 +223,7 @@ screens = [
                     font='mononoki nerd font Bold',
                     fmt='{:.50}',
                     for_current_screen=True,
-                    show_state=False,
+                    show_state=True,
                     mouse_callbacks={
                         'Button1':
                         lambda qtile: qtile.cmd_spawn('rofi-run -w')
@@ -235,7 +234,7 @@ screens = [
                     background=color_black,
                     foreground=color_white,
                     max_chars=10,
-                    play_color=color_green,
+                    play_color=color_yellow,
                     padding=12
                 ),
                 widget.TextBox(
@@ -285,7 +284,8 @@ screens = [
                     background=color_white,
                     foreground=color_black,
                     configured_keyboards=['it', 'us', 'gb'],
-                    display_map={'it': 'Ita', 'us': 'Usa', 'gb': 'Gbr'}
+                    display_map={'it': 'Ita', 'us': 'Usa', 'gb': 'Gbr'},
+                    option='caps:swapescape'
                 ),
                 widget.TextBox(
                     background=color_white,
@@ -294,6 +294,10 @@ screens = [
                     text='',
                     padding=0
                 ),
+                widget.Spacer(
+                    background=color_blue,
+                    length=3
+                ),
                 widget.Systray(
                     background=color_blue,
                     foreground=color_white,
@@ -301,7 +305,7 @@ screens = [
                 ),
                 widget.Spacer(
                     background=color_blue,
-                    length=6
+                    length=8
                 ),
                 widget.TextBox(
                     background=color_blue,
@@ -312,7 +316,7 @@ screens = [
                 ),
                 widget.Spacer(
                     background=color_lightpurple,
-                    length=6
+                    length=2
                 ),
                 widget.CurrentLayout(
                     font='mononoki nerd font Bold',

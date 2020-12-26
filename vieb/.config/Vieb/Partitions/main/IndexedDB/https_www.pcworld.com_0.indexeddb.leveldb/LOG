@@ -1,5 +1,0 @@
-2020/12/08-12:59:18.208 112d Reusing MANIFEST /home/geoteo/.config/Vieb/Partitions/main/IndexedDB/https_www.pcworld.com_0.indexeddb.leveldb/MANIFEST-000001
-2020/12/08-12:59:50.218 1164 Level-0 table #5: started
-2020/12/08-12:59:50.224 1164 Level-0 table #5: 819 bytes OK
-2020/12/08-12:59:50.229 1164 Delete type=0 #3
-2020/12/08-12:59:50.229 1164 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

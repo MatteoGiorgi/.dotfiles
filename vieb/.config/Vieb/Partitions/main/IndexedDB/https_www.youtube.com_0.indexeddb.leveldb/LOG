@@ -1,5 +1,0 @@
-2020/12/09-02:04:59.187 27000 Reusing MANIFEST /home/geoteo/.config/Vieb/Partitions/main/IndexedDB/https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
-2020/12/09-02:44:24.201 27256 Level-0 table #5: started
-2020/12/09-02:44:24.206 27256 Level-0 table #5: 4074 bytes OK
-2020/12/09-02:44:24.209 27256 Delete type=0 #3
-2020/12/09-02:44:24.209 27256 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

@@ -1,9 +1,0 @@
-[Scheme]
-Name=Dracula
-ColorForeground=#F8F8F2
-ColorBackground=#282A36
-ColorCursor=#F8F8F2
-TabActivityColor=#282A36
-ColorPalette=#000000;#FF5555;#50FA7B;#F1FA8C;#BD93F9;#FF79C6;#8BE9FD;#BFBFBF;#4D4D4D;#FF6E67;#5AF78E;#F4F99D;#CAA9FA;#FF92D0;#9AEDFE;#E6E6E6
-ColorBold=#F8F8F2
-ColorBoldUseDefault=FALSE
