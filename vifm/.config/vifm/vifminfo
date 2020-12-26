@@ -9,7 +9,7 @@
 # Bookmarks:
 
 # TUI:
-al
+ar
 q0
 v2
 ov
@@ -18,27 +18,6 @@ l2
 r2
 
 # Left window history (oldest to newest):
-d/home/geoteo/.dotfiles/bin
-	.local
-1
-d/home/geoteo/.dotfiles
-	bin
-5
-d/home/geoteo/.dotfiles/bin
-	.local
-1
-d/home/geoteo/.dotfiles/bin/.local
-	share
-1
-d/home/geoteo/.dotfiles/bin/.local/share
-	man
-1
-d/home/geoteo/.dotfiles/bin/.local/share/man
-	man1
-1
-d/home/geoteo/.dotfiles/bin/.local/share/man/man1
-	shfm.1
-1
 d/home/geoteo/.dotfiles/bin/.local/share/man
 	man1
 1
@@ -316,50 +295,32 @@ d/home/geoteo/.dotfiles
 	ranger
 19
 d/home/geoteo/.dotfiles/ranger
-	README.md
-2
+	.config
+1
+d/home/geoteo/.dotfiles
+	ranger
+19
+d/home/geoteo
+	.dotfiles
+7
+d/home/geoteo/.dotfiles
+	qutebrowser
+18
+d/home/geoteo/.dotfiles/qutebrowser
+	.config
+1
+d/home/geoteo/.dotfiles/qutebrowser/.config
+	qutebrowser
+1
+d/home/geoteo/.dotfiles/qutebrowser
+	.config
+1
+d/home/geoteo/.dotfiles
+	qutebrowser
+18
 d
 
 # Right window history (oldest to newest):
-D/home
-	geoteo
-1
-D/home/geoteo
-	.unused
-14
-D/home/geoteo/.unused
-	nvim
-7
-D/home/geoteo/.unused/nvim
-	.config
-1
-D/home/geoteo/.unused/nvim/.config
-	nvim
-1
-D/home/geoteo/.unused/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.unused/nvim/.config/nvim/autoload
-	lightline
-2
-D/home/geoteo/.unused/nvim/.config/nvim/autoload/lightline
-	colorscheme
-1
-D/home/geoteo/.unused/nvim/.config/nvim/autoload/lightline/colorscheme
-	..
-0
-D/home/geoteo/.unused/nvim/.config/nvim/autoload/lightline
-	colorscheme
-1
-D/home/geoteo/.unused/nvim/.config/nvim/autoload
-	lightline
-2
-D/home/geoteo/.unused/nvim/.config/nvim
-	autoload
-1
-D/home/geoteo/.unused/nvim/.config/nvim/autoload
-	lightline
-2
 D/home/geoteo/.unused/nvim/.config/nvim
 	autoload
 1
@@ -621,6 +582,45 @@ D/home/geoteo/.unused
 D/home/geoteo/.unused/xfce4
 	README.md
 2
+D/home/geoteo/.unused
+	xfce4
+9
+D/home/geoteo
+	.dotfiles
+7
+D/home/geoteo/.dotfiles
+	qutebrowser
+18
+D/home/geoteo/.dotfiles/qutebrowser
+	..
+0
+D/home/geoteo/.dotfiles
+	qutebrowser
+18
+D/home/geoteo/.dotfiles/qutebrowser
+	.config
+1
+D/home/geoteo/.dotfiles/qutebrowser/.config
+	qutebrowser
+1
+D/home/geoteo/.dotfiles/qutebrowser/.config/qutebrowser
+	bookmarks
+1
+D/home/geoteo/.dotfiles/qutebrowser/.config/qutebrowser/bookmarks
+	..
+0
+D/home/geoteo/.dotfiles/qutebrowser/.config/qutebrowser
+	bookmarks
+1
+D/home/geoteo/.dotfiles/qutebrowser/.config
+	qutebrowser
+1
+D/home/geoteo/.dotfiles/qutebrowser
+	.config
+1
+D/home/geoteo/.dotfiles
+	qutebrowser
+18
 D
 
 # Command line history (oldest to newest):
