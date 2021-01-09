@@ -65,7 +65,7 @@ highlight CursorLineNr guibg=NONE guifg=#F1FA8C
 highlight CursorLine  guibg=#2A2C38
 highlight ColorColumn guibg=#2A2C38
 highlight VertSplit   guibg=#3A3C4E guifg=#3A3C4E
-highlight StatusLine  guibg=#3A3C4E guifg=#CAA9FA "#62D6E8
+highlight StatusLine  guibg=#3A3C4E guifg=#BFBFBF
 
 
 
@@ -129,16 +129,16 @@ nnoremap <leader>q :quit<CR>
 nnoremap <leader>z :write<CR>
 nnoremap <leader>e :enew<CR>
 nnoremap <leader>d :bdelete<CR>
-nnoremap <leader>f :Explore<CR>
+
+nnoremap <leader><Space> :Explore<CR>
+nmap <leader><Tab> :bnext<CR><C-g>
 
 nmap <C-p> :-r!xclip -o -sel clip<CR>
 vmap <C-y> :!xclip -f -sel clip<CR>
-map <leader>u <esc>gx
+map  <leader>u <esc>gx
+
 vmap <Tab> >gv
 vmap <S-Tab> <gv
-
-nmap <silent><Tab> :bnext<CR><C-g>
-nmap <silent><Backspace> :bprev<CR><C-g>
 
 nnoremap <leader>r :%s///gc<Left><Left><Left>
 xnoremap <leader>r :s///gc<Left><Left><Left>

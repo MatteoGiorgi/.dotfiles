@@ -1,6 +1,7 @@
-highlight User1 guibg=#626483 guifg=#282936 gui=BOLD
-highlight User2 guibg=#3A3C4E guifg=#626483 gui=BOLD
-highlight User3 guibg=#3A3C4E guifg=#BFBFBF gui=BOLD
+highlight User1 guibg=#626483 guifg=#282936
+highlight User2 guibg=#3A3C4E guifg=#626483
+highlight User3 guibg=#3A3C4E guifg=#BFBFBF
+highlight User4 guibg=#3A3C4E guifg=#F1FA8C
 
 function! superbar#ActiveStatusLine()
     let l:statusline  = "%1*"
@@ -10,9 +11,11 @@ function! superbar#ActiveStatusLine()
     let l:statusline .= "\ "
     let l:statusline .= "%3*"
     let l:statusline .= "%f"
-    let l:statusline .= "%{&modified?'\ \ ':''}"
+    let l:statusline .= "%4*"
+    let l:statusline .= "%{&modified?'\ \ ':''}"
+    let l:statusline .= "%3*"
+    let l:statusline .= "%{&readonly?'\ \ ':''}"
     let l:statusline .= "%="
-    let l:statusline .= "%{&readonly?'\ ':''}"
     let l:statusline .= "%{&filetype!=#''?&filetype:'none'}"
     let l:statusline .= "%(\ \%{(&bomb\|\|&fileencoding!~#'^$\\\|utf-8'?'\ '.&fileencoding.(&bomb?'-bom':''):'').(&fileformat!=#(has('win32')?'dos':'unix')?'\ '.&fileformat:'')}%)"
     let l:statusline .= "\ "
@@ -24,10 +27,12 @@ endfunction
 
 function! superbar#InactiveStatusLine()
     let l:statusline  = "%2*"
-    let l:statusline .= "\ %f"
-    let l:statusline .= "%{&modified?'\ \ ':''}"
+    let l:statusline .= "\ "
+    let l:statusline .= "%f"
+    let l:statusline .= "%{&modified?'\ \ ':''}"
+    let l:statusline .= "%{&readonly?'\ \ ':''}"
     let l:statusline .= "%="
-    let l:statusline .= "%{&readonly?'':''}"
+
     let l:statusline .= "\ "
     return l:statusline
 endfunction
@@ -40,7 +45,7 @@ endfunction
 
 function! superbar#StatuslineGit()
   let l:branchname = superbar#GitBranch()
-  return strlen(l:branchname) > 0?'   '.l:branchname.'':'  '
+  return strlen(l:branchname) > 0?'   '.l:branchname.'':'   '
 endfunction
 
 

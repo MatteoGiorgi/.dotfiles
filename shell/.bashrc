@@ -74,7 +74,6 @@ alias grep='grep --color=auto'
 alias vimpager="vimpager -u ~/.vimpagerrc"
 alias vifm="vifmrun"
 alias ranger='ranger_jump'
-alias qq='shfm_jump'
 
 # Creates an archive (*.tar.gz) from given directory.
 function maketar()
@@ -121,10 +120,11 @@ function extract
     fi
 }
 
-# Change directory exiting from shfm
-shfm_jump() {
-        cd "$(command shfm "$@")"
-    }
+# Change directory exiting from AwesomeFM (shfm)
+afm ()
+{
+    cd "$(command shfm "$@")"
+}
 
 # Change directory exiting from ranger
 ranger_jump ()
@@ -165,8 +165,8 @@ mcd ()
 # set PATH so it includes user's private bin directories
 # (do I have to "export" PATH and PROMPT?)
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin"
-export PAGER="vimpager"
-export BAT_PAGER="vimpager"
+export PAGER="most"      # vimpager
+export BAT_PAGER="most"  # vimpager
 export VISUAL="nvim"
 export EDITOR="nvim"
 export TERM="xterm-256color"
@@ -178,6 +178,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 export BAT_THEME="base16"
 export MICRO_TRUECOLOR=1
+export SHFM_OPENER="shfm-opener"
 
 export PS1="\[\033[38;5;12m\][\[$(tput sgr0)\]\[\033[38;5;10m\]\u\[$(tput sgr0)\]\[\033[38;5;12m\]@\[$(tput sgr0)\]\[\033[38;5;7m\]\h\[$(tput sgr0)\]\[\033[38;5;12m\]]\[$(tput sgr0)\]\[\033[38;5;15m\]: \[$(tput sgr0)\]\[\033[38;5;7m\]\w\[$(tput sgr0)\]\[\033[38;5;12m\]>\[$(tput sgr0)\]\[\033[38;5;10m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
 

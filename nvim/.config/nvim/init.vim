@@ -129,16 +129,16 @@ endif
 
 highlight LineNr       guibg=NONE
 highlight SignColumn   guibg=NONE
-highlight CursorLineNr guibg=NONE    guifg=#F1FA8C
-highlight StatusLine   guibg=#3A3C4E guifg=#BFBFBF
+highlight CursorLineNr guibg=NONE guifg=#F1FA8C
 
 highlight CursorLine  guibg=#2A2C38
 highlight ColorColumn guibg=#2A2C38
 highlight VertSplit   guibg=#3A3C4E guifg=#3A3C4E
 
-highlight BufTabLineCurrent guibg=#3A3C4E guifg=#BFBFBF gui=BOLD
-highlight BufTabLineActive  guibg=#3A3C4E guifg=#BFBFBF gui=BOLD
-highlight BufTabLineHidden  guibg=#3A3C4E guifg=#626483 gui=BOLD
+highlight StatusLine        guibg=#3A3C4E guifg=#BFBFBF
+highlight BufTabLineCurrent guibg=#3A3C4E guifg=#BFBFBF
+highlight BufTabLineActive  guibg=#3A3C4E guifg=#BFBFBF
+highlight BufTabLineHidden  guibg=#3A3C4E guifg=#626483
 highlight BufTabLineFill    guibg=#3A3C4E
 
 
@@ -248,7 +248,7 @@ let g:fzf_colors = {
 
 "VIFM___________________________________________________________________________
 
-let g:vifm = '~/bin/vifmrun'
+let g:vifm = '$HOME/bin/vifmrun'
 let g:vifm_replace_netrw = 1
 let g:vifm_replace_netrw_cmd = 1
 
@@ -320,7 +320,7 @@ let g:vimwiki_list = [{
 
 "KEYMAPPINGS____________________________________________________________________
 
-nnoremap <silent><M-Return> :!cat ~/.config/nvim/startscreen<CR>
+nnoremap <M-Return> :Shortcuts<CR>
 
 
 " Generics
@@ -440,3 +440,4 @@ command! -nargs=1 ChangeRoot call switch#change_root(<f-args>)
 command! ChangeRootCurrent call switch#change_root_current()
 command! SwitchDir call switch#switch_dir()
 command! ToggleAccent call utility#ToggleAccent()
+command! Shortcuts :!cat ~/.config/nvim/startscreen

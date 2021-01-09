@@ -1,5 +1,7 @@
 #!/bin/sh
 
+SHFM_OPENER="shfm-opener"
+
 esc() {
     case $1 in
         # vt100 (IL is vt102) (DECTCEM is vt520)

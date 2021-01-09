@@ -11,21 +11,27 @@ usage()
 
  OPTIONS:
 
-     -h,--help          Display this message
+     -h,--help                  Display this message
 
-     -v,--version       Display script version
+     -v,--version               Display script version
 
-     -r,--run           Application launcher
+     -r,--run                   Application launcher
 
-     -w,--window        Switch between windows
+     -d,--dmenu                 Application launcher
 
-     -l,--logout        System logout dialog
+     -w,--window                Switch between windows
 
-     -b,--browser       Browser search by keyword (requires surfraw)
+     -l,--logout                System logout dialog
 
-     -q,--qalculate     Persistant calculator dialog (requires libqalculate)
+     -s,--settings              System settings
 
-     -c,--clipboard     Select previous clipboard entries (requires greenclip)
+     -W,--window-manager        Window manager settings
+
+     -b,--browser               Browser search by keyword (requires surfraw)
+
+     -q,--qalculate             Persistant calculator dialog (requires libqalculate)
+
+     -c,--clipboard             Select previous clipboard entries (requires greenclip)
 
 
   Without any options the run dialog will be opened.
@@ -46,14 +52,20 @@ for arg in "$@"; do
         -r|--run)
             rofi -modi run,drun -show drun -line-padding 4 \
                  -columns 2 -width 50 -padding 50 -hide-scrollbar \
-                 -font "mononoki Nerd Font Bold 11" -terminal xterm \
+                 -font "mononoki Nerd Font 11" -terminal xterm \
                  -show-icons -icon-theme "Papirus-Dark"
+            ;;
+        -d|--dmenu)
+            rofi -modi run,drun -show drun \
+                 -display-run '%' -drun-display-format \"{name}\" \
+                 -display-drun '%' -drun-display-format \"{name}\" \
+                 -hide-scrollbar -config ~/.config/rofi/themes/dmenu.rasi \
+                 -font "mononoki Nerd Font 11" -terminal xterm \
             ;;
         -w|--window)
             rofi -modi window -show window -hide-scrollbar \
-                 -padding 50 -line-padding 4 \
-                 -font "mononoki Nerd Font Bold 11" -terminal xterm \
-                 -show-icons -icon-theme "Papirus-Dark"
+                 -columns 1 -lines 10 -width 30 -padding 50 -line-padding 4 \
+                 -font "mononoki Nerd Font 11" -terminal xterm
             ;;
         -q|--qalculate)
             hash qalc &>/dev/null ||
@@ -84,25 +96,71 @@ for arg in "$@"; do
             ;;
         -l|--logout)
             if grep -q 'exec startx' $HOME/.*profile; then
-                ANS="$(rofi -sep "|" -dmenu -i -p 'System' -width 20 \
-                    -hide-scrollbar -line-padding 4 -padding 20 \
-                    -font "mononoki Nerd Font Bold 11" \
-                    -lines 2 <<< " Reboot| Shutdown")"
-                    # -lines 2 <<< "Reboot|Shutdown")"
+                ANS="$(rofi -sep "|" -dmenu -i -p 'system' -width 20 \
+                    -hide-scrollbar -line-padding 4 -padding 50 \
+                    -font "mononoki Nerd Font 11" \
+                    -lines 3 <<< "  Lock|  Reboot|  Shutdown")"
             else
-                ANS="$(rofi -sep "|" -dmenu -i -p 'System' -width 20 \
-                    -hide-scrollbar -line-padding 4 -padding 20 \
-                    -font "mononoki Nerd Font Bold 11" \
-                    -lines 3 <<< " Logout| Reboot| Shutdown")"
-                    # -lines 3 <<< "Logout|Reboot|Shutdown")"
+                ANS="$(rofi -sep "|" -dmenu -i -p 'system' -width 20 \
+                    -hide-scrollbar -line-padding 4 -padding 50 \
+                    -font "mononoki Nerd Font 11" \
+                    -lines 4 <<< "  Lock|  Logout|  Reboot|  Shutdown")"
             fi
 
             case "$ANS" in
-                #*Lock) i3lock-fancy ;;
+                *Lock) betterlockscreen -l dim ;;
                 *Reboot) systemctl reboot ;;
                 *Shutdown) systemctl -i poweroff ;;
-                *Logout) session-logout || pkill -15 -t tty"$XDG_VTNR" Xorg ;;
+                *Logout) loginctl terminate-session $XDG_SESSION_ID;;
+                # *Logout) session-logout || pkill -15 -t tty"$XDG_VTNR" Xorg ;;
             esac
+            ;;
+        -s|--settings)
+            ANS="$(rofi -sep "|" -dmenu -i -p 'settings' -width 25 \
+                -hide-scrollbar -line-padding 4 -padding 50 \
+                -font "mononoki Nerd Font 11" -columns 1 \
+                -lines 12 <<< "   Apparence|   Wallpapers|   Notifications|   Compositor|   Network|   Bluetooth|   Sound|   Display|   Keyboard|   Mouse|   Power manager|   Printers")"
+
+            case "$ANS" in
+                *Apparence) xfce4-appearance-settings ;;
+                *Wallpapers) nitrogen ;;
+                *Notifications) xfce4-notifyd-config ;;
+                *Compositor) compton-conf ;;
+                *Network) nm-connection-editor ;;
+                *Bluetooth) blueman-manager ;;
+                *Sound) pavucontrol ;;
+                *Display) xfce4-display-settings ;;
+                *Keyboard) xfce4-keyboard-settings ;;
+                *Mouse) xfce4-mouse-settings ;;
+                *Power\ manager) xfce4-power-manager-settings ;;
+                *Printers) system-config-printer;;
+            esac
+            ;;
+        -W|--Window-manager)
+            ANS="$(rofi -sep "|" -dmenu -i -p 'window managers' -width 25 \
+                -hide-scrollbar -line-padding 4 -padding 50 \
+                -font "mononoki Nerd Font 11" \
+                -lines 2 <<< "  Qtile|  Awesome")"
+
+            case "$ANS" in
+                *Qtile) xterm -T Conf -e nvim ~/.config/qtile/config.py ;;
+                *Awesome) xterm -T Conf -e nvim ~/.config/qtile/config.py ;;
+            esac
+            ;;
+        -D|--Display)
+            ANS="$(rofi -sep "|" -dmenu -i -p 'keyboard' -width 25 \
+                -hide-scrollbar -line-padding 4 -padding 50 \
+                -font "mononoki Nerd Font 11" \
+                -lines $(localectl list-locales | wc -l) <<< $(localectl list-locales | awk NF=NF RS= OFS=\|))"
+
+            IFS=' '
+            read -ra ARR <<< "$(localectl list-locales | awk NF=NF RS= OFS=\ )"
+            for i in "${ARR[@]}"; do
+                if [[ "$i" == "$ANS" ]]; then
+                    setxkbmap -layout "$1"
+                    break
+                fi
+            done
             ;;
         *)
             printf "\nOption does not exist: %s\n\n" "$arg"

@@ -14,26 +14,17 @@ from libqtile.lazy import lazy
 from libqtile import layout, bar, widget, hook
 
 mod = "mod4"
-color_black = '282A36'         # #282A36
-color_white = 'BFBFBF'         # #BFBFBF
-color_graywhite = '999999'     # #999999
-color_superwhite = 'F8F8F8'    # #F8F8F8
-color_gray = '4B5056'          # #4B5056
-color_darkgray = '4d4d4d'      # #4D4D4D
-color_blue = '6272A4'          # #6272A4
-color_bluegray = '343746'      # #343746
-color_cyan = '8be9fd'          # #8be9fd
-color_green = '50fa7b'         # #50fa7b
-color_orange = 'ffb86c'        # #ffb86c
-color_pink = 'ff79c6'          # #ff79c6
-color_red = 'ff5555'           # #ff5555
-color_lightred = 'ff7777'      # #ff7777
-color_yellow = 'f1fa8c'        # #f1fa8c
-color_lightyellow = 'f4f99d'   # #f4f99d
-color_magenta = 'ff79c6'       # #f4f99d
-color_lightmagenta = 'ff92d0'  # #f4f99d
-color_purple = 'bd93f9'        # #bd93f9
-color_lightpurple = 'caa9fa'   # #caa9fa
+color_white = 'BFBFBF'
+color_black = '1E1F29'  # '282A36'  # '282936'
+color_gray = '3A3C4E'   # '4B5056'
+color_blue = '626483'   # '6272A4'
+color_cyan = '8BE9FD'
+color_green = '50FA7B'
+color_red = 'ff5555'
+color_yellow = 'F1FA8C'
+color_magenta = 'FF79C6'
+color_purple = 'BD93F9'
+color_undef = '626483'
 
 # Spacegray palette
 # color_black = '111314'     # black    (color0)
@@ -52,17 +43,18 @@ color_lightpurple = 'caa9fa'   # #caa9fa
 
 keys = [
     # Restart and shutdown Qtile
-    Key([mod, "control"], "r", lazy.restart()),
-    Key([mod, "control"], "q", lazy.shutdown()),
+    Key([mod, "control"], "r", lazy.restart()),   # Restart
+    Key([mod, "control"], "q", lazy.shutdown()),  # Quit
 
     # Switch focus, chanage layout, kill window
     Key([mod], "space", lazy.layout.next()),
     Key([mod], "Tab", lazy.next_layout()),
-    Key([mod], "w", lazy.window.kill()),
+    Key([mod], "q", lazy.window.kill()),
 
     # Flip master/stack, toggle floating and move between groups
-    Key([mod, "control"], "space", lazy.layout.flip()),
     Key([mod, "control"], "Return", lazy.window.toggle_floating()),
+    Key([mod, "control"], "space", lazy.window.toggle_fullscreen()),
+    Key([mod], "f", lazy.layout.flip()),
     Key([mod], "h", lazy.screen.prev_group()),
     Key([mod], "l", lazy.screen.next_group()),
 
@@ -78,16 +70,18 @@ keys = [
     Key([mod, "control"], "h", lazy.layout.normalize()),
     Key([mod, "control"], "l", lazy.layout.maximize()),
 
-    # Shortcuts for Qtile-cmd, Alacritty, Rofi-menu, Settings, ...
-    Key([mod], "Escape", lazy.spawn("rofi-run -l")),
-    Key([mod], "Return", lazy.spawn("rofi-run -r")),
-    Key([mod], "q", lazy.spawn("xkill")),
-    Key([mod], "u", lazy.spawn("uxterm")),
-    Key([mod], "i", lazy.spawn("lxterminal")),
-    Key([mod], "s", lazy.spawn("xfce4-settings-manager")),
-    Key([mod], "m", lazy.spawn("xterm -e mocp")),
-    Key([mod], "p", lazy.spawncmd(prompt='%')),
-    Key(["control"], "Escape", lazy.spawn("betterlockscreen -l dim")),
+    # Shortcuts for Qtile-cmd, Rofi-menu, Settings, ...
+    Key([mod], "Return", lazy.spawn("rofi-run -r")),         # Run
+    Key([mod], "Escape", lazy.spawn("rofi-run -l")),         # Logout
+    Key([mod], "w", lazy.spawn("rofi-run -w")),              # Windows
+    Key([mod], "d", lazy.spawn("rofi-run -d")),              # Dmenu
+    Key([mod], "s", lazy.spawn("rofi-run -s")),              # Settings
+    Key([mod], "x", lazy.spawn("xkill")),                    # Xkill
+    Key([mod], "i", lazy.spawn("lxterminal")),               # Input
+    Key([mod], "u", lazy.spawn("uxterm")),                   # Uxterm
+    Key([mod], "a", lazy.spawn("uxterm -T Afm -e shfm")),    # afm
+    Key([mod], "m", lazy.spawn("uxterm -T Moc -e mocp")),    # Moc
+    Key([mod], "p", lazy.spawncmd(prompt='%')),              # Prompt
 
 
     # Chanage the bloody volume
@@ -95,13 +89,16 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q -D pulse sset Master 3%-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -q -D pulse sset Master toggle")),
 
-    # Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q sset Master 3%+")),
-    # Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q sset Master 3%-")),
-    # Key([], "XF86AudioMute", lazy.spawn("amixer -q sset Master toggle")),
-
-    # Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 5")),
-    # Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 5")),
-    # Key([], "XF86AudioMute", lazy.spawn("pamixer -t")),
+    # Alternatives? (re-check them)
+    # +---------------------------------------------------------------------------+
+    # | Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q sset Master 3%+")), |
+    # | Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q sset Master 3%-")), |
+    # | Key([], "XF86AudioMute", lazy.spawn("amixer -q sset Master toggle")),     |
+    # |---------------------------------------------------------------------------|
+    # | Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 5")),              |
+    # | Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 5")),              |
+    # | Key([], "XF86AudioMute", lazy.spawn("pamixer -t")),                       |
+    # +---------------------------------------------------------------------------+
 ]
 
 group_names = [
@@ -120,27 +117,19 @@ for i, (name, pos) in enumerate(group_names, 1):
     keys.append(Key([mod], str(i), lazy.group[name].toscreen()))
     keys.append(Key([mod, "control"], str(i), lazy.window.togroup(name)))
 
-# groups = [Group(i, position=int(i)) for i in "123456789"]
-# for i in groups:
-#     # prev_position = 9 if i.position == 1 else i.position-1
-#     # next_position = 1 if i.position == 9 else i.position+1
-#     keys.extend([
-#         # mod1 + letter of group = switch to group
-#         Key([mod], i.name, lazy.group[i.name].toscreen()),
-
-#         # switch & move focused window to prev/next group (doesn't work)
-#         # Key([mod, "control"], "h",
-#         #     lazy.window.togroup(str(prev_position), switch_group=True)),
-#         # Key([mod, "control"], "l",
-#         #     lazy.window.togroup(str(next_position), switch_group=True)),
-
-#         # mod1 + shift + letter of group = switch & move focused window
-#         Key([mod, "control"], i.name,
-#             lazy.window.togroup(i.name, switch_group=True)),
-#         # Or, use below if you prefer not to switch to that group.
-#         # # mod1 + shift + letter of group = move focused window to group
-#         # Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
-#     ])
+# Simple alternative
+# +-------------------------------------------------------------------------+
+# | groups = [Group(i, position=int(i)) for i in "123456789"]               |
+# | for i in groups:                                                        |
+# |     keys.extend([                                                       |
+# |         # mod1 + letter of group = switch to group                      |
+# |         Key([mod], i.name, lazy.group[i.name].toscreen()),              |
+# |                                                                         |
+# |         # mod1 + shift + letter of group = switch & move focused window |
+# |         Key([mod, "control"], i.name,                                   |
+# |             lazy.window.togroup(i.name, switch_group=True)),            |
+# |     ])                                                                  |
+# +-------------------------------------------------------------------------+
 
 layout_theme = dict(
     border_width=2,
@@ -150,18 +139,10 @@ layout_theme = dict(
 )
 
 layouts = [
-    layout.MonadTall(name='Tall', **layout_theme),
-    layout.Floating(name='Flot', **layout_theme),
-    layout.MonadWide(name='Wide', **layout_theme),
-    layout.Max(name='Maxi'),
-
-    # layout.MonadTall(name='ﱽ', **layout_theme),
-    # layout.MonadWide(name='ﱹ', **layout_theme),
-    # layout.Max(name='ﱻ'),
-
-    # layout.MonadTall(name='者', **layout_theme),
-    # layout.MonadWide(name='署', **layout_theme),
-    # layout.Max(name='謹'),
+    layout.MonadWide(name='wide', **layout_theme),
+    layout.MonadTall(name='tall', **layout_theme),
+    layout.Floating(name='float', **layout_theme),
+    layout.Max(name='max'),
 
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),
@@ -189,8 +170,7 @@ extension_defaults = widget_defaults.copy()
 def toggle_calcurse(qtile):
     home = str(Path.home())
     if os.path.exists(home+'/.local/share/calcurse/.calcurse.pid') or os.path.exists(home+'/.calcurse/.calcurse.pid'):
-        os.system('killall calcurse')
-        # os.remove(home+"/.local/share/calcurse/.calcurse.pid")
+        os.system('killall calcurse')  # os.remove(home+"/.local/share/calcurse/.calcurse.pid")
     else:
         qtile.cmd_spawn('xterm -e calcurse')
 
@@ -199,8 +179,54 @@ screens = [
     Screen(
         bottom=bar.Bar(
             [
+                widget.TextBox(
+                    text='',
+                    background=color_white,
+                    foreground=color_black,
+                    mouse_callbacks={
+                        'Button1':
+                        lambda qtile: qtile.cmd_spawn('rofi-run -r'),
+                        'Button2':
+                        lambda qtile: qtile.cmd_spawn('rofi-run -s'),
+                        'Button3':
+                        lambda qtile: qtile.cmd_spawn('rofi-run -l')
+                    },
+                    padding=10
+                ),
+
+                # widget.TextBox(
+                #     background='87878a',
+                #     foreground=color_white,
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+                # widget.TextBox(
+                #     background='56575e',
+                #     foreground='87878a',
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+                # widget.TextBox(
+                #     background=color_black,
+                #     foreground='56575e',
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+
+                widget.TextBox(
+                    background=color_black,
+                    foreground=color_white,
+                    fontsize=17,
+                    text='',
+                    padding=0
+                ),
+
                 widget.GroupBox(
-                    font='mononoki nerd font Bold',
+                    font='mononoki Nerd Font Bold',
+                    background=color_black,
                     highlight_method='text',
                     margin_y=3,
                     borderwidth=0,
@@ -213,136 +239,309 @@ screens = [
                     other_screen_border=color_blue,
                     disable_drag=True
                 ),
-                widget.TextBox(
+                widget.Spacer(
                     background=color_black,
-                    foreground=color_white,
-                    fontsize=17,
-                    text='',
-                ),
-                widget.WindowName(
-                    font='mononoki nerd font Bold',
-                    fmt='{:.50}',
-                    for_current_screen=True,
-                    show_state=True,
-                    mouse_callbacks={
-                        'Button1':
-                        lambda qtile: qtile.cmd_spawn('rofi-run -w')
-                    }
-                ),
-                widget.Moc(
-                    font='mononoki nerd font Bold',
-                    background=color_black,
-                    foreground=color_white,
-                    max_chars=10,
-                    play_color=color_yellow,
-                    padding=12
+                    length=6
                 ),
                 widget.TextBox(
                     background=color_black,
                     foreground=color_white,
                     fontsize=17,
-                    text='',
+                    text='',
                     padding=0
                 ),
                 widget.Prompt(
-                    font='mononoki nerd font Bold',
                     background=color_black,
-                    foreground=color_white,
+                    foreground=color_yellow,
                     cursor=True,
                     prompt='{prompt} ',
-                    cursor_color=color_white,
+                    cursor_color=color_yellow,
                     cursorblink=0.5
                 ),
                 widget.TextBox(
                     background=color_black,
                     foreground=color_white,
                     fontsize=17,
+                    text='',
+                    padding=0
+                ),
+                widget.Spacer(
+                    length=36
+                ),
+                widget.TaskList(
+                    # font='mononoki Nerd Font Bold',
+                    background=color_black,
+                    foreground=color_gray,
+                    border=color_white,
+                    borderwidth=0,
+                    highlight_method='text',
+                    rounded=False,
+                    icon_size=0,
+                    margin_y=2,
+                    padding_y=0,
+                    title_width_method='uniform',
+                    txt_floating=' ',
+                    txt_minimized=' ',
+                    txt_maximized='  '
+                ),
+                widget.Spacer(
+                    length=36
+                ),
+                widget.TextBox(
+                    background=color_black,
+                    foreground=color_white,
+                    fontsize=17,
+                    text='',
+                    padding=0
+                ),
+                widget.Moc(
+                    font='mononoki Nerd Font Bold',
+                    background=color_black,
+                    foreground=color_white,
+                    max_chars=10,
+                    play_color=color_yellow,
+                    noplay_color=color_gray
+                ),
+                widget.TextBox(
+                    background=color_black,
+                    foreground=color_white,
+                    fontsize=17,
                     text='',
                     padding=0
                 ),
-                widget.TextBox(
-                    text='',
+                widget.Wallpaper(
                     background=color_white,
                     foreground=color_black,
-                    mouse_callbacks={
-                        'Button1':
-                        lambda qtile: qtile.cmd_spawn('rofi-run -r'),
-                        'Button3':
-                        lambda qtile: qtile.cmd_spawn('rofi-run -l')
-                    },
-                    padding=10
+                    directory='~/Pictures/wallpapers',
+                    random_selection=True,
+                    wallpaper_command=['feh', '--bg-fill'],
+                    label='',
+                    padding=8
+                ),
+                widget.Spacer(
+                    background=color_white,
+                    length=8
                 ),
                 widget.TextBox(
                     background=color_white,
                     foreground=color_black,
                     fontsize=17,
                     text='',
-                    padding=3
-                ),
-                widget.KeyboardLayout(
-                    font='mononoki nerd font Bold',
-                    background=color_white,
-                    foreground=color_black,
-                    configured_keyboards=['it', 'us', 'gb'],
-                    display_map={'it': 'Ita', 'us': 'Usa', 'gb': 'Gbr'},
-                    option='caps:swapescape'
-                ),
-                widget.TextBox(
-                    background=color_white,
-                    foreground=color_blue,
-                    fontsize=17,
-                    text='',
                     padding=0
-                ),
-                widget.Spacer(
-                    background=color_blue,
-                    length=3
-                ),
-                widget.Systray(
-                    background=color_blue,
-                    foreground=color_white,
-                    icon_size=14
-                ),
-                widget.Spacer(
-                    background=color_blue,
-                    length=8
-                ),
-                widget.TextBox(
-                    background=color_blue,
-                    foreground=color_lightpurple,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Spacer(
-                    background=color_lightpurple,
-                    length=2
                 ),
                 widget.CurrentLayout(
-                    font='mononoki nerd font Bold',
-                    background=color_lightpurple,
-                    foreground=color_black
+                    font='mononoki Nerd Font Bold',
+                    background=color_white,
+                    foreground=color_black,
+                ),
+
+                # widget.TextBox(
+                #     background=color_white,
+                #     foreground='9e9faa',
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+                # widget.TextBox(
+                #     background='9e9faa',
+                #     foreground='838498',
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+                # widget.TextBox(
+                #     background='838498',
+                #     foreground=color_undef,
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+
+                widget.TextBox(
+                    background=color_white,
+                    foreground=color_undef,
+                    fontsize=17,
+                    text='',
+                    padding=0
+                ),
+
+                widget.Systray(
+                    background=color_undef,
+                    foreground=color_white,
+                    icon_size=16
+                ),
+                widget.Spacer(
+                    background=color_undef,
+                    length=8
+                ),
+
+                # widget.TextBox(
+                #     background=color_undef,
+                #     foreground='8274ac',
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+                # widget.TextBox(
+                #     background='8274ac',
+                #     foreground='9d83d0',
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+                # widget.TextBox(
+                #     background='9d83d0',
+                #     foreground=color_purple,
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+
+                widget.TextBox(
+                    background=color_undef,
+                    foreground=color_purple,
+                    fontsize=17,
+                    text='',
+                    padding=0
+                ),
+
+                widget.KeyboardLayout(
+                    font='mononoki Nerd Font Bold',
+                    background=color_purple,
+                    foreground=color_black,
+                    configured_keyboards=['it', 'us', 'gb'],
+                    display_map={'it': 'it', 'us': 'us', 'gb': 'uk'},
+                    option='caps:swapescape',
                 ),
                 widget.TextBox(
-                    background=color_lightpurple,
+                    background=color_purple,
                     foreground=color_black,
                     fontsize=17,
                     text='',
                     padding=0
                 ),
                 widget.Clock(
-                    font='mononoki nerd font Bold',
-                    background=color_lightpurple,
+                    font='mononoki Nerd Font Bold',
+                    background=color_purple,
                     foreground=color_black,
                     padding=8,
                     format=' %H:%M',
                     mouse_callbacks={'Button1': toggle_calcurse}
-                ),
+                )
             ],
             20
         )
     ),
-    Screen()
+    Screen(
+        bottom=bar.Bar(
+            [
+                widget.TextBox(
+                    text='',
+                    background=color_white,
+                    foreground=color_black,
+                    mouse_callbacks={
+                        'Button1':
+                        lambda qtile: qtile.cmd_spawn('rofi-run -r'),
+                        'Button2':
+                        lambda qtile: qtile.cmd_spawn('rofi-run -s'),
+                        'Button3':
+                        lambda qtile: qtile.cmd_spawn('rofi-run -l')
+                    },
+                    padding=10
+                ),
+
+                # widget.TextBox(
+                #     background='87878a',
+                #     foreground=color_white,
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+                # widget.TextBox(
+                #     background='56575e',
+                #     foreground='87878a',
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+                # widget.TextBox(
+                #     background=color_black,
+                #     foreground='56575e',
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+
+                widget.TextBox(
+                    background=color_black,
+                    foreground=color_white,
+                    fontsize=17,
+                    text='',
+                    padding=0
+                ),
+
+                widget.Spacer(
+                    length=36
+                ),
+                widget.TaskList(
+                    # font='mononoki Nerd Font Bold',
+                    background=color_black,
+                    foreground=color_gray,
+                    border=color_white,
+                    borderwidth=0,
+                    highlight_method='text',
+                    rounded=False,
+                    icon_size=0,
+                    margin_y=2,
+                    padding_y=0,
+                    title_width_method='uniform',
+                    txt_floating=' ',
+                    txt_minimized=' ',
+                    txt_maximized='  '
+                ),
+                widget.Spacer(
+                    length=36
+                ),
+
+                # widget.TextBox(
+                #     background=color_black,
+                #     foreground='564872',
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+                # widget.TextBox(
+                #     background='564872',
+                #     foreground='856ab0',
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+                # widget.TextBox(
+                #     background='856ab0',
+                #     foreground=color_purple,
+                #     fontsize=17,
+                #     text='',
+                #     padding=0
+                # ),
+
+                widget.TextBox(
+                    background=color_black,
+                    foreground=color_purple,
+                    fontsize=17,
+                    text='',
+                    padding=0
+                ),
+
+                widget.CurrentLayout(
+                    font='mononoki Nerd Font Bold',
+                    background=color_purple,
+                    foreground=color_black,
+                ),
+            ],
+            20
+        )
+    )
 ]
 
 # Drag floating layouts.
@@ -383,6 +582,21 @@ floating_layout = layout.Floating(
     ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
+
+
+@hook.subscribe.client_new
+def idle_dialogues(window):
+    if((window.window.get_name() == 'Network Connections') or
+            (window.window.get_name() == 'Bluetooth Devices') or
+            (window.window.get_name() == 'Printers - localhost') or
+            (window.window.get_name() == 'Customize Look and Feel') or
+            (window.window.get_name() == 'Volume Control') or
+            (window.window.get_name() == 'Nitrogen') or
+            (window.window.get_name() == 'calcurse') or
+            (window.window.get_name() == 'Afm') or
+            (window.window.get_name() == 'Moc') or
+            (window.window.get_name() == 'Conf')):
+        window.floating = True
 
 
 @hook.subscribe.startup_once
