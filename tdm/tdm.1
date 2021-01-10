@@ -1,0 +1,78 @@
+.TH tdm 1
+.SH NAME
+tdm \- a tiny display manager
+.SH SYNOPSIS
+.B
+tdm
+[\fB--xstart|--disable-xrunning-check|--silent\fR]
+.TP
+.B
+tdmctl
+\fICOMMAND\fR [\fIARGS\fR]
+.SH DESCRIPTION
+.BR tdm (1)
+is a console based display manager, presenting the user with a list of
+available sessions after login.  Sessions can be defined by creating symlinks
+to various programs or scripts, like your favourite window manager / desktop
+environment.
+.SH COMMANDS
+.SS tdm
+.TP
+.BR --xstart
+execute the chosen session from \fI.xinitrc\fR.
+.TP
+.BR --disable-xrunning-check
+allow multiple logins once X is already started. By default, tdm will refuse to start if X is already running.
+.TP
+.BR --skip-single-session
+skips the user interface if there is only one session
+.TP
+.BR --silent
+silences all error messages from TDM
+.TP
+.BR --disable-long-names
+hides the category marker in the menu
+.SS tdmctl
+.TP
+.BR init
+initialize the config directory.
+.TP
+.BR list
+list available X and extra sessions.
+.TP
+.BR cache
+list cached files.
+.TP
+.BR check " [extra/]" \fISESSION\fR
+see what <session> is.
+.TP
+.BR default " " [\fISESSION\fR]
+.br
+show/set default X session.
+.TP
+.BR add " " \fINAME\fR " " \fIPATH\fR " " [\fICATEGORY\fR]
+add a session (\fICATEGORY\fR can be either \fIX\fR or \fIextra\fR).
+.TP
+.BR remove " " \fINAME\fR
+remove a session.
+.TP
+.BR enable " " \fISESSION\fR
+enable \fISESSION\fR
+.TP
+.BR disable " " \fISESSION\fR
+disable \fISESSION\fR
+.TP
+.BR migrate
+Migrate an old configuration to make it XDG compliant (see \fBFILES AND DIRECTORIES\fR)
+.SH RETURN VALUE
+If no session was executed, returns 1. Otherwise 0.
+.SH FILES AND DIRECTORIES
+.TP
+The main configuration directory (hereafter named \fI$TDM_CONFIG\fR) is located in \fI$XDG_CONFIG_HOME/tdm\fR. Older installations (before 1.3.0) used \fI$HOME/.tdm\fR
+(the migration can be achieved with \fBtdmctl migrate\fR).
+.TP
+.BR $TDM_CONFIG_DIR/tdminit
+commands executed at login
+.TP
+.BR $TDM_CONFIG_DIR/tdmexit
+commands executed before the X server (or extra session) is started

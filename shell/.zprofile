@@ -4,4 +4,5 @@
 
 [[ -f ~/.zshrc ]] && . ~/.zshrc
 
-source /home/rtbm/.config/broot/launcher/bash/br
+# source /home/rtbm/.config/broot/launcher/bash/br
+# tdm --disable-xrunning-check

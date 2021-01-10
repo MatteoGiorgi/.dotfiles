@@ -4,4 +4,5 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-source /home/rtbm/.config/broot/launcher/bash/br
+# source /home/rtbm/.config/broot/launcher/bash/br
+# tdm --disable-xrunning-check
