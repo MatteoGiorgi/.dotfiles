@@ -121,7 +121,7 @@ function extract
 }
 
 # Change directory exiting from AwesomeFM (shfm)
-afm ()
+ifm ()
 {
     cd "$(command shfm "$@")"
 }

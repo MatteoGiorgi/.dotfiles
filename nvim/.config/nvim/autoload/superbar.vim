@@ -1,4 +1,4 @@
-highlight User1 guibg=#626483 guifg=#282936
+highlight User1 guibg=#626483 guifg=#F1FA8C
 highlight User2 guibg=#3A3C4E guifg=#626483
 highlight User3 guibg=#3A3C4E guifg=#BFBFBF
 highlight User4 guibg=#3A3C4E guifg=#F1FA8C
@@ -16,7 +16,9 @@ function! superbar#ActiveStatusLine()
     let l:statusline .= "%3*"
     let l:statusline .= "%{&readonly?'\ \ ':''}"
     let l:statusline .= "%="
+    let l:statusline .= "%4*"
     let l:statusline .= "%{&filetype!=#''?&filetype:'none'}"
+    let l:statusline .= "%3*"
     let l:statusline .= "%(\ \%{(&bomb\|\|&fileencoding!~#'^$\\\|utf-8'?'\ '.&fileencoding.(&bomb?'-bom':''):'').(&fileformat!=#(has('win32')?'dos':'unix')?'\ '.&fileformat:'')}%)"
     let l:statusline .= "\ "
     let l:statusline .= "\ %{superbar#rhs()}"

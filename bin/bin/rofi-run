@@ -57,14 +57,15 @@ for arg in "$@"; do
             ;;
         -d|--dmenu)
             rofi -modi run,drun -show drun \
-                 -display-run '%' -drun-display-format \"{name}\" \
-                 -display-drun '%' -drun-display-format \"{name}\" \
+                 -display-run '%' -drun-display-format {name} \
+                 -display-drun '%' -drun-display-format {name} \
                  -hide-scrollbar -config ~/.config/rofi/themes/dmenu.rasi \
+                 -show-icons -icon-theme "Papirus-Dark" \
                  -font "mononoki Nerd Font 11" -terminal xterm \
             ;;
         -w|--window)
             rofi -modi window -show window -hide-scrollbar \
-                 -columns 1 -lines 10 -width 30 -padding 50 -line-padding 4 \
+                 -columns 1 -lines 5 -width 30 -padding 50 -line-padding 4 \
                  -font "mononoki Nerd Font 11" -terminal xterm
             ;;
         -q|--qalculate)

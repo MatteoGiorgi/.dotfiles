@@ -44,7 +44,7 @@ color_undef = '626483'
 keys = [
     # Restart and shutdown Qtile
     Key([mod, "control"], "r", lazy.restart()),   # Restart
-    Key([mod, "control"], "q", lazy.shutdown()),  # Quit
+    Key([mod, "control"], "e", lazy.shutdown()),  # Exit
 
     # Switch focus, chanage layout, kill window
     Key([mod], "space", lazy.layout.next()),
@@ -71,16 +71,14 @@ keys = [
     Key([mod, "control"], "l", lazy.layout.maximize()),
 
     # Shortcuts for Qtile-cmd, Rofi-menu, Settings, ...
-    Key([mod], "Return", lazy.spawn("rofi-run -r")),         # Run
-    Key([mod], "Escape", lazy.spawn("rofi-run -l")),         # Logout
+    Key([mod], "Return", lazy.spawn("xterm")),               # Xterm
+    Key([mod], "e", lazy.spawn("rofi-run -l")),              # Exit/Logout
     Key([mod], "w", lazy.spawn("rofi-run -w")),              # Windows
     Key([mod], "d", lazy.spawn("rofi-run -d")),              # Dmenu
     Key([mod], "s", lazy.spawn("rofi-run -s")),              # Settings
     Key([mod], "x", lazy.spawn("xkill")),                    # Xkill
-    Key([mod], "i", lazy.spawn("lxterminal")),               # Input
-    Key([mod], "u", lazy.spawn("uxterm")),                   # Uxterm
-    Key([mod], "a", lazy.spawn("uxterm -T Afm -e shfm")),    # afm
-    Key([mod], "m", lazy.spawn("uxterm -T Moc -e mocp")),    # Moc
+    Key([mod], "i", lazy.spawn("xterm -T Ifm -e shfm")),     # Ifm
+    Key([mod], "m", lazy.spawn("xterm -T Moc -e mocp")),     # Moc
     Key([mod], "p", lazy.spawncmd(prompt='%')),              # Prompt
 
 
@@ -185,11 +183,7 @@ screens = [
                     foreground=color_black,
                     mouse_callbacks={
                         'Button1':
-                        lambda qtile: qtile.cmd_spawn('rofi-run -r'),
-                        'Button2':
-                        lambda qtile: qtile.cmd_spawn('rofi-run -s'),
-                        'Button3':
-                        lambda qtile: qtile.cmd_spawn('rofi-run -l')
+                        lambda qtile: qtile.cmd_spawn('rofi-run -r')
                     },
                     padding=10
                 ),
@@ -271,8 +265,8 @@ screens = [
                 widget.TaskList(
                     # font='mononoki Nerd Font Bold',
                     background=color_black,
-                    foreground=color_gray,
-                    border=color_white,
+                    foreground=color_white,
+                    border=color_yellow,
                     borderwidth=0,
                     highlight_method='text',
                     rounded=False,
@@ -280,8 +274,8 @@ screens = [
                     margin_y=2,
                     padding_y=0,
                     title_width_method='uniform',
-                    txt_floating=' ',
-                    txt_minimized=' ',
+                    txt_floating=' ',
+                    txt_minimized=' ',
                     txt_maximized='  '
                 ),
                 widget.Spacer(
@@ -441,11 +435,7 @@ screens = [
                     foreground=color_black,
                     mouse_callbacks={
                         'Button1':
-                        lambda qtile: qtile.cmd_spawn('rofi-run -r'),
-                        'Button2':
-                        lambda qtile: qtile.cmd_spawn('rofi-run -s'),
-                        'Button3':
-                        lambda qtile: qtile.cmd_spawn('rofi-run -l')
+                        lambda qtile: qtile.cmd_spawn('rofi-run -r')
                     },
                     padding=10
                 ),
@@ -486,8 +476,8 @@ screens = [
                 widget.TaskList(
                     # font='mononoki Nerd Font Bold',
                     background=color_black,
-                    foreground=color_gray,
-                    border=color_white,
+                    foreground=color_white,
+                    border=color_yellow,
                     borderwidth=0,
                     highlight_method='text',
                     rounded=False,
@@ -495,8 +485,8 @@ screens = [
                     margin_y=2,
                     padding_y=0,
                     title_width_method='uniform',
-                    txt_floating=' ',
-                    txt_minimized=' ',
+                    txt_floating=' ',
+                    txt_minimized=' ',
                     txt_maximized='  '
                 ),
                 widget.Spacer(
@@ -593,7 +583,7 @@ def idle_dialogues(window):
             (window.window.get_name() == 'Volume Control') or
             (window.window.get_name() == 'Nitrogen') or
             (window.window.get_name() == 'calcurse') or
-            (window.window.get_name() == 'Afm') or
+            (window.window.get_name() == 'Ifm') or
             (window.window.get_name() == 'Moc') or
             (window.window.get_name() == 'Conf')):
         window.floating = True
