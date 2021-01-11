@@ -74,6 +74,7 @@ alias grep='grep --color=auto'
 alias vimpager="vimpager -u ~/.vimpagerrc"
 alias vifm="vifmrun"
 alias ranger='ranger_jump'
+alias shfm='shfm_jump'
 
 # Creates an archive (*.tar.gz) from given directory.
 function maketar()
@@ -120,8 +121,8 @@ function extract
     fi
 }
 
-# Change directory exiting from AwesomeFM (shfm)
-ifm ()
+# Change directory exiting from shfm
+shfm_jump ()
 {
     cd "$(command shfm "$@")"
 }

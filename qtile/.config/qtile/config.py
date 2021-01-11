@@ -44,7 +44,7 @@ color_undef = '626483'
 keys = [
     # Restart and shutdown Qtile
     Key([mod, "control"], "r", lazy.restart()),   # Restart
-    Key([mod, "control"], "e", lazy.shutdown()),  # Exit
+    Key([mod, "control"], "q", lazy.shutdown()),  # Quit
 
     # Switch focus, chanage layout, kill window
     Key([mod], "space", lazy.layout.next()),
@@ -71,14 +71,14 @@ keys = [
     Key([mod, "control"], "l", lazy.layout.maximize()),
 
     # Shortcuts for Qtile-cmd, Rofi-menu, Settings, ...
-    Key([mod], "Return", lazy.spawn("xterm")),               # Xterm
-    Key([mod], "e", lazy.spawn("rofi-run -l")),              # Exit/Logout
-    Key([mod], "w", lazy.spawn("rofi-run -w")),              # Windows
+    Key([mod], "Return", lazy.spawn("rofi-run -r")),         # Menu
+    Key([mod], "Escape", lazy.spawn("rofi-run -l")),         # Exit/Logout
     Key([mod], "d", lazy.spawn("rofi-run -d")),              # Dmenu
+    Key([mod], "w", lazy.spawn("rofi-run -w")),              # Windows
     Key([mod], "s", lazy.spawn("rofi-run -s")),              # Settings
     Key([mod], "x", lazy.spawn("xkill")),                    # Xkill
-    Key([mod], "i", lazy.spawn("xterm -T Ifm -e shfm")),     # Ifm
-    Key([mod], "m", lazy.spawn("xterm -T Moc -e mocp")),     # Moc
+    Key([mod], "i", lazy.spawn("xterm")),                    # Xterm
+    Key([mod], "m", lazy.spawn("xterm -T Moc -e mocp")),     # Music
     Key([mod], "p", lazy.spawncmd(prompt='%')),              # Prompt
 
 
@@ -137,8 +137,8 @@ layout_theme = dict(
 )
 
 layouts = [
-    layout.MonadWide(name='wide', **layout_theme),
     layout.MonadTall(name='tall', **layout_theme),
+    layout.MonadWide(name='wide', **layout_theme),
     layout.Floating(name='float', **layout_theme),
     layout.Max(name='max'),
 
@@ -583,7 +583,6 @@ def idle_dialogues(window):
             (window.window.get_name() == 'Volume Control') or
             (window.window.get_name() == 'Nitrogen') or
             (window.window.get_name() == 'calcurse') or
-            (window.window.get_name() == 'Ifm') or
             (window.window.get_name() == 'Moc') or
             (window.window.get_name() == 'Conf')):
         window.floating = True

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/bin/sh
 
 # This is just the xinitrc file to use as argument for startx if you don't have
 # a login manager. It only launches Qtile becouse all the startup programs are
@@ -6,19 +6,21 @@
 #    xorg-xrdb   to load Xresources
 #    xfsettingsd to launch xsettings demon
 
+# . /etc/X11/Xsession &
+
 xrdb -load ~/.Xresources &
 [ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap &
 xfsettingsd &
-exec qtile
+exec qtile  # dbus-launch --exit-with-session qtile
 
 # To be able to launch this file from a login manager (such as lightdm), create
 # the file "/usr/shared/xsessions/qtile.desktop" with the following content:
 #
 #     [Desktop Entry]
 #     Version=1.0
-#     Name=Qtile Session
+#     Name=Qtile
 #     Comment=Use this session to run Qtile as your window manager
-#     Exec=/home/geoteo/.xinitrc-qtile
+#     Exec=/home/geoteo/.xinitrc
 #     Icon=
 #     Type=Application
-#     DesktopNames=QTILE
+#     DesktopNames=Qtile
