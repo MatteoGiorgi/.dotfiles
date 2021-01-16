@@ -137,8 +137,8 @@ mcd ()
 # set PATH so it includes user's private bin directories
 # (do I have to "export" PATH and PROMPT?)
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin"
-export PAGER="most"      # vimpager
-export BAT_PAGER="most"  # vimpager
+export PAGER="vimpager"      # most
+export BAT_PAGER="vimpager"  # most
 export VISUAL="nvim"
 export EDITOR="nvim"
 export TERM="xterm-256color"
@@ -152,7 +152,7 @@ export BAT_THEME="base16"
 export MICRO_TRUECOLOR=1
 export SHFM_OPENER="shfm-opener"
 
-export PROMPT="%B%K{blue}%F{black} %n  %m %K{yellow}%F{blue}%K{yellow}%F{black} %9~ %(?.%K{green}%F{yellow} %K{green}%F{black}  %k%F{green}.%K{magenta}%F{yellow} %K{magenta}%F{black} %? %k%F{magenta})%k%f"$'\n'"%#%b "
+export PROMPT="%B%K{blue}%F{black} %n  %m %K{074}%F{blue}%K{074}%F{black} %9~ %(?.%K{white}%F{074} %K{white}%F{black}  %k%F{white}.%K{magenta}%F{074} %K{magenta}%F{black} %? %k%F{magenta})%k%f"$'\n'"%#%b "
 # export PROMPT="%B[%F{cyan}%n%f@%F{magenta}%m%f] [%F{blue}%9~%f] %(?.%F{green} .%F{red} %?)%f"$'\n'"%#%b "
 
 ### End config ###
@@ -163,5 +163,4 @@ source $HOME/.config/fzf/completion.zsh
 
 # source /usr/share/fzf/key-bindings.zsh
 # source /usr/share/fzf/completion.zsh
-# source /home/rtbm/.config/broot/launcher/bash/br
-
+source $HOME/.config/broot/launcher/bash/br

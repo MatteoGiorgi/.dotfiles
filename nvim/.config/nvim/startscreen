@@ -11,6 +11,7 @@
 
 
   [N]  Alt + Return    ------------->    Visulize this page
+  [N]  Alt + i    ------------------>    Run go-to-cursor command of CoqIDE
   [ ]  Space + u    ---------------->    Open URL under the cursor
 
   [N]  Ctrl + h    ----------------->    Shrink window horizontally

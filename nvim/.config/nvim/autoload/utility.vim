@@ -44,11 +44,14 @@ fun! utility#Start()
         \ nocursorline
         \ nolist
         \ nonumber
+        \ noshowmode
+        \ noshowcmd
         \ noswapfile
         \ norelativenumber
         \ nowrap
+        \ statusline=%!superbar#StartScreen()
     call append('$', '')
-    for line in split(system('cat ~/.dotfiles/nvim/.config/nvim/startscreen'), '\n')
+    for line in split(system('cat ~/.config/nvim/startscreen'), '\n')
         call append('$', '    ' . l:line)
     endfor
     setlocal nomodifiable nomodified

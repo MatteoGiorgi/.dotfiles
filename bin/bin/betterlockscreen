@@ -9,7 +9,7 @@
 #    feh
 #    xorg-xrandr
 #    xorg-xdpyinfo
-#    i3lock-color
+#    i3lock-color (fancy fork of i3lock)
  
 
 # find your resolution so images can be resized to match your screen resolution
@@ -95,8 +95,8 @@ lock() {
 
 	i3lock \
 		-t -i "$1" \
-		# --timepos='x+110:h-70' \
-		# --datepos='x+43:h-45' \
+		--timepos='x+110:h-70' \
+		--datepos='x+43:h-45' \
 		--clock --date-align 1 --datestr "$locktext" \
 		--insidecolor=$insidecolor --ringcolor=$ringcolor --line-uses-inside \
 		--keyhlcolor=$keyhlcolor --bshlcolor=$bshlcolor --separatorcolor=$separatorcolor \

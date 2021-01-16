@@ -166,8 +166,8 @@ mcd ()
 # set PATH so it includes user's private bin directories
 # (do I have to "export" PATH and PROMPT?)
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin"
-export PAGER="most"      # vimpager
-export BAT_PAGER="most"  # vimpager
+export PAGER="vimpager"      # most
+export BAT_PAGER="vimpager"  # most
 export VISUAL="nvim"
 export EDITOR="nvim"
 export TERM="xterm-256color"
@@ -195,5 +195,4 @@ source $HOME/.config/fzf/completion.bash
 
 # source /usr/share/fzf/key-bindings.bash
 # source /usr/share/fzf/completion.bash
-# source /home/rtbm/.config/broot/launcher/bash/br
-
+source $HOME/.config/broot/launcher/bash/br

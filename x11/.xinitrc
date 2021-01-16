@@ -6,11 +6,11 @@
 #    xorg-xrdb   to load Xresources
 #    xfsettingsd to launch xsettings demon
 
-# . /etc/X11/Xsession &
+# . /etc/X11/Xsession &  # ???
 
 xrdb -load ~/.Xresources &
-[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap &
 xfsettingsd &
+xmodmap ~/.Xmodmap &
 exec qtile  # dbus-launch --exit-with-session qtile
 
 # To be able to launch this file from a login manager (such as lightdm), create

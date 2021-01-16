@@ -27,9 +27,11 @@
 /moc/.moc/pid
 /moc/.moc/socket2
 /moc/.moc/softmixer
+/moc/.moc/*.m3u
 /kupfer/.config/kupfer/config-kupfer.plugin.favorites-v2.pickle
 /kupfer/.config/kupfer/mnemonics.pickle
 /plank/.config/*
 /vifm/.config/vifm/vifminfo
 /xed/.config/*
 /micro/.config/micro/buffers/*
+/broot/.config/broot/launcher/*

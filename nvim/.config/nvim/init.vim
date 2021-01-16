@@ -32,6 +32,8 @@
 "    undotree                  https://github.com/mbbill/undotree
 "    vim-buftabline            https://github.com/ap/vim-buftabline
 "    vimwiki                   https://github.com/vimwiki/vimwiki
+"    coq                       https://github.com/tounaishouta/coq.vim
+
 
 
 
@@ -71,6 +73,7 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'mbbill/undotree'
     Plug 'ap/vim-buftabline'
     Plug 'vimwiki/vimwiki'
+    Plug 'tounaishouta/coq.vim'
 call plug#end()
 
 
@@ -135,11 +138,11 @@ highlight CursorLine  guibg=#2A2C38
 highlight ColorColumn guibg=#2A2C38
 highlight VertSplit   guibg=#3A3C4E guifg=#3A3C4E
 
-highlight StatusLine        guibg=#3A3C4E guifg=#BFBFBF
-highlight BufTabLineCurrent guibg=#3A3C4E guifg=#BFBFBF
-highlight BufTabLineActive  guibg=#3A3C4E guifg=#BFBFBF
-highlight BufTabLineHidden  guibg=#3A3C4E guifg=#626483
-highlight BufTabLineFill    guibg=#3A3C4E
+highlight StatusLine        guibg=#3A3C4E guifg=#BFBFBF gui=bold
+highlight BufTabLineCurrent guibg=#3A3C4E guifg=#6699FF gui=bold
+highlight BufTabLineActive  guibg=#3A3C4E guifg=#BFBFBF gui=bold
+highlight BufTabLineHidden  guibg=#3A3C4E guifg=#626483 gui=bold
+highlight BufTabLineFill    guibg=#3A3C4E               gui=bold
 
 
 
@@ -179,6 +182,13 @@ augroup statuslineautocmds
 augroup END
 
 
+" Run coq plugin
+augroup coq
+    autocmd Filetype coq nnoremap <leader><Return> :CoqRunToCursor<CR>
+    autocmd Filetype coq nnoremap <leader><Backspace> :bdelete __coq_ide__<CR>
+augroup END
+
+
 
 
 "MY_VARIABLES___________________________________________________________________
@@ -193,6 +203,8 @@ let g:longline = 'none'
 
 "NETRW__________________________________________________________________________
 
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_sort_sequence = '[\/]$,*'
@@ -248,9 +260,12 @@ let g:fzf_colors = {
 
 "VIFM___________________________________________________________________________
 
-let g:vifm = '$HOME/bin/vifmrun'
+let g:vifm = 'EditVifm'
+let g:vifm_term = 'xterm -e'
+let g:vifm_embed_term = 1
+let g:vifm_embed_cwd = 1
 let g:vifm_replace_netrw = 1
-let g:vifm_replace_netrw_cmd = 1
+let g:vifm_replace_netrw_cmd = 'EditVifm'
 
 
 
@@ -299,9 +314,9 @@ let g:ale_fixers = {
             \ 'c': ['astyle'],
             \ 'cpp': ['astyle'],
             \ 'java': ['google_java_format'],
-            \ 'python': ['yapf'],
             \ 'vim': ['trim_whitespace'],
             \ }
+            " \ 'python': ['yapf'],
 
 
 

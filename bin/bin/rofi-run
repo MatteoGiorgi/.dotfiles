@@ -118,15 +118,14 @@ for arg in "$@"; do
             ;;
         -s|--settings)
             ANS="$(rofi -sep "|" -dmenu -i -p 'settings' -width 25 \
-                -hide-scrollbar -line-padding 4 -padding 50 \
                 -font "mononoki Nerd Font 11" -columns 1 \
-                -lines 12 <<< "   Apparence|   Wallpapers|   Notifications|   Compositor|   Network|   Bluetooth|   Sound|   Display|   Keyboard|   Mouse|   Power manager|   Printers")"
+                -hide-scrollbar -line-padding 4 -padding 50 \
+                -lines 11 <<< "   Apparence|   Wallpapers|   Notifications|   Network|   Bluetooth|   Sound|   Display|   Keyboard|   Mouse|   Power manager|   Printers")"
 
             case "$ANS" in
                 *Apparence) xfce4-appearance-settings ;;
-                *Wallpapers) nitrogen ;;
+                *Wallpapers) sxiv /home/geoteo/Pictures/wallpapers/wallogo/* -t ;;
                 *Notifications) xfce4-notifyd-config ;;
-                *Compositor) compton-conf ;;
                 *Network) nm-connection-editor ;;
                 *Bluetooth) blueman-manager ;;
                 *Sound) pavucontrol ;;
