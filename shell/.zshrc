@@ -30,6 +30,7 @@ alias aa='exa -l --git --icons --group-directories-first'
 alias a='exa -l --git --tree --icons --group-directories-first'
 alias home="cd ~"
 alias df="df -ahiT --total"
+alias du='duf'
 alias mkdir="mkdir -pv"
 alias userlist="cut -d: -f1 /etc/passwd"
 alias fhere="find . -name "

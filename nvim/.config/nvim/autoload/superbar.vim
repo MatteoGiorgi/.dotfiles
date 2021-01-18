@@ -56,7 +56,7 @@ endfunction
 
 function! superbar#Coq()
     let l:statusline  = "%7*"
-    let l:statusline .= "\ Coq\  "
+    let l:statusline .= "\ CoqIDE\  "
     let l:statusline .= "%="
     let l:statusline .= "\ "
     return l:statusline

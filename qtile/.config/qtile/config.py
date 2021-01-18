@@ -76,7 +76,7 @@ keys = [
     Key([mod], "Escape", lazy.spawn("rofi-run -l")),         # Exit/Logout
     Key([mod], "w", lazy.spawn("rofi-run -w")),              # Windows
     Key([mod], "s", lazy.spawn("rofi-run -s")),              # Settings
-    Key([mod], "i", lazy.spawn("lxterminal")),               # Terminal
+    Key([mod], "i", lazy.spawn("xterm")),                    # Terminal
     Key([mod], "x", lazy.spawn("xkill")),                    # Xkill
     Key([mod], "u", lazy.spawn("xterm -T Shfm -e shfm")),    # Shfm
     Key([mod], "m", lazy.spawn("xterm -T Moc -e mocp")),     # Music
@@ -141,10 +141,10 @@ layout_theme = dict(
 )
 
 layouts = [
-    layout.MonadWide(name='Wide', **layout_theme),
-    layout.MonadTall(name='Tall', **layout_theme),
-    layout.Floating(name='Float', **layout_theme),
-    layout.Max(name='Max'),
+    layout.MonadWide(name='wide', **layout_theme),
+    layout.MonadTall(name='tall', **layout_theme),
+    layout.Floating(name='float', **layout_theme),
+    layout.Max(name='max'),
 
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),
@@ -258,9 +258,9 @@ screens = [
                     margin_y=2,
                     padding_y=0,
                     title_width_method='uniform',
-                    txt_floating=' ',
-                    txt_minimized=' ',
-                    txt_maximized=' '
+                    txt_floating=' ',
+                    txt_minimized=' ',
+                    txt_maximized=' '
                 ),
                 widget.Spacer(
                     length=36
@@ -358,22 +358,22 @@ screens = [
                 ),
                 widget.Spacer(
                     background=color_lightblue,
-                    length=6
+                    length=7
                 ),
                 widget.TextBox(
                     background=color_lightblue,
                     foreground=color_black,
-                    text=' ',
+                    text=' ',
                     padding=0
                 ),
                 widget.CurrentLayout(
                     background=color_lightblue,
                     foreground=color_black,
-                    padding=3
+                    padding=1
                 ),
                 widget.Spacer(
                     background=color_lightblue,
-                    length=3
+                    length=5
                 ),
                 widget.TextBox(
                     background=color_lightblue,
@@ -384,25 +384,25 @@ screens = [
                 ),
                 widget.Spacer(
                     background=color_lightblue,
-                    length=6
+                    length=7
                 ),
                 widget.TextBox(
                     background=color_lightblue,
                     foreground=color_black,
-                    text=' ',
+                    text=' ',
                     padding=0
                 ),
                 widget.KeyboardLayout(
                     background=color_lightblue,
                     foreground=color_black,
                     configured_keyboards=['it', 'us', 'gb'],
-                    display_map={'it': 'Ita', 'us': 'Usa', 'gb': 'Gbr'},
+                    display_map={'it': 'it', 'us': 'us', 'gb': 'uk'},
                     option='caps:swapescape',
-                    padding=1
+                    padding=2
                 ),
                 widget.Spacer(
                     background=color_lightblue,
-                    length=5
+                    length=4
                 ),
                 widget.TextBox(
                     background=color_lightblue,
@@ -417,7 +417,7 @@ screens = [
                     directory='~/Pictures/wallpapers/wallogo',
                     random_selection=True,
                     wallpaper_command=['feh', '--bg-fill'],
-                    label=' ',
+                    label=' chwp',
                     padding=8
                 ),
                 widget.TextBox(
@@ -427,12 +427,26 @@ screens = [
                     text='',
                     padding=0
                 ),
+                widget.Spacer(
+                    background=color_purple,
+                    length=6
+                ),
+                widget.TextBox(
+                    background=color_purple,
+                    foreground=color_black,
+                    text=' ',
+                    padding=0
+                ),
                 widget.Clock(
                     background=color_purple,
                     foreground=color_black,
-                    padding=8,
-                    format=' %H:%M',
+                    padding=1,
+                    format='%H:%M',
                     mouse_callbacks={'Button1': toggle_calcurse}
+                ),
+                widget.Spacer(
+                    background=color_purple,
+                    length=7
                 )
             ],
             20
@@ -477,24 +491,55 @@ screens = [
                     margin_y=2,
                     padding_y=0,
                     title_width_method='uniform',
-                    txt_floating=' ',
-                    txt_minimized=' ',
-                    txt_maximized=' '
+                    txt_floating=' ',
+                    txt_minimized=' ',
+                    txt_maximized=' '
                 ),
                 widget.Spacer(
                     length=36
                 ),
                 widget.TextBox(
                     background=color_black,
-                    foreground=color_white,
+                    foreground=color_lightblue,
                     fontsize=17,
                     text='',
                     padding=0
                 ),
-                widget.CurrentLayout(
-                    background=color_white,
-                    foreground=color_black,
+                widget.Spacer(
+                    background=color_lightblue,
+                    length=7
                 ),
+                widget.TextBox(
+                    background=color_lightblue,
+                    foreground=color_black,
+                    text=' ',
+                    padding=0
+                ),
+                widget.CurrentLayout(
+                    background=color_lightblue,
+                    foreground=color_black,
+                    padding=3
+                ),
+                widget.Spacer(
+                    background=color_lightblue,
+                    length=3
+                ),
+                widget.TextBox(
+                    background=color_lightblue,
+                    foreground=color_purple,
+                    fontsize=17,
+                    text='',
+                    padding=0
+                ),
+                widget.Wallpaper(
+                    background=color_purple,
+                    foreground=color_black,
+                    directory='~/Pictures/wallpapers/wallogo',
+                    random_selection=True,
+                    wallpaper_command=['feh', '--bg-fill'],
+                    label=' chwp',
+                    padding=8
+                )
             ],
             20
         )
@@ -517,8 +562,8 @@ follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
-    border_focus=color_white,
-    border_normal=color_gray,
+    border_focus=color_lightblue,
+    border_normal=color_white,
     border_width=2,
     float_rules=[
         # Run utility of `xprop` to see the wm class and name of an X client.
