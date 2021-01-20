@@ -138,11 +138,11 @@ highlight CursorLine  guibg=#2A2C38
 highlight ColorColumn guibg=#2A2C38
 highlight VertSplit   guibg=#3A3C4E guifg=#3A3C4E
 
-highlight StatusLine        guibg=#3A3C4E guifg=#BFBFBF gui=bold
-highlight BufTabLineCurrent guibg=#3A3C4E guifg=#6699FF gui=bold
-highlight BufTabLineActive  guibg=#3A3C4E guifg=#BFBFBF gui=bold
-highlight BufTabLineHidden  guibg=#3A3C4E guifg=#626483 gui=bold
-highlight BufTabLineFill    guibg=#3A3C4E               gui=bold
+highlight StatusLine        guibg=#3A3C4E guifg=#BFBFBF
+highlight BufTabLineCurrent guibg=#3A3C4E guifg=#6699FF
+highlight BufTabLineActive  guibg=#3A3C4E guifg=#BFBFBF
+highlight BufTabLineHidden  guibg=#3A3C4E guifg=#626483
+highlight BufTabLineFill    guibg=#3A3C4E
 
 
 

@@ -1,10 +1,10 @@
-highlight User1 guibg=#BFBFBF guifg=#1E1F29 gui=bold
-highlight User2 guibg=#6699FF guifg=#BFBFBF gui=bold
-highlight User3 guibg=#6699FF guifg=#1E1F29 gui=bold
-highlight User4 guibg=#3A3C4E guifg=#6699FF gui=bold
-highlight User5 guibg=#3A3C4E guifg=#FF79C6 gui=bold
-highlight User6 guibg=#3A3C4E guifg=#BFBFBF gui=bold
-highlight User7 guibg=#3A3C4E guifg=#626483 gui=bold
+highlight User1 guibg=#BFBFBF guifg=#1E1F29
+highlight User2 guibg=#6699FF guifg=#BFBFBF
+highlight User3 guibg=#6699FF guifg=#1E1F29
+highlight User4 guibg=#3A3C4E guifg=#6699FF
+highlight User5 guibg=#3A3C4E guifg=#FF79C6
+highlight User6 guibg=#3A3C4E guifg=#BFBFBF
+highlight User7 guibg=#3A3C4E guifg=#626483
 
 function! superbar#ActiveStatusLine()
     let l:statusline  = "%1*"
@@ -18,7 +18,7 @@ function! superbar#ActiveStatusLine()
     let l:statusline .= "%4*"
     let l:statusline .= ""
     let l:statusline .= "%5*"
-    let l:statusline .= "%{&modified?'\ \ ':''}"
+    let l:statusline .= "%{&modified?'\ \ ':''}"
     let l:statusline .= "%{&readonly?'\ \ ':''}"
     let l:statusline .= "%6*"
     let l:statusline .= "%="
@@ -37,7 +37,7 @@ function! superbar#InactiveStatusLine()
     let l:statusline  = "%7*"
     let l:statusline .= "\ "
     let l:statusline .= "%f"
-    let l:statusline .= "%{&modified?'\ \ ':''}"
+    let l:statusline .= "%{&modified?'\ \ ':''}"
     let l:statusline .= "%{&readonly?'\ \ ':''}"
     let l:statusline .= "%="
     let l:statusline .= "\ "

@@ -78,7 +78,10 @@
   [N]  Space + L    ---------------->    Fzf lines in opened buffers
 
   [N]  Alt + Return    ------------->    Next buffer
-  [N]  leader + 1..0    ------------>    go to buffer 1..10
+  [N]  Space + 1..0    ------------->    go to buffer 1..10
+
+  [N]  Space + Return    ----------->    Open Coq run-to-cursor
+  [N]  Space + Backspace    -------->    Close Coq run-to-cursor
 
 
    /##########                 /##    /##/##

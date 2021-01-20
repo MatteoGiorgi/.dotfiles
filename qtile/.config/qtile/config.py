@@ -159,7 +159,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='mononoki Nerd Font Bold',
+    font='mononoki Nerd Font',
     fontsize=14,
     padding=6,
     background=color_black,
@@ -179,33 +179,12 @@ def toggle_calcurse(qtile):
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
-                widget.TextBox(
-                    text='',
-                    background=color_white,
-                    foreground=color_black,
-                    mouse_callbacks={
-                        'Button1':
-                        lambda qtile: qtile.cmd_spawn('rofi-run -r')
-                    },
-                    padding=10
-                ),
-                widget.Spacer(
-                    background=color_white,
-                    length=3
-                ),
-                widget.TextBox(
-                    background=color_black,
-                    foreground=color_white,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
                 widget.GroupBox(
                     background=color_black,
                     highlight_method='text',
-                    margin_y=3,
+                    margin_y=2,
                     borderwidth=0,
                     active=color_gray,
                     inactive=color_gray,
@@ -228,7 +207,6 @@ screens = [
                     padding=0
                 ),
                 widget.Prompt(
-                    font='mononoki Nerd Font',
                     background=color_black,
                     foreground=color_lightblue,
                     cursor=True,
@@ -247,7 +225,6 @@ screens = [
                     length=36
                 ),
                 widget.TaskList(
-                    font='mononoki Nerd Font',
                     background=color_black,
                     foreground=color_gray,
                     border=color_white,
@@ -273,7 +250,6 @@ screens = [
                     padding=0
                 ),
                 widget.Moc(
-                    font='mononoki Nerd Font',
                     background=color_black,
                     foreground=color_white,
                     max_chars=10,
@@ -429,58 +405,36 @@ screens = [
                 ),
                 widget.Spacer(
                     background=color_purple,
-                    length=6
+                    length=8
                 ),
                 widget.TextBox(
                     background=color_purple,
                     foreground=color_black,
-                    text=' ',
+                    text=' ',
                     padding=0
                 ),
                 widget.Clock(
                     background=color_purple,
                     foreground=color_black,
-                    padding=1,
+                    padding=-1,
                     format='%H:%M',
                     mouse_callbacks={'Button1': toggle_calcurse}
                 ),
                 widget.Spacer(
                     background=color_purple,
-                    length=7
+                    length=9
                 )
             ],
             20
         )
     ),
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
-                widget.TextBox(
-                    text='',
-                    background=color_white,
-                    foreground=color_black,
-                    mouse_callbacks={
-                        'Button1':
-                        lambda qtile: qtile.cmd_spawn('rofi-run -r')
-                    },
-                    padding=10
-                ),
-                widget.Spacer(
-                    background=color_white,
-                    length=3
-                ),
-                widget.TextBox(
-                    background=color_black,
-                    foreground=color_white,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
                 widget.Spacer(
                     length=36
                 ),
                 widget.TaskList(
-                    font='mononoki Nerd Font',
                     background=color_black,
                     foreground=color_gray,
                     border=color_white,
@@ -500,46 +454,30 @@ screens = [
                 ),
                 widget.TextBox(
                     background=color_black,
-                    foreground=color_lightblue,
+                    foreground=color_white,
                     fontsize=17,
-                    text='',
+                    text='',
                     padding=0
                 ),
                 widget.Spacer(
-                    background=color_lightblue,
+                    background=color_black,
                     length=7
                 ),
                 widget.TextBox(
-                    background=color_lightblue,
-                    foreground=color_black,
+                    background=color_black,
+                    foreground=color_white,
                     text=' ',
                     padding=0
                 ),
                 widget.CurrentLayout(
-                    background=color_lightblue,
-                    foreground=color_black,
-                    padding=3
+                    background=color_black,
+                    foreground=color_white,
+                    padding=1
                 ),
                 widget.Spacer(
-                    background=color_lightblue,
-                    length=3
+                    background=color_black,
+                    length=5
                 ),
-                widget.TextBox(
-                    background=color_lightblue,
-                    foreground=color_purple,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Wallpaper(
-                    background=color_purple,
-                    foreground=color_black,
-                    directory='~/Pictures/wallpapers/wallogo',
-                    random_selection=True,
-                    wallpaper_command=['feh', '--bg-fill'],
-                    label=' chwp',
-                    padding=8
-                )
             ],
             20
         )
