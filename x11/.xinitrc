@@ -4,14 +4,13 @@
 # a login manager. It only launches Qtile becouse all the startup programs are
 # taken care in autorun.sh. Anyway, you need to have
 #    xorg-xrdb   to load Xresources
+#    xorg-xmodmap to run .Xmodmap
 #    xfsettingsd to launch xsettings demon
 
-# . /etc/X11/Xsession &  # ???
-
 xrdb -load ~/.Xresources &
-xfsettingsd &
 xmodmap ~/.Xmodmap &
-exec qtile  # dbus-launch --exit-with-session qtile
+xfsettingsd &
+exec qtile
 
 # To be able to launch this file from a login manager (such as lightdm), create
 # the file "/usr/shared/xsessions/qtile.desktop" with the following content:
@@ -19,7 +18,7 @@ exec qtile  # dbus-launch --exit-with-session qtile
 #     [Desktop Entry]
 #     Version=1.0
 #     Name=Qtile
-#     Comment=Use this session to run Qtile as your window manager
+#     Comment=Run Qtile as stanalone window manager
 #     Exec=/home/geoteo/.xinitrc
 #     Icon=
 #     Type=Application

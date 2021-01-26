@@ -27,7 +27,7 @@
 "    vim-fugitive              https://github.com/tpope/vim-fugitive
 "    gv                        https://github.com/junegunn/gv.vim
 "    fzf                       https://github.com/junegunn/fzf.vim
-"    vifm                      https://github.com/vifm/vifm.vim
+"    vim-floaterm              https://github.com/voldikss/vim-floaterm
 "    vim-ctrlspace             https://github.com/vim-ctrlspace/vim-ctrlspace
 "    undotree                  https://github.com/mbbill/undotree
 "    vim-buftabline            https://github.com/ap/vim-buftabline
@@ -68,7 +68,7 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'tpope/vim-fugitive'
     Plug 'junegunn/gv.vim'
     Plug 'junegunn/fzf', {'do': { -> fzf#install() }} | Plug 'junegunn/fzf.vim'
-    Plug 'vifm/vifm.vim'
+    Plug 'voldikss/vim-floaterm'
     Plug 'vim-ctrlspace/vim-ctrlspace'
     Plug 'mbbill/undotree'
     Plug 'ap/vim-buftabline'
@@ -144,6 +144,9 @@ highlight BufTabLineActive  guibg=#3A3C4E guifg=#BFBFBF
 highlight BufTabLineHidden  guibg=#3A3C4E guifg=#626483
 highlight BufTabLineFill    guibg=#3A3C4E
 
+highlight Floaterm       guibg=NONE
+highlight FloatermBorder guibg=NONE guifg=#3A3C4E
+
 
 
 
@@ -182,10 +185,19 @@ augroup statuslineautocmds
 augroup END
 
 
+" Terminal window settings
+augroup easyterm
+    autocmd!
+    autocmd TermOpen * startinsert
+    autocmd TermOpen * setlocal nonumber norelativenumber
+    autocmd TermOpen * setlocal statusline=%!superbar#Silent()
+augroup END
+
+
 " Run coq plugin
 augroup coq
     autocmd Filetype coq nnoremap <leader><Return> :CoqRunToCursor<CR>
-    autocmd Filetype coq nnoremap <leader><Backspace> :bdelete __coq_ide__<CR>
+    autocmd Filetype coq nnoremap <leader><Return><Return> :bdelete __coq_ide__<CR>
 augroup END
 
 
@@ -258,14 +270,14 @@ let g:fzf_colors = {
 
 
 
-"VIFM___________________________________________________________________________
+"FLOATERM_______________________________________________________________________
 
-let g:vifm = 'EditVifm'
-let g:vifm_term = 'xterm -e'
-let g:vifm_embed_term = 1
-let g:vifm_embed_cwd = 1
-let g:vifm_replace_netrw = 1
-let g:vifm_replace_netrw_cmd = 'EditVifm'
+let g:floaterm_autoinsert=1
+let g:floaterm_width=1.00
+let g:floaterm_height=1.00
+let g:floaterm_position='bottomleft'
+let g:floaterm_autoclose=2
+let g:floaterm_title=''
 
 
 
@@ -304,19 +316,17 @@ let g:clever_f_show_prompt = 1
 
 let g:ale_fix_on_save = 1
 let g:ale_linters = {
-            \ 'c': ['cc'],
-            \ 'cpp': ['cc'],
-            \ 'java': ['javac'],
-            \ 'python': ['flake8'],
             \ 'vim': ['vint'],
+            \ 'c': ['cc'],
+            \ 'haskell': ['ghc'],
+            \ 'python': ['flake8'],
             \ }
 let g:ale_fixers = {
-            \ 'c': ['astyle'],
-            \ 'cpp': ['astyle'],
-            \ 'java': ['google_java_format'],
             \ 'vim': ['trim_whitespace'],
+            \ 'c': ['astyle'],
+            \ 'haskell': ['brittany'],
+            \ 'python': ['yapf'],
             \ }
-            " \ 'python': ['yapf'],
 
 
 
@@ -408,9 +418,11 @@ map  <leader>a <esc>cs
 map  <leader>A <esc>ds
 
 
-" Vifm - UndotreeToggle
-nnoremap <leader><Tab> :EditVifm<CR>
-nnoremap <leader><Esc> :UndotreeToggle<CR>
+" Floaterm - Vifm - UndotreeToggle
+nnoremap <leader><Esc> :FloatermToggle<CR>
+tnoremap <leader><Esc> <C-\><C-n>:FloatermToggle<CR>
+nnoremap <leader><Tab> :FloatermNew vifm<CR>
+nnoremap <leader><Backspace> :UndotreeToggle<CR>
 
 
 " Gv
@@ -444,15 +456,20 @@ nmap <leader>0 <Plug>BufTabLine.Go(10)
 
 
 
+
 "USEFUL_COMMANDS________________________________________________________________
 
 command! SelectAll execute "normal \ggVG"
-command! Squish execute "normal \ggVGgq"
-command! RemoveSpaces :%s/\s\+$//e
-command! Longline call utility#LongLine()
 command! Root call root#FindRoot()
 command! -nargs=1 ChangeRoot call switch#change_root(<f-args>)
 command! ChangeRootCurrent call switch#change_root_current()
 command! SwitchDir call switch#switch_dir()
 command! ToggleAccent call utility#ToggleAccent()
 command! Shortcuts :!cat ~/.config/nvim/startscreen
+command! -nargs=* EasyTerm call utility#EasyTerm(<q-args>)
+
+
+" Without remap
+command! Longline call utility#LongLine()
+command! RemoveSpaces :%s/\s\+$//e
+command! Squish execute "normal \ggVGgq"

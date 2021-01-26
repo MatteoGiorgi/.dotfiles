@@ -1,32 +1,40 @@
-highlight User1 guibg=#BFBFBF guifg=#1E1F29
-highlight User2 guibg=#6699FF guifg=#BFBFBF
-highlight User3 guibg=#6699FF guifg=#1E1F29
+highlight User1 guibg=#3A3C4E guifg=#BFBFBF
+highlight User2 guibg=#282936 guifg=#3A3C4E
+highlight User3 guibg=#3A3C4E guifg=#282936
 highlight User4 guibg=#3A3C4E guifg=#6699FF
-highlight User5 guibg=#3A3C4E guifg=#FF79C6
-highlight User6 guibg=#3A3C4E guifg=#BFBFBF
-highlight User7 guibg=#3A3C4E guifg=#626483
+highlight User5 guibg=#6699FF guifg=#282936
+highlight User6 guibg=#3A3C4E guifg=#626483
 
 function! superbar#ActiveStatusLine()
     let l:statusline  = "%1*"
     let l:statusline .= "%{superbar#StatuslineGit()}"
     let l:statusline .= "\ "
     let l:statusline .= "%2*"
-    let l:statusline .= "\ "
-    let l:statusline .= "%3*"
-    let l:statusline .= "%f"
-    let l:statusline .= "\ "
-    let l:statusline .= "%4*"
     let l:statusline .= ""
-    let l:statusline .= "%5*"
-    let l:statusline .= "%{&modified?'\ \ ':''}"
-    let l:statusline .= "%{&readonly?'\ \ ':''}"
-    let l:statusline .= "%6*"
+    if &modified
+        let l:statusline .= "%5*"
+        let l:statusline .= "\ "
+        let l:statusline .= "%f\ "
+    else
+        let l:statusline .= "%3*"
+        let l:statusline .= "\ "
+        let l:statusline .= "%4*"
+        let l:statusline .= "%f"
+    endif
+    let l:statusline .= "%{&readonly?'\ \ ':''}"
     let l:statusline .= "%="
     let l:statusline .= "%{&filetype!=#''?&filetype:'none'}"
-    let l:statusline .= "%(\ \%{(&bomb\|\|&fileencoding!~#'^$\\\|utf-8'?'\ '.&fileencoding.(&bomb?'-bom':''):'').(&fileformat!=#(has('win32')?'dos':'unix')?'\ '.&fileformat:'')}%)"
-    let l:statusline .= "\ "
+    let l:statusline .= "%(\ \%{(&bomb\|\|&fileencoding!~#'^$\\\|utf-8'?'\ '.&fileencoding.(&bomb?'-bom':''):'').(&fileformat!=#(has('win32')?'dos':'unix')?'\ '.&fileformat:'')}%)"
+    if &modified
+        let l:statusline .= "%5*"
+        let l:statusline .= "\ "
+    else
+        let l:statusline .= "%3*"
+        let l:statusline .= "\ "
+    endif
+    let l:statusline .= "%2*"
+    let l:statusline .= ""
     let l:statusline .= "%1*"
-    let l:statusline .= "\ "
     let l:statusline .= "\ %{superbar#Percent()}%%"
     let l:statusline .= "\ "
     return l:statusline
@@ -34,43 +42,34 @@ endfunction
 
 
 function! superbar#InactiveStatusLine()
-    let l:statusline  = "%7*"
+    let l:statusline  = "%6*"
     let l:statusline .= "\ "
     let l:statusline .= "%f"
-    let l:statusline .= "%{&modified?'\ \ ':''}"
-    let l:statusline .= "%{&readonly?'\ \ ':''}"
+    let l:statusline .= "%{&modified?'\ \ ':''}"
+    let l:statusline .= "%{&readonly?'\ \ ':''}"
     let l:statusline .= "%="
     let l:statusline .= "\ "
     return l:statusline
 endfunction
 
 
-function! superbar#StartScreen()
-    let l:statusline  = "%7*"
-    let l:statusline .= "\ Enjoy TeoVim\  "
+function! superbar#Silent()
+    let l:statusline  = "%4*"
+    let l:statusline .= "\ Choose\ life,\ choose\ \ "
     let l:statusline .= "%="
-    let l:statusline .= "\ "
-    return l:statusline
-endfunction
-
-
-function! superbar#Coq()
-    let l:statusline  = "%7*"
-    let l:statusline .= "\ CoqIDE\  "
-    let l:statusline .= "%="
-    let l:statusline .= "\ "
+    let l:statusline .= "\ \ "
     return l:statusline
 endfunction
 
 
 function! superbar#GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+    return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
 
 
 function! superbar#StatuslineGit()
-  let l:branchname = superbar#GitBranch()
-  return strlen(l:branchname) > 0?'   '.l:branchname.'':'   '
+    let l:branchname = superbar#GitBranch()
+    return strlen(l:branchname) > 0?'   '.l:branchname.'':'   '
 endfunction
 
 
@@ -100,7 +99,15 @@ function! superbar#StatusLine(mode)
     if &buftype ==? 'nofile' || &filetype ==? 'netrw' || l:bn ==? '[BufExplorer]' || l:bn ==? 'undotree_2' || l:bn ==? 'diffpanel_3'
         return
     elseif l:bn ==? '__coq_ide__'
-        setlocal statusline=%!superbar#Coq()
+        setlocal
+            \ nocursorcolumn
+            \ nocursorline
+            \ nonumber
+            \ noshowmode
+            \ norelativenumber
+            \ noshowcmd
+            \ nowrap
+            \ statusline=%!superbar#InactiveStatusLine()
         return
     elseif a:mode ==? 'inactive'
         setlocal statusline=%!superbar#InactiveStatusLine()

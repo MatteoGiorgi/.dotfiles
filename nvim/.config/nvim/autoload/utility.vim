@@ -1,3 +1,5 @@
+"LONGLINE_______________________________________________________________________
+
 function! utility#LongLine()
     if (g:longline ==? 'none')
         let g:longline = 'all'
@@ -9,10 +11,14 @@ function! utility#LongLine()
 endfunction
 
 
+
+
+"TOGGLEACCENT___________________________________________________________________
+
 function! utility#ToggleAccent()
-    let withAccentGrave   = ['à', 'è', 'ì', 'ò', 'ù', 'À', 'È', 'Ì', 'Ò', 'Ù']
-    let withAccentAcute   = ['á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú']
-    let withNoAccent      = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+    let withAccentGrave = ['à', 'è', 'ì', 'ò', 'ù', 'À', 'È', 'Ì', 'Ò', 'Ù']
+    let withAccentAcute = ['á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú']
+    let withNoAccent    = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
     let character = matchstr(getline('.'), '\%' . col('.') . 'c.')
     let positionG = match(withAccentGrave, character)
     let positionA = match(withAccentAcute, character)
@@ -29,7 +35,23 @@ function! utility#ToggleAccent()
 endfunction
 
 
-fun! utility#Start()
+
+
+"EASYTERM_______________________________________________________________________
+
+function! utility#EasyTerm(args)
+    botright 20new
+    exe 'terminal' a:args
+    tnoremap <buffer> <Esc> <C-\><C-n>:bdelete!<CR>
+    tnoremap <buffer> <expr> <C-v> '<C-\><C-N>pi'
+endfun
+
+
+
+
+"STARTPAGE______________________________________________________________________
+
+function! utility#Start()
     " Don't run if: we have commandline arguments, we don't have an empty
     " buffer, if we've not invoked as vim or gvim, or if we'e start in insert mode
     if argc() || line2byte('$') != -1 || v:progname !~? '^[-gmnq]\=vim\=x\=\%[\.exe]$' || &insertmode
@@ -49,7 +71,7 @@ fun! utility#Start()
         \ noswapfile
         \ norelativenumber
         \ nowrap
-        \ statusline=%!superbar#StartScreen()
+        \ statusline=%!superbar#Silent()
     call append('$', '')
     for line in split(system('cat ~/.config/nvim/startscreen'), '\n')
         call append('$', '    ' . l:line)

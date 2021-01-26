@@ -140,8 +140,8 @@ mcd ()
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin"
 export PAGER="vimpager"      # most
 export BAT_PAGER="vimpager"  # most
-export VISUAL="nvim"
-export EDITOR="nvim"
+export VISUAL="vim"          # nvim
+export EDITOR="vim"          # nvim
 export TERM="xterm-256color"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 export BROWSER="firefox"

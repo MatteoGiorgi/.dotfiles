@@ -141,10 +141,10 @@ layout_theme = dict(
 )
 
 layouts = [
-    layout.MonadWide(name='wide', **layout_theme),
-    layout.MonadTall(name='tall', **layout_theme),
-    layout.Floating(name='float', **layout_theme),
     layout.Max(name='max'),
+    layout.MonadTall(name='tall', **layout_theme),
+    layout.MonadWide(name='wide', **layout_theme),
+    layout.Floating(name='float', **layout_theme),
 
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),
@@ -365,7 +365,7 @@ screens = [
                 widget.TextBox(
                     background=color_lightblue,
                     foreground=color_black,
-                    text=' ',
+                    text=' ',
                     padding=0
                 ),
                 widget.KeyboardLayout(
@@ -500,7 +500,7 @@ follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
-    border_focus=color_lightblue,
+    border_focus=color_purple,
     border_normal=color_white,
     border_width=2,
     float_rules=[

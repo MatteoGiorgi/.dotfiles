@@ -62,8 +62,13 @@
   [ ]  Space + a + ??    ----------->    Change surroundings
   [ ]  Space + A + ?    ------------>    Delete surroundings
 
-  [N]  Space + Tab    -------------->    Open Vifm in current window
-  [N]  Space + Esc    -------------->    Toggle Undotree
+  [N]  Space + Esc  ---------------->    Toggle Floaterm
+  [N]  Space + Tab    -------------->    Open Vifm in a new Floaterm
+  [N]  Space + Backspace    -------->    Toggle Undotree
+
+  [T]  Esc    ---------------------->    Esc insert mode, enter normal mode
+  [T]  Ctrl + c    ----------------->    Copy from terminal window
+  [T]  Ctrl + v    ----------------->    Paste into terminal window
 
   [N]  Space + j    ---------------->    Gv commit browser current file
   [V]  Space + j    ---------------->    Gv commit browser selected text
@@ -77,11 +82,11 @@
   [N]  Space + l    ---------------->    Fzf lines in current buffer
   [N]  Space + L    ---------------->    Fzf lines in opened buffers
 
-  [N]  Alt + Return    ------------->    Next buffer
+  [N]  Alt + Space    -------------->    Next buffer
   [N]  Space + 1..0    ------------->    go to buffer 1..10
 
   [N]  Space + Return    ----------->    Open Coq run-to-cursor
-  [N]  Space + Backspace    -------->    Close Coq run-to-cursor
+  [N]  Space + Alt + Return    ----->    Close Coq run-to-cursor
 
 
    /##########                 /##    /##/##

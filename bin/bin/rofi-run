@@ -8,33 +8,19 @@ usage()
     cat <<- EOF
 
  USAGE:  $NAME [OPTIONS]
-
  OPTIONS:
-
      -h,--help                  Display this message
-
      -v,--version               Display script version
-
      -r,--run                   Application launcher
-
      -d,--dmenu                 Application launcher
-
      -w,--window                Switch between windows
-
      -l,--logout                System logout dialog
-
      -s,--settings              System settings
-
      -W,--window-manager        Window manager settings
-
      -b,--browser               Browser search by keyword (requires surfraw)
-
      -q,--qalculate             Persistant calculator dialog (requires libqalculate)
-
      -c,--clipboard             Select previous clipboard entries (requires greenclip)
-
-
-  Without any options the run dialog will be opened.
+ Without any options the run dialog will be opened.
 
 EOF
 }
