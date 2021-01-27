@@ -1,9 +1,10 @@
 highlight User1 guibg=#3A3C4E guifg=#BFBFBF
 highlight User2 guibg=#282936 guifg=#3A3C4E
-highlight User3 guibg=#3A3C4E guifg=#282936
-highlight User4 guibg=#3A3C4E guifg=#6699FF
-highlight User5 guibg=#6699FF guifg=#282936
+highlight User3 guibg=#626483 guifg=#282936
+highlight User4 guibg=#BFBFBF guifg=#282936
+highlight User5 guibg=#BFBFBF guifg=#3A3C4E
 highlight User6 guibg=#3A3C4E guifg=#626483
+
 
 function! superbar#ActiveStatusLine()
     let l:statusline  = "%1*"
@@ -12,13 +13,13 @@ function! superbar#ActiveStatusLine()
     let l:statusline .= "%2*"
     let l:statusline .= ""
     if &modified
-        let l:statusline .= "%5*"
+        let l:statusline .= "%4*"
         let l:statusline .= "\ "
-        let l:statusline .= "%f\ "
+        let l:statusline .= "%5*"
+        let l:statusline .= "%f"
     else
         let l:statusline .= "%3*"
         let l:statusline .= "\ "
-        let l:statusline .= "%4*"
         let l:statusline .= "%f"
     endif
     let l:statusline .= "%{&readonly?'\ \ ':''}"
@@ -26,7 +27,7 @@ function! superbar#ActiveStatusLine()
     let l:statusline .= "%{&filetype!=#''?&filetype:'none'}"
     let l:statusline .= "%(\ \%{(&bomb\|\|&fileencoding!~#'^$\\\|utf-8'?'\ '.&fileencoding.(&bomb?'-bom':''):'').(&fileformat!=#(has('win32')?'dos':'unix')?'\ '.&fileformat:'')}%)"
     if &modified
-        let l:statusline .= "%5*"
+        let l:statusline .= "%4*"
         let l:statusline .= "\ "
     else
         let l:statusline .= "%3*"
@@ -45,8 +46,7 @@ function! superbar#InactiveStatusLine()
     let l:statusline  = "%6*"
     let l:statusline .= "\ "
     let l:statusline .= "%f"
-    let l:statusline .= "%{&modified?'\ \ ':''}"
-    let l:statusline .= "%{&readonly?'\ \ ':''}"
+    let l:statusline .= "%{&modified?'\ \ ':''}"
     let l:statusline .= "%="
     let l:statusline .= "\ "
     return l:statusline
@@ -54,7 +54,7 @@ endfunction
 
 
 function! superbar#Silent()
-    let l:statusline  = "%4*"
+    let l:statusline  = "%3*"
     let l:statusline .= "\ Choose\ life,\ choose\ \ "
     let l:statusline .= "%="
     let l:statusline .= "\ \ "

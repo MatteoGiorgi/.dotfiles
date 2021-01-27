@@ -139,7 +139,7 @@ highlight ColorColumn guibg=#2A2C38
 highlight VertSplit   guibg=#3A3C4E guifg=#3A3C4E
 
 highlight StatusLine        guibg=#3A3C4E guifg=#BFBFBF
-highlight BufTabLineCurrent guibg=#3A3C4E guifg=#6699FF
+highlight BufTabLineCurrent guibg=#3A3C4E guifg=#BFBFBF
 highlight BufTabLineActive  guibg=#3A3C4E guifg=#BFBFBF
 highlight BufTabLineHidden  guibg=#3A3C4E guifg=#626483
 highlight BufTabLineFill    guibg=#3A3C4E
@@ -418,9 +418,12 @@ map  <leader>a <esc>cs
 map  <leader>A <esc>ds
 
 
-" Floaterm - Vifm - UndotreeToggle
+" Floaterm
 nnoremap <leader><Esc> :FloatermToggle<CR>
 tnoremap <leader><Esc> <C-\><C-n>:FloatermToggle<CR>
+
+
+" Vifm - UndotreeToggle
 nnoremap <leader><Tab> :FloatermNew vifm<CR>
 nnoremap <leader><Backspace> :UndotreeToggle<CR>
 
