@@ -10,8 +10,7 @@
   ===========>    e: edit    i: insert    q: quit    <===============
 
 
-  [N]  Alt + Return    ------------->    Visulize this page
-  [N]  Alt + i    ------------------>    Run go-to-cursor command of CoqIDE
+  [N]  Alt + Backspace    ---------->    Popup startpage
   [ ]  Space + u    ---------------->    Open URL under the cursor
 
   [N]  Ctrl + h    ----------------->    Shrink window horizontally
@@ -24,10 +23,10 @@
   [N]  Space + Alt + k    ---------->    Move window uo
   [N]  Space + Alt + l    ---------->    Move window to the right
 
-  [N]  Alt + h    ------------------>    Open new buffer left
-  [N]  Alt + j    ------------------>    Open new buffer below
-  [N]  Alt + k    ------------------>    Open new buffer above
-  [N]  Alt + l    ------------------>    Open new buffer right
+  [N]  Alt + h    ------------------>    Open new startscreen left
+  [N]  Alt + j    ------------------>    Open new startscreen below
+  [N]  Alt + k    ------------------>    Open new startscreen above
+  [N]  Alt + l    ------------------>    Open new startscreen right
 
   [N]  Alt + d    ------------------>    Jump to next paragraph & center
   [N]  Alt + u    ------------------>    Jump to prev paragraph & center
@@ -62,13 +61,17 @@
   [ ]  Space + a + ??    ----------->    Change surroundings
   [ ]  Space + A + ?    ------------>    Delete surroundings
 
-  [N]  Space + Esc  ---------------->    Toggle Floaterm
-  [N]  Space + Tab    -------------->    Open Vifm in a new Floaterm
-  [N]  Space + Backspace    -------->    Toggle Undotree
+  [N]  Alt + Return    ------------->    Toggle Floaterm
+  [T]  Alt + Return    ------------->    Toggle Floaterm
+  [T]  Alt + Backspace    ---------->    Kill Floaterm
+  [T]  Alt + Tab    ---------------->    Next Floaterm
+  [T]  Alt + Space    -------------->    New Floaterm
 
-  [T]  Esc    ---------------------->    Esc insert mode, enter normal mode
-  [T]  Ctrl + c    ----------------->    Copy from terminal window
-  [T]  Ctrl + v    ----------------->    Paste into terminal window
+  [N]  Space + Tab    -------------->    Open Vifm in a new Floaterm
+  [N]  Space + t    ---------------->    Open Tig in a new Floaterm
+  [N]  Space + y    ---------------->    Open Htop in a new Floaterm
+
+  [N]  Space + Esc    -------------->    Toggle Undotree
 
   [N]  Space + j    ---------------->    Gv commit browser current file
   [V]  Space + j    ---------------->    Gv commit browser selected text
@@ -86,7 +89,7 @@
   [N]  Space + 1..0    ------------->    go to buffer 1..10
 
   [N]  Space + Return    ----------->    Open Coq run-to-cursor
-  [N]  Space + Alt + Return    ----->    Close Coq run-to-cursor
+  [N]  Space + Backspace    -------->    Close Coq run-to-cursor
 
 
    /##########                 /##    /##/##
@@ -97,5 +100,7 @@
       | ##| ##_____/| ##  | ##  \  ###/ | #| ## | ## | ##        \|_,
       |  #|  #######|  ######    \  #/  | #| ## | ## | ##         |
        \_/ \_______/ \______/     \_/   |__|__/ |__/ |__/        / \
+
+  ===========>    e: edit    i: insert    q: quit    <===============
 
 

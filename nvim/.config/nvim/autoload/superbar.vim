@@ -1,9 +1,10 @@
-highlight User1 guibg=#3A3C4E guifg=#BFBFBF
-highlight User2 guibg=#282936 guifg=#3A3C4E
-highlight User3 guibg=#626483 guifg=#282936
-highlight User4 guibg=#BFBFBF guifg=#282936
-highlight User5 guibg=#BFBFBF guifg=#3A3C4E
-highlight User6 guibg=#3A3C4E guifg=#626483
+highlight User1 guibg=#3A3C4E guifg=#BFBFBF gui=none
+highlight User2 guibg=#282936 guifg=#3A3C4E gui=none
+highlight User3 guibg=#626483 guifg=#282936 gui=none
+highlight User4 guibg=#BFBFBF guifg=#282936 gui=none
+highlight User5 guibg=#BFBFBF guifg=#282936 gui=none
+highlight User6 guibg=#3A3C4E guifg=#626483 gui=none
+highlight User7 guibg=#3A3C4E guifg=#EBFF87 gui=none
 
 
 function! superbar#ActiveStatusLine()
@@ -17,12 +18,14 @@ function! superbar#ActiveStatusLine()
         let l:statusline .= "\ "
         let l:statusline .= "%5*"
         let l:statusline .= "%f"
+        let l:statusline .= "%{&readonly?'\ ':''}"
+        let l:statusline .= "\ \ "
     else
         let l:statusline .= "%3*"
         let l:statusline .= "\ "
         let l:statusline .= "%f"
+        let l:statusline .= "%{&readonly?'\ ':''}"
     endif
-    let l:statusline .= "%{&readonly?'\ \ ':''}"
     let l:statusline .= "%="
     let l:statusline .= "%{&filetype!=#''?&filetype:'none'}"
     let l:statusline .= "%(\ \%{(&bomb\|\|&fileencoding!~#'^$\\\|utf-8'?'\ '.&fileencoding.(&bomb?'-bom':''):'').(&fileformat!=#(has('win32')?'dos':'unix')?'\ '.&fileformat:'')}%)"
@@ -46,6 +49,7 @@ function! superbar#InactiveStatusLine()
     let l:statusline  = "%6*"
     let l:statusline .= "\ "
     let l:statusline .= "%f"
+    let l:statusline .= "%{&readonly?'\ ':''}"
     let l:statusline .= "%{&modified?'\ \ ':''}"
     let l:statusline .= "%="
     let l:statusline .= "\ "
@@ -54,10 +58,8 @@ endfunction
 
 
 function! superbar#Silent()
-    let l:statusline  = "%3*"
-    let l:statusline .= "\ Choose\ life,\ choose\ \ "
-    let l:statusline .= "%="
-    let l:statusline .= "\ \ "
+    let l:statusline  = "%7*"
+    let l:statusline .= "\ Choose\ life,\ choose\ Vim.\ "
     return l:statusline
 endfunction
 

@@ -21,19 +21,19 @@
 "    clever-f                  https://github.com/rhysd/clever-f.vim
 "    auto-pairs                https://github.com/jiangmiao/auto-pairs
 "    vim-surround              https://github.com/tpope/vim-surround
-"    vim-unimpaired            https://github.com/tpope/vim-unimpaired
 "    vim-repeat                https://github.com/tpope/vim-repeat
 "    vim-commentary            https://github.com/tpope/vim-commentary
 "    vim-fugitive              https://github.com/tpope/vim-fugitive
 "    gv                        https://github.com/junegunn/gv.vim
 "    fzf                       https://github.com/junegunn/fzf.vim
 "    vim-floaterm              https://github.com/voldikss/vim-floaterm
-"    vim-ctrlspace             https://github.com/vim-ctrlspace/vim-ctrlspace
 "    undotree                  https://github.com/mbbill/undotree
-"    vim-buftabline            https://github.com/ap/vim-buftabline
+"    lightline                 https://github.com/itchyny/lightline.vim
+"    lightline-bufferline      https://github.com/mengelbrecht/lightline-bufferline
+"    vim-startify              https://github.com/mhinz/vim-startify
+"    vim-signify               https://github.com/mhinz/vim-signify
 "    vimwiki                   https://github.com/vimwiki/vimwiki
-"    coq                       https://github.com/tounaishouta/coq.vim
-
+"    vim-devicons              https://github.com/ryanoasis/vim-devicons
 
 
 
@@ -52,7 +52,6 @@ augroup vimenter
                     \ ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
         autocmd VimEnter * PlugInstall
     endif
-    call utility#Start() "intro
 augroup END
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
@@ -62,18 +61,19 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'rhysd/clever-f.vim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-surround'
-    Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-fugitive'
     Plug 'junegunn/gv.vim'
     Plug 'junegunn/fzf', {'do': { -> fzf#install() }} | Plug 'junegunn/fzf.vim'
     Plug 'voldikss/vim-floaterm'
-    Plug 'vim-ctrlspace/vim-ctrlspace'
     Plug 'mbbill/undotree'
-    Plug 'ap/vim-buftabline'
+    Plug 'itchyny/lightline.vim'
+    Plug 'mengelbrecht/lightline-bufferline'
+    Plug 'mhinz/vim-startify'
+    Plug 'mhinz/vim-signify'
     Plug 'vimwiki/vimwiki'
-    Plug 'tounaishouta/coq.vim'
+    Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 
@@ -100,20 +100,24 @@ set encoding=UTF-8
 scriptencoding utf-8
 set noswapfile
 set nobackup
-set showmode
+set noshowmode
 set showcmd
 set nocursorline
 set noerrorbells
 set nofoldenable
 set foldmethod=manual
 set nospell
-set omnifunc=ale#completion#OmniFunc "syntaxcomplete#Complete
+set omnifunc=ale#completion#OmniFunc  "syntaxcomplete#Complete
 set complete+=k/usr/share/dict/british-english
 set complete+=k/usr/share/dict/italian
 set completeopt=menuone,longest
 set shortmess+=c
 set autochdir
 set laststatus=2
+set showtabline=2
+set guioptions-=e
+set guifont=mononoki\ Nerd\ Font\ 9
+set updatetime=100  "default is 4000ms
 
 
 if exists('+termguicolors')
@@ -136,13 +140,11 @@ highlight CursorLineNr guibg=NONE guifg=#F1FA8C
 
 highlight CursorLine  guibg=#2A2C38
 highlight ColorColumn guibg=#2A2C38
-highlight VertSplit   guibg=#3A3C4E guifg=#3A3C4E
+highlight VertSplit   guibg=#2C323D guifg=#2C323D
+highlight Normal      guibg=#282936
 
-highlight StatusLine        guibg=#3A3C4E guifg=#BFBFBF
-highlight BufTabLineCurrent guibg=#3A3C4E guifg=#BFBFBF
-highlight BufTabLineActive  guibg=#3A3C4E guifg=#BFBFBF
-highlight BufTabLineHidden  guibg=#3A3C4E guifg=#626483
-highlight BufTabLineFill    guibg=#3A3C4E
+highlight StatusLine   guibg=#2C323D gui=NONE
+highlight StatusLineNC guibg=#2C323D gui=NONE
 
 highlight Floaterm       guibg=NONE
 highlight FloatermBorder guibg=NONE guifg=#3A3C4E
@@ -176,31 +178,6 @@ augroup vimrc
 augroup END
 
 
-" Change multiple statusbar in vimenter
-augroup statuslineautocmds
-    autocmd!
-    autocmd VimEnter              * call superbar#UpdateInactiveWindows()
-    autocmd WinEnter,BufWinEnter  * call superbar#StatusLine("active")
-    autocmd WinLeave              * call superbar#StatusLine("inactive")
-augroup END
-
-
-" Terminal window settings
-augroup easyterm
-    autocmd!
-    autocmd TermOpen * startinsert
-    autocmd TermOpen * setlocal nonumber norelativenumber
-    autocmd TermOpen * setlocal statusline=%!superbar#Silent()
-augroup END
-
-
-" Run coq plugin
-augroup coq
-    autocmd Filetype coq nnoremap <leader><Return> :CoqRunToCursor<CR>
-    autocmd Filetype coq nnoremap <leader><Return><Return> :bdelete __coq_ide__<CR>
-augroup END
-
-
 
 
 "MY_VARIABLES___________________________________________________________________
@@ -215,8 +192,6 @@ let g:longline = 'none'
 
 "NETRW__________________________________________________________________________
 
-let g:loaded_netrw = 1
-let g:loaded_netrwPlugin = 1
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_sort_sequence = '[\/]$,*'
@@ -270,6 +245,73 @@ let g:fzf_colors = {
 
 
 
+"LIGHTLINE_&_BUFFERLINE_________________________________________________________
+
+let g:lightline = {
+            \ 'colorscheme': 'one',
+            \ 'active': {
+            \     'left':[ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+            \ },
+            \ 'tabline': {
+            \     'left': [ ['buffers'] ],
+            \     'right': [ ['close'] ]
+            \ },
+            \ 'component': { 'lineinfo': ' %3l:%-2v', },
+            \ 'component_function': { 'gitbranch': 'fugitive#head', },
+            \ 'component_expand': { 'buffers': 'lightline#bufferline#buffers' },
+            \ 'component_type': { 'buffers': 'tabsel' }
+            \ }
+let g:lightline.separator = {
+            \ 'left': '',
+            \ 'right': ''
+            \ }
+let g:lightline.subseparator = {
+            \ 'left': '',
+            \ 'right': ''
+            \ }
+let g:lightline#bufferline#show_number = 2
+let g:lightline#bufferline#enable_devicons = 0
+let g:lightline#bufferline#enable_nerdfont= 1
+let g:lightline#bufferline#unicode_symbols = 1
+let g:lightline#bufferline#min_buffer_count = 2
+let g:lightline#bufferline#modified = ' +'
+let g:lightline#bufferline#shorten_path = 1
+let g:lightline#bufferline#smart_path = 1
+
+
+
+
+"STARTIFY_______________________________________________________________________
+
+let g:startify_files_number = 5
+let g:startify_list_order = [
+            \ ['   Recently used files:'], 'files',
+            \ ['   Current directory files:'], 'dir',
+            \ ['   Saved sessions:'], 'sessions',
+            \ ]
+let g:startify_custom_indices = [
+            \ 'a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 'l', 'm', 'n',
+            \ 'o', 'p', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'x'
+            \ ]
+let g:startify_session_dir = '~/.config/nvim/sessions'
+let g:startify_custom_header = [
+            \'',
+            \'    ┌──────────────────────────────────────────┐',
+            \'    │  I chose not to choose life.             │',
+            \'    │  I chose somethin’ else.                 │',
+            \'    │  And the reasons? There are no reasons.  │',
+            \'    │  Who needs reasons when you’ve got Vim?  │',
+            \'    └───┬──────────────────────────────────────┘',
+            \'        │',
+            \'        │      (\_/)',
+            \'        └───── (O.o)',
+            \'               (> <)',
+            \'',
+            \ ]
+
+
+
+
 "FLOATERM_______________________________________________________________________
 
 let g:floaterm_autoinsert=1
@@ -277,7 +319,7 @@ let g:floaterm_width=1.00
 let g:floaterm_height=1.00
 let g:floaterm_position='bottomleft'
 let g:floaterm_autoclose=2
-let g:floaterm_title=''
+let g:floaterm_title='($1|$2)'
 
 
 
@@ -291,14 +333,6 @@ let g:undotree_SplitWidth = 30
 let g:undotree_DiffpanelHeight = 10
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_HelpLine = 0
-
-
-
-
-"BUFTABLINE_____________________________________________________________________
-
-let g:buftabline_show = 1
-let g:buftabline_numbers = 2
 
 
 
@@ -345,7 +379,8 @@ let g:vimwiki_list = [{
 
 "KEYMAPPINGS____________________________________________________________________
 
-nnoremap <M-Return> :Shortcuts<CR>
+
+nnoremap <silent><M-Backspace> :!vimpager $HOME/.config/nvim/startscreen<CR>g
 
 
 " Generics
@@ -359,10 +394,10 @@ nnoremap <leader><M-l> :wincmd<Space><S-l><CR>
 nnoremap <leader><M-j> :wincmd<Space><S-j><CR>
 nnoremap <leader><M-k> :wincmd<Space><S-k><CR>
 
-nnoremap <silent><M-k> :new<CR>
-nnoremap <silent><M-j> :belowright new<CR>
-nnoremap <silent><M-h> :vnew<CR>
-nnoremap <silent><M-l> :belowright vnew<CR>
+nnoremap <silent><M-k> :new<bar>Startify<CR>
+nnoremap <silent><M-j> :belowright new<bar>Startify<CR>
+nnoremap <silent><M-h> :vnew<bar>Startify<CR>
+nnoremap <silent><M-l> :belowright vnew<bar>Startify<CR>
 nnoremap <silent><M-Space> :wincmd<Space>w<CR>
 
 nnoremap <silent><M-d> }}{ zz
@@ -374,14 +409,14 @@ xnoremap J :move '>+1<CR>gv=gv
 nnoremap <leader>w <C-W>
 nnoremap <leader>q :quit<CR>
 nnoremap <leader>z :write<CR>
-nnoremap <leader>e :enew<CR>
+nnoremap <leader>e :enew<bar>Startify<CR>
 nnoremap <leader>d :bdelete<CR>
-nnoremap <leader>i :bufdo bdelete<Bar>call utility#Start()<CR>
 nnoremap <leader>v :SelectAll<CR>
+nnoremap <leader>i :SClose<CR>
 
 nmap <C-p> :-r!xclip -o -sel clip<CR>
 vmap <C-y> :!xclip -f -sel clip<CR>
-map <leader>u <esc>gx
+map  <leader>u <esc>gx
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
@@ -419,12 +454,21 @@ map  <leader>A <esc>ds
 
 
 " Floaterm
-nnoremap <leader><Esc> :FloatermToggle<CR>
-tnoremap <leader><Esc> <C-\><C-n>:FloatermToggle<CR>
+nnoremap <silent><M-Return> :FloatermToggle<CR>
+tnoremap <silent><M-Return> <C-\><C-n>:FloatermToggle<CR>
+tnoremap <silent><M-Backspace> <C-\><C-n>:FloatermKill<CR>
+tnoremap <silent><M-Tab> <C-\><C-n>:FloatermNext<CR>
+tnoremap <silent><M-Space> <C-\><C-n>:FloatermNew<CR>
 
 
-" Vifm - UndotreeToggle
+" Floaterm programs
 nnoremap <leader><Tab> :FloatermNew vifm<CR>
+nnoremap <leader><Esc> :FloatermNew ranger<CR>
+nnoremap <leader><Return> :FloatermNew tig<CR>
+nnoremap <leader>t :FloatermNew htop<CR>
+
+
+" UndotreeToggle
 nnoremap <leader><Backspace> :UndotreeToggle<CR>
 
 
@@ -446,16 +490,26 @@ nnoremap <leader>L :Lines<CR>
 
 " Buffer movements - Buftabline
 nmap <silent><M-Tab> :bnext<CR><C-g>
-nmap <leader>1 <Plug>BufTabLine.Go(1)
-nmap <leader>2 <Plug>BufTabLine.Go(2)
-nmap <leader>3 <Plug>BufTabLine.Go(3)
-nmap <leader>4 <Plug>BufTabLine.Go(4)
-nmap <leader>5 <Plug>BufTabLine.Go(5)
-nmap <leader>6 <Plug>BufTabLine.Go(6)
-nmap <leader>7 <Plug>BufTabLine.Go(7)
-nmap <leader>8 <Plug>BufTabLine.Go(8)
-nmap <leader>9 <Plug>BufTabLine.Go(9)
-nmap <leader>0 <Plug>BufTabLine.Go(10)
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+nmap <Leader><M-1> <Plug>lightline#bufferline#delete(1)
+nmap <Leader><M-2> <Plug>lightline#bufferline#delete(2)
+nmap <Leader><M-3> <Plug>lightline#bufferline#delete(3)
+nmap <Leader><M-4> <Plug>lightline#bufferline#delete(4)
+nmap <Leader><M-5> <Plug>lightline#bufferline#delete(5)
+nmap <Leader><M-6> <Plug>lightline#bufferline#delete(6)
+nmap <Leader><M-7> <Plug>lightline#bufferline#delete(7)
+nmap <Leader><M-8> <Plug>lightline#bufferline#delete(8)
+nmap <Leader><M-9> <Plug>lightline#bufferline#delete(9)
+nmap <Leader><M-0> <Plug>lightline#bufferline#delete(10)
 
 
 
@@ -468,7 +522,7 @@ command! -nargs=1 ChangeRoot call switch#change_root(<f-args>)
 command! ChangeRootCurrent call switch#change_root_current()
 command! SwitchDir call switch#switch_dir()
 command! ToggleAccent call utility#ToggleAccent()
-command! Shortcuts :!cat ~/.config/nvim/startscreen
+command! Shortcuts :!vimpager $HOME/.config/nvim/startscreen
 command! -nargs=* EasyTerm call utility#EasyTerm(<q-args>)
 
 

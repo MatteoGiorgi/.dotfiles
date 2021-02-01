@@ -37,18 +37,6 @@ endfunction
 
 
 
-"EASYTERM_______________________________________________________________________
-
-function! utility#EasyTerm(args)
-    botright 20new
-    exe 'terminal' a:args
-    tnoremap <buffer> <Esc> <C-\><C-n>:bdelete!<CR>
-    tnoremap <buffer> <expr> <C-v> '<C-\><C-N>pi'
-endfun
-
-
-
-
 "STARTPAGE______________________________________________________________________
 
 function! utility#Start()
@@ -80,4 +68,6 @@ function! utility#Start()
     nnoremap <buffer><silent> e :enew<CR>
     nnoremap <buffer><silent> i :enew <bar> startinsert<CR>
     nnoremap <buffer><silent> q :q<CR>
+    nnoremap <buffer><silent> j 5<C-e>
+    nnoremap <buffer><silent> k 5<C-y>
 endfun

@@ -64,8 +64,6 @@ highlight CursorLineNr guibg=NONE guifg=#F1FA8C
 
 highlight CursorLine  guibg=#2A2C38
 highlight ColorColumn guibg=#2A2C38
-highlight VertSplit   guibg=#3A3C4E guifg=#3A3C4E
-highlight StatusLine  guibg=#3A3C4E guifg=#BFBFBF
 
 
 

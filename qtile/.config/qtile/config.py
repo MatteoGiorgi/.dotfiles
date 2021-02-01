@@ -235,9 +235,9 @@ screens = [
                     margin_y=2,
                     padding_y=0,
                     title_width_method='uniform',
-                    txt_floating=' ',
-                    txt_minimized=' ',
-                    txt_maximized=' '
+                    txt_floating=' ',
+                    txt_minimized=' ',
+                    txt_maximized=' '
                 ),
                 widget.Spacer(
                     length=36
@@ -445,9 +445,9 @@ screens = [
                     margin_y=2,
                     padding_y=0,
                     title_width_method='uniform',
-                    txt_floating=' ',
-                    txt_minimized=' ',
-                    txt_maximized=' '
+                    txt_floating=' ',
+                    txt_minimized=' ',
+                    txt_maximized=' '
                 ),
                 widget.Spacer(
                     length=36

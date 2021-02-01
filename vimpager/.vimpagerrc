@@ -19,3 +19,9 @@ set t_Co=256
 if exists('+termguicolors')
     set termguicolors
 endif
+
+nnoremap <silent>j 5<C-e>
+nnoremap <silent>k 5<C-y>
+
+nnoremap <silent><M-d> }}{ zz
+nnoremap <silent><M-u> {{ zz
