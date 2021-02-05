@@ -20,11 +20,11 @@ color_gray = '3A3C4E'   # '4B5056'
 color_blue = '626483'   # '6272A4'
 color_cyan = '8BE9FD'
 color_green = '50FA7B'
-color_red = 'ff5555'
+color_red = 'FF5555'
 color_yellow = 'F1FA8C'
 color_magenta = 'FF79C6'
 color_purple = 'BD93F9'
-color_lightblue = '6699ff'
+color_lightblue = '6699FF'
 
 # Spacegray palette
 # color_black = '111314'     # black    (color0)
@@ -141,10 +141,10 @@ layout_theme = dict(
 )
 
 layouts = [
-    layout.Max(name='max'),
     layout.MonadTall(name='tall', **layout_theme),
     layout.MonadWide(name='wide', **layout_theme),
     layout.Floating(name='float', **layout_theme),
+    layout.Max(name='max'),
 
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),
@@ -235,9 +235,9 @@ screens = [
                     margin_y=2,
                     padding_y=0,
                     title_width_method='uniform',
-                    txt_floating=' ',
-                    txt_minimized=' ',
-                    txt_maximized=' '
+                    txt_floating='* ',
+                    txt_minimized='- ',
+                    txt_maximized='+ '
                 ),
                 widget.Spacer(
                     length=36
@@ -431,6 +431,31 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+                widget.GroupBox(
+                    background=color_black,
+                    highlight_method='text',
+                    margin_y=2,
+                    borderwidth=0,
+                    active=color_gray,
+                    inactive=color_gray,
+                    hide_unused=True,
+                    this_current_screen_border=color_white,
+                    this_screen_border=color_blue,
+                    other_current_screen_border=color_white,
+                    other_screen_border=color_blue,
+                    disable_drag=True
+                ),
+                widget.Spacer(
+                    background=color_black,
+                    length=6
+                ),
+                widget.TextBox(
+                    background=color_black,
+                    foreground=color_white,
+                    fontsize=17,
+                    text='',
+                    padding=0
+                ),
                 widget.Spacer(
                     length=36
                 ),
@@ -445,9 +470,9 @@ screens = [
                     margin_y=2,
                     padding_y=0,
                     title_width_method='uniform',
-                    txt_floating=' ',
-                    txt_minimized=' ',
-                    txt_maximized=' '
+                    txt_floating='* ',
+                    txt_minimized='- ',
+                    txt_maximized='+ '
                 ),
                 widget.Spacer(
                     length=36
@@ -500,7 +525,7 @@ follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
-    border_focus=color_purple,
+    border_focus=color_lightblue,
     border_normal=color_white,
     border_width=2,
     float_rules=[

@@ -9,6 +9,7 @@
 #        `/usr/lib/xfce4/notifyd/xfce4-notifyd` for Arch
 #        `/usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd` for Ubuntu
 
+picom &
 ~/.fehbg &
 xfce4-volumed &
 nm-applet &

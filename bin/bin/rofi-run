@@ -106,7 +106,7 @@ for arg in "$@"; do
             ANS="$(rofi -sep "|" -dmenu -i -p 'settings' -width 25 \
                 -font "mononoki Nerd Font 11" -columns 1 \
                 -hide-scrollbar -line-padding 4 -padding 50 \
-                -lines 11 <<< "   Apparence|   Wallpapers|   Notifications|   Network|   Bluetooth|   Sound|   Display|   Keyboard|   Mouse|   Power manager|   Printers")"
+                -lines 11 <<< "   Apparence|   Wallpapers|   Notifications|   Network|   Bluetooth|   Sound|   Display|   Keyboard|   Mouse|   Power manager|   Printers")"
 
             case "$ANS" in
                 *Apparence) xfce4-appearance-settings ;;

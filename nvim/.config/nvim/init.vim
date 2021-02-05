@@ -26,14 +26,10 @@
 "    vim-fugitive              https://github.com/tpope/vim-fugitive
 "    gv                        https://github.com/junegunn/gv.vim
 "    fzf                       https://github.com/junegunn/fzf.vim
-"    vim-floaterm              https://github.com/voldikss/vim-floaterm
 "    undotree                  https://github.com/mbbill/undotree
-"    lightline                 https://github.com/itchyny/lightline.vim
-"    lightline-bufferline      https://github.com/mengelbrecht/lightline-bufferline
+"    vim-buftabline            https://github.com/ap/vim-buftabline
 "    vim-startify              https://github.com/mhinz/vim-startify
-"    vim-signify               https://github.com/mhinz/vim-signify
 "    vimwiki                   https://github.com/vimwiki/vimwiki
-"    vim-devicons              https://github.com/ryanoasis/vim-devicons
 
 
 
@@ -66,14 +62,10 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'tpope/vim-fugitive'
     Plug 'junegunn/gv.vim'
     Plug 'junegunn/fzf', {'do': { -> fzf#install() }} | Plug 'junegunn/fzf.vim'
-    Plug 'voldikss/vim-floaterm'
     Plug 'mbbill/undotree'
-    Plug 'itchyny/lightline.vim'
-    Plug 'mengelbrecht/lightline-bufferline'
+    Plug 'ap/vim-buftabline'
     Plug 'mhinz/vim-startify'
-    Plug 'mhinz/vim-signify'
     Plug 'vimwiki/vimwiki'
-    Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 
@@ -82,7 +74,7 @@ call plug#end()
 "SETTINGS_______________________________________________________________________
 
 syntax on
-color dracula16
+color monokai16
 filetype plugin indent on
 
 set clipboard=unnamedplus
@@ -100,7 +92,7 @@ set encoding=UTF-8
 scriptencoding utf-8
 set noswapfile
 set nobackup
-set noshowmode
+set showmode
 set showcmd
 set nocursorline
 set noerrorbells
@@ -113,11 +105,18 @@ set complete+=k/usr/share/dict/italian
 set completeopt=menuone,longest
 set shortmess+=c
 set autochdir
-set laststatus=2
-set showtabline=2
-set guioptions-=e
+set hidden
 set guifont=mononoki\ Nerd\ Font\ 9
 set updatetime=100  "default is 4000ms
+set guioptions-=e
+set showtabline=2
+set laststatus=2
+set statusline=
+set statusline+=%{utility#StatuslineGit()}
+set statusline+=%f
+set statusline+=%{utility#BufferStatus()}
+set statusline+=%=
+set statusline+=%{utility#LineInfo()}
 
 
 if exists('+termguicolors')
@@ -134,20 +133,36 @@ if has('persistent_undo')
 endif
 
 
-highlight LineNr       guibg=NONE
-highlight SignColumn   guibg=NONE
-highlight CursorLineNr guibg=NONE guifg=#F1FA8C
+highlight! link netrwMarkFile Search
 
-highlight CursorLine  guibg=#2A2C38
-highlight ColorColumn guibg=#2A2C38
-highlight VertSplit   guibg=#2C323D guifg=#2C323D
-highlight Normal      guibg=#282936
+highlight LineNr                    guibg=#282936 guifg=#626483
+highlight SignColumn                guibg=#282936 guifg=#626483
+highlight ColorColumn               guibg=#2A2C38 guifg=none
 
-highlight StatusLine   guibg=#2C323D gui=NONE
-highlight StatusLineNC guibg=#2C323D gui=NONE
+highlight CursorLine                guibg=#2A2C38 guifg=none
+highlight CursorLineNr              guibg=none    guifg=#F1FA8C
 
-highlight Floaterm       guibg=NONE
-highlight FloatermBorder guibg=NONE guifg=#3A3C4E
+highlight Normal                    guibg=#282936 guifg=none
+highlight EndOfBuffer               guibg=#2A2C38 guifg=#626483
+
+highlight StatusLine                guibg=#3A3C4E guifg=#6699FF gui=none
+highlight StatusLineNC              guibg=#3A3C4E guifg=#BFBFBF gui=none
+highlight VertSplit                 guibg=#3A3C4E guifg=#3A3C4E
+
+highlight TabLineSel                guibg=#3A3C4E guifg=#6699FF gui=none
+highlight TabLine                   guibg=#3A3C4E guifg=#BFBFBF gui=none
+highlight TabLineFill               guibg=#3A3C4E guifg=none    gui=none
+
+highlight BufTabLineCurrent         guibg=#3A3C4E guifg=#6699FF gui=none
+highlight BufTabLineActive          guibg=#3A3C4E guifg=#BFBFBF gui=none
+highlight BufTabLineHidden          guibg=#3A3C4E guifg=#626483 gui=none
+highlight BufTabLineFill            guibg=#3A3C4E guifg=none    gui=none
+highlight BufTabLineModifiedCurrent guibg=#3A3C4E guifg=#6699FF gui=none
+highlight BufTabLineModifiedActive  guibg=#3A3C4E guifg=#BFBFBF gui=none
+highlight BufTabLineModifiedHidden  guibg=#3A3C4E guifg=#626483 gui=none
+
+highlight ALEErrorSign              guibg=#282936 guifg=#FF79C6 gui=none
+highlight ALEWarningSign            guibg=#282936 guifg=#BD93F9 gui=none
 
 
 
@@ -178,13 +193,27 @@ augroup vimrc
 augroup END
 
 
+" Netrw mappings
+augroup netrw
+    autocmd!
+    autocmd Filetype netrw call utility#NetrwMapping()
+augroup END
+
+
+" Terminal windows settings
+augroup termwin
+    autocmd!
+    autocmd TermOpen,BufWinEnter,WinEnter term://*h startinsert
+    autocmd TermOpen,TermEnter term://*h call utility#TermMapping()
+augroup END
+
+
 
 
 "MY_VARIABLES___________________________________________________________________
 
 let g:mapleader = "\<space>"
 let g:maplocalleader = ','
-let g:netrw_browsex_viewer = 'xdg-open'
 let g:longline = 'none'
 
 
@@ -192,9 +221,17 @@ let g:longline = 'none'
 
 "NETRW__________________________________________________________________________
 
+
 let g:netrw_banner = 0
-let g:netrw_liststyle = 3
+let g:netrw_keepdir = 0
+let g:netrw_liststyle = 4
+let g:netrw_sort_options = 'i'
 let g:netrw_sort_sequence = '[\/]$,*'
+let g:netrw_browsex_viewer = 'xdg-open'
+let ghregex = '\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_list_hide = ghregex
+let g:netrw_preview = 0
+let g:netrw_alto = 0
 let g:netrw_altv = 1
 
 
@@ -245,38 +282,11 @@ let g:fzf_colors = {
 
 
 
-"LIGHTLINE_&_BUFFERLINE_________________________________________________________
+"BUFTABLINE_____________________________________________________________________
 
-let g:lightline = {
-            \ 'colorscheme': 'one',
-            \ 'active': {
-            \     'left':[ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-            \ },
-            \ 'tabline': {
-            \     'left': [ ['buffers'] ],
-            \     'right': [ ['close'] ]
-            \ },
-            \ 'component': { 'lineinfo': ' %3l:%-2v', },
-            \ 'component_function': { 'gitbranch': 'fugitive#head', },
-            \ 'component_expand': { 'buffers': 'lightline#bufferline#buffers' },
-            \ 'component_type': { 'buffers': 'tabsel' }
-            \ }
-let g:lightline.separator = {
-            \ 'left': '',
-            \ 'right': ''
-            \ }
-let g:lightline.subseparator = {
-            \ 'left': '',
-            \ 'right': ''
-            \ }
-let g:lightline#bufferline#show_number = 2
-let g:lightline#bufferline#enable_devicons = 0
-let g:lightline#bufferline#enable_nerdfont= 1
-let g:lightline#bufferline#unicode_symbols = 1
-let g:lightline#bufferline#min_buffer_count = 2
-let g:lightline#bufferline#modified = ' +'
-let g:lightline#bufferline#shorten_path = 1
-let g:lightline#bufferline#smart_path = 1
+let g:buftabline_show = 1
+let g:buftabline_numbers = 2
+let g:buftabline_indicators = 1
 
 
 
@@ -285,41 +295,37 @@ let g:lightline#bufferline#smart_path = 1
 
 let g:startify_files_number = 5
 let g:startify_list_order = [
-            \ ['   Recently used files:'], 'files',
-            \ ['   Current directory files:'], 'dir',
-            \ ['   Saved sessions:'], 'sessions',
+            \ [' Recent Files:'], 'files',
+            \ [' Dir recent files:'], 'dir',
+            \ [' Saved sessions:'], 'sessions',
+            \ [' Bookmarks:'], 'bookmarks',
+            \ [' Commands:'], 'commands',
+            \ ]
+let g:startify_bookmarks = [
+            \ '$HOME/.dotfiles',
+            \ '$HOME/.vimwiki/index.wiki',
+            \ ]
+let g:startify_commands = [
+            \ {'d': ['bdelete', 'bdelete']},
+            \ {'t': ['terminal', 'terminal']},
+            \ {'w': ['netrw', 'Explore']},
             \ ]
 let g:startify_custom_indices = [
-            \ 'a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 'l', 'm', 'n',
-            \ 'o', 'p', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'x'
+            \ 'a', 'b', 'c', 'f', 'g', 'h', 'i', 'l', 'm', 'n',
+            \ 'o', 'p', 'r', 's', 'u', 'v', 'x', 'y', 'z'
             \ ]
 let g:startify_session_dir = '~/.config/nvim/sessions'
 let g:startify_custom_header = [
-            \'',
-            \'    ┌──────────────────────────────────────────┐',
-            \'    │  I chose not to choose life.             │',
-            \'    │  I chose somethin’ else.                 │',
-            \'    │  And the reasons? There are no reasons.  │',
-            \'    │  Who needs reasons when you’ve got Vim?  │',
-            \'    └───┬──────────────────────────────────────┘',
-            \'        │',
-            \'        │      (\_/)',
-            \'        └───── (O.o)',
-            \'               (> <)',
-            \'',
+            \' ┌──────────────────────────────────────────┐',
+            \' │  I chose not to choose life.             │',
+            \' │  I chose somethin’ else.                 │',
+            \' │  And the reasons? There are no reasons.  │',
+            \' │  Who needs reasons when you’ve got Vim?  │',
+            \' └───┬──────────────────────────────────────┘',
+            \'     │      (\_/)',
+            \'     └───── (O.o)',
+            \'            (> <)',
             \ ]
-
-
-
-
-"FLOATERM_______________________________________________________________________
-
-let g:floaterm_autoinsert=1
-let g:floaterm_width=1.00
-let g:floaterm_height=1.00
-let g:floaterm_position='bottomleft'
-let g:floaterm_autoclose=2
-let g:floaterm_title='($1|$2)'
 
 
 
@@ -348,6 +354,9 @@ let g:clever_f_show_prompt = 1
 
 "ALE____________________________________________________________________________
 
+let g:ale_sign_column_always = 0
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
 let g:ale_fix_on_save = 1
 let g:ale_linters = {
             \ 'vim': ['vint'],
@@ -359,8 +368,8 @@ let g:ale_fixers = {
             \ 'vim': ['trim_whitespace'],
             \ 'c': ['astyle'],
             \ 'haskell': ['brittany'],
-            \ 'python': ['yapf'],
             \ }
+            " \ 'python': ['yapf'],
 
 
 
@@ -370,7 +379,7 @@ let g:ale_fixers = {
 let g:vimwiki_global_ext = 0
 let g:vimwiki_table_mappings = 0
 let g:vimwiki_list = [{
-            \ 'path': '~/vimwiki/',
+            \ 'path': '~/.vimwiki/',
             \ 'syntax': 'default', 'ext': '.wiki'
             \ }]
 
@@ -378,9 +387,6 @@ let g:vimwiki_list = [{
 
 
 "KEYMAPPINGS____________________________________________________________________
-
-
-nnoremap <silent><M-Backspace> :!vimpager $HOME/.config/nvim/startscreen<CR>g
 
 
 " Generics
@@ -399,6 +405,7 @@ nnoremap <silent><M-j> :belowright new<bar>Startify<CR>
 nnoremap <silent><M-h> :vnew<bar>Startify<CR>
 nnoremap <silent><M-l> :belowright vnew<bar>Startify<CR>
 nnoremap <silent><M-Space> :wincmd<Space>w<CR>
+nnoremap <silent><M-Backspace> :buffer#<CR>
 
 nnoremap <silent><M-d> }}{ zz
 nnoremap <silent><M-u> {{ zz
@@ -409,10 +416,12 @@ xnoremap J :move '>+1<CR>gv=gv
 nnoremap <leader>w <C-W>
 nnoremap <leader>q :quit<CR>
 nnoremap <leader>z :write<CR>
-nnoremap <leader>e :enew<bar>Startify<CR>
-nnoremap <leader>d :bdelete<CR>
+nnoremap <leader>Z :bufdo write<CR>  "needs hidden
+nnoremap <leader>e :Startify<CR>
+nnoremap <leader>d :Startify<bar>bdelete#<CR>
 nnoremap <leader>v :SelectAll<CR>
 nnoremap <leader>i :SClose<CR>
+nnoremap <leader>t :terminal<CR>
 
 nmap <C-p> :-r!xclip -o -sel clip<CR>
 vmap <C-y> :!xclip -f -sel clip<CR>
@@ -422,7 +431,7 @@ vmap <S-Tab> <gv
 
 
 " Toggle accent
-nnoremap <silent>- :ToggleAccent<space><CR>
+nnoremap <silent><Backspace> :ToggleAccent<space><CR>
 
 
 " Replace selection
@@ -453,23 +462,9 @@ map  <leader>a <esc>cs
 map  <leader>A <esc>ds
 
 
-" Floaterm
-nnoremap <silent><M-Return> :FloatermToggle<CR>
-tnoremap <silent><M-Return> <C-\><C-n>:FloatermToggle<CR>
-tnoremap <silent><M-Backspace> <C-\><C-n>:FloatermKill<CR>
-tnoremap <silent><M-Tab> <C-\><C-n>:FloatermNext<CR>
-tnoremap <silent><M-Space> <C-\><C-n>:FloatermNew<CR>
-
-
-" Floaterm programs
-nnoremap <leader><Tab> :FloatermNew vifm<CR>
-nnoremap <leader><Esc> :FloatermNew ranger<CR>
-nnoremap <leader><Return> :FloatermNew tig<CR>
-nnoremap <leader>t :FloatermNew htop<CR>
-
-
-" UndotreeToggle
-nnoremap <leader><Backspace> :UndotreeToggle<CR>
+" UndotreeToggle & Netrw
+nnoremap <leader><Esc> :UndotreeToggle<CR>
+nnoremap <leader><Tab> :Explore<CR>
 
 
 " Gv
@@ -490,26 +485,16 @@ nnoremap <leader>L :Lines<CR>
 
 " Buffer movements - Buftabline
 nmap <silent><M-Tab> :bnext<CR><C-g>
-nmap <Leader>1 <Plug>lightline#bufferline#go(1)
-nmap <Leader>2 <Plug>lightline#bufferline#go(2)
-nmap <Leader>3 <Plug>lightline#bufferline#go(3)
-nmap <Leader>4 <Plug>lightline#bufferline#go(4)
-nmap <Leader>5 <Plug>lightline#bufferline#go(5)
-nmap <Leader>6 <Plug>lightline#bufferline#go(6)
-nmap <Leader>7 <Plug>lightline#bufferline#go(7)
-nmap <Leader>8 <Plug>lightline#bufferline#go(8)
-nmap <Leader>9 <Plug>lightline#bufferline#go(9)
-nmap <Leader>0 <Plug>lightline#bufferline#go(10)
-nmap <Leader><M-1> <Plug>lightline#bufferline#delete(1)
-nmap <Leader><M-2> <Plug>lightline#bufferline#delete(2)
-nmap <Leader><M-3> <Plug>lightline#bufferline#delete(3)
-nmap <Leader><M-4> <Plug>lightline#bufferline#delete(4)
-nmap <Leader><M-5> <Plug>lightline#bufferline#delete(5)
-nmap <Leader><M-6> <Plug>lightline#bufferline#delete(6)
-nmap <Leader><M-7> <Plug>lightline#bufferline#delete(7)
-nmap <Leader><M-8> <Plug>lightline#bufferline#delete(8)
-nmap <Leader><M-9> <Plug>lightline#bufferline#delete(9)
-nmap <Leader><M-0> <Plug>lightline#bufferline#delete(10)
+nmap <leader>1 <Plug>BufTabLine.Go(1)
+nmap <leader>2 <Plug>BufTabLine.Go(2)
+nmap <leader>3 <Plug>BufTabLine.Go(3)
+nmap <leader>4 <Plug>BufTabLine.Go(4)
+nmap <leader>5 <Plug>BufTabLine.Go(5)
+nmap <leader>6 <Plug>BufTabLine.Go(6)
+nmap <leader>7 <Plug>BufTabLine.Go(7)
+nmap <leader>8 <Plug>BufTabLine.Go(8)
+nmap <leader>9 <Plug>BufTabLine.Go(9)
+nmap <leader>0 <Plug>BufTabLine.Go(10)
 
 
 
@@ -522,11 +507,9 @@ command! -nargs=1 ChangeRoot call switch#change_root(<f-args>)
 command! ChangeRootCurrent call switch#change_root_current()
 command! SwitchDir call switch#switch_dir()
 command! ToggleAccent call utility#ToggleAccent()
-command! Shortcuts :!vimpager $HOME/.config/nvim/startscreen
-command! -nargs=* EasyTerm call utility#EasyTerm(<q-args>)
 
 
-" Without remap
+" without remap
 command! Longline call utility#LongLine()
 command! RemoveSpaces :%s/\s\+$//e
 command! Squish execute "normal \ggVGgq"
