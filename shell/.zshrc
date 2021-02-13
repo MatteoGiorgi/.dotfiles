@@ -140,11 +140,12 @@ mcd ()
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin"
 export PAGER="vimpager"      # most
 export BAT_PAGER="vimpager"  # most
+export MANPAGER="nvim +Man!"
 export VISUAL="nvim"         # vim
 export EDITOR="nvim"         # vim
 export TERM="xterm-256color"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
-export BROWSER="firefox"
+export BROWSER="qutebrowser"
 export READER="zathura"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -152,8 +153,10 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 export BAT_THEME="base16"
 export MICRO_TRUECOLOR=1
 export SHFM_OPENER="shfm-opener"
+export VIMWIKI="$HOME/.vimwiki"
+export WIKI="$HOME/.config/nvim/.wiki/"
 
-export PROMPT="%B%K{blue}%F{black} %n  %m %K{074}%F{blue}%K{074}%F{black} %9~ %(?.%K{white}%F{074} %K{white}%F{black}  %k%F{white}.%K{magenta}%F{074} %K{magenta}%F{black} %? %k%F{magenta})%k%f"$'\n'"%#%b "
+export PROMPT="%B%K{blue}%F{black} %n  %m %K{074}%F{blue}%K{074}%F{black} %9~ %(?.%K{white}%F{074} %K{white}%F{black}OK  %k%F{white}.%K{magenta}%F{074} %K{magenta}%F{black}ERR %? %k%F{magenta})%k%f"$'\n'"%#%b "
 # export PROMPT="%B[%F{cyan}%n%f@%F{magenta}%m%f] [%F{blue}%9~%f] %(?.%F{green} .%F{red} %?)%f"$'\n'"%#%b "
 
 ### End config ###
@@ -165,3 +168,5 @@ source $HOME/.config/fzf/completion.zsh
 # source /usr/share/fzf/key-bindings.zsh
 # source /usr/share/fzf/completion.zsh
 source $HOME/.config/broot/launcher/bash/br
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

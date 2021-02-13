@@ -13,11 +13,12 @@ from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.lazy import lazy
 from libqtile import layout, bar, widget, hook
 
+
 mod = "mod4"
 color_white = 'BFBFBF'
-color_black = '1E1F29'  # '282A36'  # '282936'
-color_gray = '3A3C4E'   # '4B5056'
-color_blue = '626483'   # '6272A4'
+color_black = '1E1F29'
+color_gray = '3A3C4E'
+color_blue = '626483'
 color_cyan = '8BE9FD'
 color_green = '50FA7B'
 color_red = 'FF5555'
@@ -26,20 +27,10 @@ color_magenta = 'FF79C6'
 color_purple = 'BD93F9'
 color_lightblue = '6699FF'
 
-# Spacegray palette
-# color_black = '111314'     # black    (color0)
-# color_white = 'B7BBB7'     # white    (color7)
-# color_gray = '4B5056'      # black    (color8)
+color_whitegray = '97979a'
+color_bluegray = '547aca'
+color_purplegray = '9576c5'
 
-# Tango palette
-# color_black = '2e3436'     # black    (color0)
-# color_white = 'd3d7cf'     # white    (color7)
-# color_gray = '555753'      # black    (color8)
-# color_yellow = 'c4a000'    # yellow   (color3)
-# color_blue = '3465a4'      # blue     (color12)
-# color_green = '4e9a06'     # green    (color10)
-# color_focus = '215578'
-# color_normal = '2e3436'
 
 keys = [
     # Restart and shutdown Qtile
@@ -76,21 +67,29 @@ keys = [
     Key([mod], "Escape", lazy.spawn("rofi-run -l")),         # Exit/Logout
     Key([mod], "w", lazy.spawn("rofi-run -w")),              # Windows
     Key([mod], "s", lazy.spawn("rofi-run -s")),              # Settings
-    Key([mod], "i", lazy.spawn("xterm")),                    # Terminal
     Key([mod], "x", lazy.spawn("xkill")),                    # Xkill
+    Key([mod], "i", lazy.spawn("xterm")),                    # Terminal
     Key([mod], "u", lazy.spawn("xterm -T Shfm -e shfm")),    # Shfm
-    Key([mod], "m", lazy.spawn("xterm -T Moc -e mocp")),     # Music
+    Key([mod], "c", lazy.spawn("xterm -T Cmus -e cmus")),    # Cmus
+    Key([mod], "m", lazy.spawn("xterm -T Mocp -e mocp")),    # Moc
+    Key([mod], "n", lazy.spawn("xterm -T NeoVim -e nvim")),  # NeoVim
     Key([mod], "p", lazy.spawncmd(prompt='%')),              # Prompt
 
     # Volume solution 1
-    # Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q -D pulse sset Master 3%+")),
-    # Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q -D pulse sset Master 3%-")),
-    # Key([], "XF86AudioMute", lazy.spawn("amixer -q -D pulse sset Master toggle")),
+    # Key([], "XF86AudioRaiseVolume",
+    #     lazy.spawn("amixer -q -D pulse sset Master 3%+")),
+    # Key([], "XF86AudioLowerVolume",
+    #     lazy.spawn("amixer -q -D pulse sset Master 3%-")),
+    # Key([], "XF86AudioMute",
+    #     lazy.spawn("amixer -q -D pulse sset Master toggle")),
 
     # Volume solution 2
-    # Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q sset Master 3%+")),
-    # Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q sset Master 3%-")),
-    # Key([], "XF86AudioMute", lazy.spawn("amixer -q sset Master toggle")),
+    # Key([], "XF86AudioRaiseVolume",
+    #     lazy.spawn("amixer -q sset Master 3%+")),
+    # Key([], "XF86AudioLowerVolume",
+    #     lazy.spawn("amixer -q sset Master 3%-")),
+    # Key([], "XF86AudioMute",
+    #     lazy.spawn("amixer -q sset Master toggle")),
 
     # Volume solution 3
     # Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 3")),
@@ -98,11 +97,15 @@ keys = [
     # Key([], "XF86AudioMute", lazy.spawn("pamixer -t")),
 
     # Volume solution 4
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +3%")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -3%")),
-    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
+    Key([], "XF86AudioRaiseVolume",
+        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +3%")),
+    Key([], "XF86AudioLowerVolume",
+        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -3%")),
+    Key([], "XF86AudioMute",
+        lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
 ]
 
+# Groups management (main solution)
 group_names = [
         ("₁ ", 1),
         ("₂ ", 2),
@@ -119,19 +122,16 @@ for i, (name, pos) in enumerate(group_names, 1):
     keys.append(Key([mod], str(i), lazy.group[name].toscreen()))
     keys.append(Key([mod, "control"], str(i), lazy.window.togroup(name)))
 
-# Simple alternative
-# +-------------------------------------------------------------------------+
-# | groups = [Group(i, position=int(i)) for i in "123456789"]               |
-# | for i in groups:                                                        |
-# |     keys.extend([                                                       |
-# |         # mod1 + letter of group = switch to group                      |
-# |         Key([mod], i.name, lazy.group[i.name].toscreen()),              |
-# |                                                                         |
-# |         # mod1 + shift + letter of group = switch & move focused window |
-# |         Key([mod, "control"], i.name,                                   |
-# |             lazy.window.togroup(i.name, switch_group=True)),            |
-# |     ])                                                                  |
-# +-------------------------------------------------------------------------+
+
+# Groups management (alternative simple solution)
+# groups = [Group(i, position=int(i)) for i in "123456789"]
+# for i in groups:
+#     keys.extend([
+#         Key([mod], i.name, lazy.group[i.name].toscreen()),
+#         Key([mod, "control"], i.name,
+#             lazy.window.togroup(i.name, switch_group=True)),
+#     ])
+
 
 layout_theme = dict(
     border_width=2,
@@ -140,23 +140,14 @@ layout_theme = dict(
     border_normal=color_gray
 )
 
-layouts = [
-    layout.MonadTall(name='tall', **layout_theme),
-    layout.MonadWide(name='wide', **layout_theme),
-    layout.Floating(name='float', **layout_theme),
-    layout.Max(name='max'),
 
-    # Try more layouts by unleashing below layouts.
-    # layout.Bsp(),
-    # layout.Columns(),
-    # layout.Matrix(),
-    # layout.RatioTile(),
-    # layout.Stack(num_stacks=2),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
+layouts = [
+    layout.Max(name='Max'),
+    layout.MonadTall(name='Tall', **layout_theme),
+    layout.MonadWide(name='Wide', **layout_theme),
+    layout.Floating(name='Float', **layout_theme),
 ]
+
 
 widget_defaults = dict(
     font='mononoki Nerd Font',
@@ -171,343 +162,328 @@ extension_defaults = widget_defaults.copy()
 # Custom callbacks
 def toggle_calcurse(qtile):
     home = str(Path.home())
-    if os.path.exists(home+'/.local/share/calcurse/.calcurse.pid') or os.path.exists(home+'/.calcurse/.calcurse.pid'):
-        os.system('killall calcurse')  # os.remove(home+"/.local/share/calcurse/.calcurse.pid")
+    if os.path.exists(home+'/.local/share/calcurse/.calcurse.pid') or\
+            os.path.exists(home+'/.calcurse/.calcurse.pid'):
+        os.system('killall calcurse')  # os.remove(home+"...")
     else:
         qtile.cmd_spawn('xterm -e calcurse')
 
 
-screens = [
-    Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(
-                    background=color_black,
-                    highlight_method='text',
-                    margin_y=2,
-                    borderwidth=0,
-                    active=color_gray,
-                    inactive=color_gray,
-                    hide_unused=True,
-                    this_current_screen_border=color_white,
-                    this_screen_border=color_blue,
-                    other_current_screen_border=color_white,
-                    other_screen_border=color_blue,
-                    disable_drag=True
-                ),
-                widget.Spacer(
-                    background=color_black,
-                    length=6
-                ),
-                widget.TextBox(
-                    background=color_black,
-                    foreground=color_white,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Prompt(
-                    background=color_black,
-                    foreground=color_lightblue,
-                    cursor=True,
-                    prompt='{prompt} ',
-                    cursor_color=color_lightblue,
-                    cursorblink=0.5
-                ),
-                widget.TextBox(
-                    background=color_black,
-                    foreground=color_white,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Spacer(
-                    length=36
-                ),
-                widget.TaskList(
-                    background=color_black,
-                    foreground=color_gray,
-                    border=color_white,
-                    borderwidth=0,
-                    highlight_method='text',
-                    rounded=False,
-                    icon_size=0,
-                    margin_y=2,
-                    padding_y=0,
-                    title_width_method='uniform',
-                    txt_floating='* ',
-                    txt_minimized='- ',
-                    txt_maximized='+ '
-                ),
-                widget.Spacer(
-                    length=36
-                ),
-                widget.TextBox(
-                    background=color_black,
-                    foreground=color_white,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Moc(
-                    background=color_black,
-                    foreground=color_white,
-                    max_chars=10,
-                    play_color=color_lightblue,
-                    noplay_color=color_gray
-                ),
-                widget.TextBox(
-                    background=color_black,
-                    foreground=color_gray,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Systray(
-                    background=color_gray,
-                    foreground=color_white,
-                    icon_size=16
-                ),
-                widget.Spacer(
-                    background=color_gray,
-                    length=8
-                ),
-                widget.TextBox(
-                    background=color_gray,
-                    foreground=color_white,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Spacer(
-                    background=color_white,
-                    length=6
-                ),
-                widget.TextBox(
-                    background=color_white,
-                    foreground=color_black,
-                    text='',
-                    padding=0
-                ),
-                widget.Battery(
-                    background=color_white,
-                    foreground=color_black,
-                    format='{percent:2.0%}',
-                    padding=4
-                ),
-                widget.Spacer(
-                    background=color_white,
-                    length=2
-                ),
-                widget.TextBox(
-                    background=color_white,
-                    foreground=color_black,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Spacer(
-                    background=color_white,
-                    length=6
-                ),
-                widget.TextBox(
-                    background=color_white,
-                    foreground=color_black,
-                    text='',
-                    padding=0
-                ),
-                widget.PulseVolume(
-                    background=color_white,
-                    foreground=color_black,
-                    padding=5
-                ),
-                widget.Spacer(
-                    background=color_white,
-                    length=1
-                ),
-                widget.TextBox(
-                    background=color_white,
-                    foreground=color_lightblue,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Spacer(
-                    background=color_lightblue,
-                    length=7
-                ),
-                widget.TextBox(
-                    background=color_lightblue,
-                    foreground=color_black,
-                    text=' ',
-                    padding=0
-                ),
-                widget.CurrentLayout(
-                    background=color_lightblue,
-                    foreground=color_black,
-                    padding=1
-                ),
-                widget.Spacer(
-                    background=color_lightblue,
-                    length=5
-                ),
-                widget.TextBox(
-                    background=color_lightblue,
-                    foreground=color_black,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Spacer(
-                    background=color_lightblue,
-                    length=7
-                ),
-                widget.TextBox(
-                    background=color_lightblue,
-                    foreground=color_black,
-                    text=' ',
-                    padding=0
-                ),
-                widget.KeyboardLayout(
-                    background=color_lightblue,
-                    foreground=color_black,
-                    configured_keyboards=['it', 'us', 'gb'],
-                    display_map={'it': 'it', 'us': 'us', 'gb': 'uk'},
-                    option='caps:swapescape',
-                    padding=2
-                ),
-                widget.Spacer(
-                    background=color_lightblue,
-                    length=4
-                ),
-                widget.TextBox(
-                    background=color_lightblue,
-                    foreground=color_purple,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Wallpaper(
-                    background=color_purple,
-                    foreground=color_black,
-                    directory='~/Pictures/wallpapers/wallogo',
-                    random_selection=True,
-                    wallpaper_command=['feh', '--bg-fill'],
-                    label=' chwp',
-                    padding=8
-                ),
-                widget.TextBox(
-                    background=color_purple,
-                    foreground=color_black,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Spacer(
-                    background=color_purple,
-                    length=8
-                ),
-                widget.TextBox(
-                    background=color_purple,
-                    foreground=color_black,
-                    text=' ',
-                    padding=0
-                ),
-                widget.Clock(
-                    background=color_purple,
-                    foreground=color_black,
-                    padding=-1,
-                    format='%H:%M',
-                    mouse_callbacks={'Button1': toggle_calcurse}
-                ),
-                widget.Spacer(
-                    background=color_purple,
-                    length=9
-                )
-            ],
-            20
-        )
+# Widgets list on primary screen bar
+widgets_primary_display = [
+    widget.GroupBox(
+        highlight_method='text',
+        margin_y=2,
+        borderwidth=0,
+        active=color_gray,
+        inactive=color_gray,
+        hide_unused=True,
+        this_current_screen_border=color_white,
+        this_screen_border=color_blue,
+        other_current_screen_border=color_white,
+        other_screen_border=color_blue,
+        disable_drag=True
     ),
-    Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(
-                    background=color_black,
-                    highlight_method='text',
-                    margin_y=2,
-                    borderwidth=0,
-                    active=color_gray,
-                    inactive=color_gray,
-                    hide_unused=True,
-                    this_current_screen_border=color_white,
-                    this_screen_border=color_blue,
-                    other_current_screen_border=color_white,
-                    other_screen_border=color_blue,
-                    disable_drag=True
-                ),
-                widget.Spacer(
-                    background=color_black,
-                    length=6
-                ),
-                widget.TextBox(
-                    background=color_black,
-                    foreground=color_white,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Spacer(
-                    length=36
-                ),
-                widget.TaskList(
-                    background=color_black,
-                    foreground=color_gray,
-                    border=color_white,
-                    borderwidth=0,
-                    highlight_method='text',
-                    rounded=False,
-                    icon_size=0,
-                    margin_y=2,
-                    padding_y=0,
-                    title_width_method='uniform',
-                    txt_floating='* ',
-                    txt_minimized='- ',
-                    txt_maximized='+ '
-                ),
-                widget.Spacer(
-                    length=36
-                ),
-                widget.TextBox(
-                    background=color_black,
-                    foreground=color_white,
-                    fontsize=17,
-                    text='',
-                    padding=0
-                ),
-                widget.Spacer(
-                    background=color_black,
-                    length=7
-                ),
-                widget.TextBox(
-                    background=color_black,
-                    foreground=color_white,
-                    text=' ',
-                    padding=0
-                ),
-                widget.CurrentLayout(
-                    background=color_black,
-                    foreground=color_white,
-                    padding=1
-                ),
-                widget.Spacer(
-                    background=color_black,
-                    length=5
-                ),
-            ],
-            20
-        )
-    )
+
+    widget.Spacer(length=6),
+
+    widget.Prompt(
+        foreground=color_lightblue,
+        cursor_color=color_lightblue,
+        prompt='{prompt} ',
+        cursor=True,
+        cursorblink=0.5
+    ),
+
+    widget.TextBox(foreground=color_gray, fontsize=10, text='', padding=0),
+
+    widget.Spacer(length=36),
+
+    widget.TaskList(
+        foreground=color_gray,
+        border=color_white,
+        borderwidth=0,
+        highlight_method='text',
+        rounded=False,
+        icon_size=0,
+        margin_y=2,
+        padding_y=0,
+        title_width_method='uniform',
+        txt_floating='* ',
+        txt_minimized='- ',
+        txt_maximized='+ '
+    ),
+
+    widget.Spacer(length=36),
+
+    widget.TextBox(foreground=color_gray, fontsize=10, text='', padding=0),
+
+    widget.Cmus(
+        max_chars=10,
+        play_color=color_lightblue,
+        noplay_color=color_gray
+    ),
+
+    widget.Moc(
+        max_chars=10,
+        play_color=color_lightblue,
+        noplay_color=color_gray
+    ),
+
+    widget.Systray(icon_size=16),
+
+    widget.Spacer(length=8),
+
+    widget.Spacer(background='262730', length=1),
+    widget.Spacer(background='2e2f38', length=1),
+    widget.Spacer(background='363740', length=1),
+    widget.Spacer(background='3e3f47', length=1),
+    widget.Spacer(background='46474e', length=1),
+    widget.Spacer(background='4e4f56', length=1),
+    widget.Spacer(background='56575e', length=1),
+    widget.Spacer(background='5e5f65', length=1),
+    widget.Spacer(background='66676c', length=1),
+    widget.Spacer(background='6e6f74', length=1),
+    widget.Spacer(background='77777c', length=1),
+    widget.Spacer(background='7f7f83', length=1),
+    widget.Spacer(background='87878a', length=1),
+    widget.Spacer(background='8f8f92', length=1),
+    widget.Spacer(background='97979a', length=1),
+    widget.Spacer(background='9f9fa1', length=1),
+    widget.Spacer(background='a7a7a8', length=1),
+    widget.Spacer(background='afafb0', length=1),
+    widget.Spacer(background='b7b7b8', length=1),
+
+    widget.Spacer(background=color_white, length=6),  # +0
+
+    widget.TextBox(
+        background=color_white,
+        foreground=color_black,
+        text='',
+        padding=0
+    ),
+
+    widget.Spacer(background=color_white, length=0),  # +4
+
+    widget.Battery(
+        background=color_white,
+        foreground=color_black,
+        format='{percent:2.0%}',
+        padding=4
+    ),
+
+    widget.Spacer(background=color_white, length=2),  # +4
+
+    widget.TextBox(
+        background=color_white,
+        foreground=color_whitegray,
+        fontsize=10,
+        text='',
+        padding=0
+    ),
+
+    widget.Spacer(background=color_white, length=6),  # +0
+
+    widget.TextBox(
+        background=color_white,
+        foreground=color_black,
+        text='',
+        padding=0
+    ),
+
+    widget.Spacer(background=color_white, length=1),  # +5
+
+    widget.PulseVolume(
+        background=color_white,
+        foreground=color_black,
+        padding=5
+    ),
+
+    widget.Spacer(background=color_white, length=1),  # +5
+
+    widget.Spacer(background='bbbdc2', length=1),
+    widget.Spacer(background='b6bbc5', length=1),
+    widget.Spacer(background='b2b9c9', length=1),
+    widget.Spacer(background='adb7cc', length=1),
+    widget.Spacer(background='a9b6cf', length=1),
+    widget.Spacer(background='a4b4d2', length=1),
+    widget.Spacer(background='a0b2d5', length=1),
+    widget.Spacer(background='9bb0d9', length=1),
+    widget.Spacer(background='97aedc', length=1),
+    widget.Spacer(background='92acdf', length=1),
+    widget.Spacer(background='8eaae2', length=1),
+    widget.Spacer(background='8aa8e5', length=1),
+    widget.Spacer(background='85a6e9', length=1),
+    widget.Spacer(background='81a4ec', length=1),
+    widget.Spacer(background='7ca2ef', length=1),
+    widget.Spacer(background='78a1f2', length=1),
+    widget.Spacer(background='739ff5', length=1),
+    widget.Spacer(background='6f9df9', length=1),
+    widget.Spacer(background='6a9bfc', length=1),
+
+    widget.Spacer(background=color_lightblue, length=6),  # +0
+
+    widget.TextBox(
+        background=color_lightblue,
+        foreground=color_black,
+        text=' ',
+        padding=0
+    ),
+
+    widget.CurrentLayout(
+        background=color_lightblue,
+        foreground=color_black,
+        padding=1
+    ),
+
+    widget.Spacer(background=color_lightblue, length=5),  # +1
+
+    widget.TextBox(
+        background=color_lightblue,
+        foreground=color_bluegray,
+        fontsize=10,
+        text='',
+        padding=0
+    ),
+
+    widget.Spacer(background=color_lightblue, length=6),  # +0
+
+    widget.TextBox(
+        background=color_lightblue,
+        foreground=color_black,
+        text=' ',
+        padding=0
+    ),
+
+    widget.Spacer(background=color_lightblue, length=3),  # +0
+
+    widget.KeyboardLayout(
+        background=color_lightblue,
+        foreground=color_black,
+        configured_keyboards=['it', 'us', 'gb'],
+        display_map={'it': 'Ita', 'us': 'Usa', 'gb': 'Gbr'},
+        option='caps:swapescape',
+        padding=0
+    ),
+
+    widget.Spacer(background=color_lightblue, length=3),  # +0
+
+    widget.Spacer(background='6a99ff', length=1),
+    widget.Spacer(background='6f98fe', length=1),
+    widget.Spacer(background='7398fe', length=1),
+    widget.Spacer(background='7798fe', length=1),
+    widget.Spacer(background='7c98fe', length=1),
+    widget.Spacer(background='8097fd', length=1),
+    widget.Spacer(background='8497fd', length=1),
+    widget.Spacer(background='8997fd', length=1),
+    widget.Spacer(background='8d96fc', length=1),
+    widget.Spacer(background='9296fc', length=1),
+    widget.Spacer(background='9696fc', length=1),
+    widget.Spacer(background='9a95fb', length=1),
+    widget.Spacer(background='9f95fb', length=1),
+    widget.Spacer(background='a395fb', length=1),
+    widget.Spacer(background='a794fa', length=1),
+    widget.Spacer(background='ac94fa', length=1),
+    widget.Spacer(background='b094fa', length=1),
+    widget.Spacer(background='b494fa', length=1),
+    widget.Spacer(background='b993f9', length=1),
+
+    widget.Spacer(background=color_purple, length=4),
+
+    widget.Wallpaper(
+        background=color_purple,
+        foreground=color_black,
+        directory='~/Pictures/wallpapers/wallogo',
+        random_selection=True,
+        wallpaper_command=['feh', '--bg-fill'],
+        label=' Chwp'
+    ),
+
+    widget.TextBox(
+        background=color_purple,
+        foreground=color_purplegray,
+        fontsize=10,
+        text='',
+        padding=0
+    ),
+
+    widget.Spacer(background=color_purple, length=6),
+
+    widget.TextBox(
+        background=color_purple,
+        foreground=color_black,
+        text=' ',
+        padding=0
+    ),
+
+    widget.Clock(
+        background=color_purple,
+        foreground=color_black,
+        padding=0,
+        format='%H:%M',
+        mouse_callbacks={'Button1': toggle_calcurse}
+    ),
+
+    widget.Spacer(background=color_purple, length=9)
 ]
+
+
+# Widgets list on secondary screen bar
+widgets_secondary_display = [
+    widget.GroupBox(
+        highlight_method='text',
+        margin_y=2,
+        borderwidth=0,
+        active=color_gray,
+        inactive=color_gray,
+        hide_unused=True,
+        this_current_screen_border=color_white,
+        this_screen_border=color_blue,
+        other_current_screen_border=color_white,
+        other_screen_border=color_blue,
+        disable_drag=True
+    ),
+
+    widget.Spacer(length=6),
+
+    widget.TextBox(fontsize=10, text='┃', padding=0),
+
+    widget.Spacer(length=36),
+
+    widget.TaskList(
+        foreground=color_gray,
+        border=color_white,
+        borderwidth=0,
+        highlight_method='text',
+        rounded=False,
+        icon_size=0,
+        margin_y=2,
+        padding_y=0,
+        title_width_method='uniform',
+        txt_floating='* ',
+        txt_minimized='- ',
+        txt_maximized='+ '
+    ),
+
+    widget.Spacer(length=36),
+
+    widget.TextBox(fontsize=10, text='┃', padding=0),
+
+    widget.Spacer(length=5),
+
+    widget.TextBox(text=' ', padding=0),
+
+    widget.CurrentLayout(padding=1),
+
+    widget.Spacer(length=5)
+]
+
+
+screens = [
+    Screen(bar.Bar(widgets_primary_display, 20)),
+    Screen(bar.Bar(widgets_secondary_display, 20)),
+]
+
 
 # Drag floating layouts.
 mouse = [
@@ -517,6 +493,7 @@ mouse = [
          start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front())
 ]
+
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
@@ -563,7 +540,8 @@ def idle_dialogues(window):
             (window.window.get_name() == 'sxiv') or
             (window.window.get_name() == 'calcurse') or
             (window.window.get_name() == 'Shfm') or
-            (window.window.get_name() == 'Moc') or
+            (window.window.get_name() == 'Cmus') or
+            (window.window.get_name() == 'Mocp') or
             (window.window.get_name() == 'Conf')):
         window.floating = True
 

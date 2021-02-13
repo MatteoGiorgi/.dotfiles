@@ -169,11 +169,12 @@ mcd ()
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin"
 export PAGER="vimpager"      # most
 export BAT_PAGER="vimpager"  # most
+export MANPAGER="nvim +Man!"
 export VISUAL="nvim"         # vim
 export EDITOR="nvim"         # vim
 export TERM="xterm-256color"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
-export BROWSER="firefox"
+export BROWSER="qutebrowser"
 export READER="zathura"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -181,6 +182,8 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 export BAT_THEME="base16"
 export MICRO_TRUECOLOR=1
 export SHFM_OPENER="shfm-opener"
+export VIMWIKI="$HOME/.vimwiki"
+export WIKI="$HOME/.config/nvim/.wiki/"
 
 export PS1="\[\033[38;5;12m\][\[$(tput sgr0)\]\[\033[38;5;10m\]\u\[$(tput sgr0)\]\[\033[38;5;12m\]@\[$(tput sgr0)\]\[\033[38;5;7m\]\h\[$(tput sgr0)\]\[\033[38;5;12m\]]\[$(tput sgr0)\]\[\033[38;5;15m\]: \[$(tput sgr0)\]\[\033[38;5;7m\]\w\[$(tput sgr0)\]\[\033[38;5;12m\]>\[$(tput sgr0)\]\[\033[38;5;10m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
 
@@ -197,3 +200,5 @@ source $HOME/.config/fzf/completion.bash
 # source /usr/share/fzf/key-bindings.bash
 # source /usr/share/fzf/completion.bash
 source $HOME/.config/broot/launcher/bash/br
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
